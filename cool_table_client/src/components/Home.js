@@ -14,7 +14,15 @@ const H1 = styled.h1`
   background: aqua;
   padding: 7px 15px;
   border-radius: 7px;
+  box-shadow: -1px 3px 7px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 400px) {
+    width: 100%;
+    border-radius: 0;
+    font-size: 60px;
+  }
 `;
+
 const H2 = styled.h2`
   text-transform: uppercase;
   color: aqua;
@@ -22,16 +30,14 @@ const H2 = styled.h2`
   padding: 7px 15px;
   border-radius: 7px;
   max-width: 50%;
-  margin: 20px auto 10px;
-  display: inline-block;
-
-  @media (max-width: 650px) {
-    margin-bottom: 0;
-  }
+  margin: 20px auto 0px;
+  display: block;
+  width: 200px;
 `;
 
 const Span = styled.span`
   font-weight: normal;
+  opacity: 0.8;
 `;
 
 const Container = styled.div`

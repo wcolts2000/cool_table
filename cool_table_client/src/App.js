@@ -106,7 +106,10 @@ class App extends Component {
       <>
         <GlobalStyles />
         <AppDiv>
-          <Nav isLoggedIn={this.state.isLoggedIn} />
+          <Nav
+            isLoggedIn={this.state.isLoggedIn}
+            mobileNav={this.state.mobileNav}
+          />
           <Spacer />
           <Route exact path="/" component={Login} />
           <Route path="/login" component={UserLogin} />
