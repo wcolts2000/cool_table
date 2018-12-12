@@ -23,6 +23,7 @@ export default class UserLogin extends Component {
           name="username"
           value={this.state.username}
           placeholder="Username..."
+          autoComplete="username"
           onChange={this.handleChange}
         />
         <input

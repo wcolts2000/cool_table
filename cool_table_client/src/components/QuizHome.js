@@ -3,6 +3,10 @@ import styled from "styled-components";
 import axios from "axios";
 import { URL } from "../App";
 
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
 const QuizCard = styled.div`
   padding: 10px;
   width: 80%;
@@ -37,6 +41,10 @@ const QuizCard = styled.div`
     }
   }
 `;
+
+// ==============================
+// =====      Component     =====
+// ==============================
 
 export default class QuizHome extends Component {
   constructor() {
