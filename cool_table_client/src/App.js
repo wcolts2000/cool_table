@@ -84,6 +84,7 @@ const GlobalStyles = createGlobalStyle`
 
     &::placeholder {
       color: white;
+      text-shadow: -1px 2px rgba(0,0,0,.3);
     }
 
     &:focus {

@@ -60,7 +60,7 @@ export default class SingleForum extends Component {
               posted by:{" "}
               <img
                 src={`${post.author.img_url}`}
-                alt="user avatar"
+                alt="[ __ users avatar goes here __ ]"
                 style={{ width: 20 }}
               />
               &nbsp;

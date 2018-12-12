@@ -36,7 +36,6 @@ class Quiz extends Component {
   };
 
   componentDidMount = () => {
-    console.log("", this.props);
     let id = this.props.match.params.id;
 
     axios
