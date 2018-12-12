@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 import "./Nav.css";
 
@@ -176,7 +176,6 @@ const MobileStyledNavLink = styled(Link)`
 export default function Nav({ isLoggedIn }) {
   const openNav = () => {
     const mobileNav = document.getElementById("mobile-nav-box");
-    const navlinks = document.querySelectorAll(".nav-link");
     mobileNav.classList.toggle("nav-open");
   };
   return (
@@ -202,13 +201,13 @@ export default function Nav({ isLoggedIn }) {
         <Backplate onClick={() => openNav()}>&nbsp;</Backplate>
       </NavBar>
       <Mobile id="mobile-nav-box">
-        <MobileStyledNavLink className="nav-link nav-link-open" to="/home">
+        <MobileStyledNavLink className="nav-link-open" to="/home">
           Home
         </MobileStyledNavLink>
-        <MobileStyledNavLink className="nav-link nav-link-open" to="/quiz">
+        <MobileStyledNavLink className="nav-link-open" to="/quiz">
           Quizzes
         </MobileStyledNavLink>
-        <MobileStyledNavLink className="nav-link nav-link-open" to="/forum">
+        <MobileStyledNavLink className="nav-link-open" to="/forum">
           Forum
         </MobileStyledNavLink>
       </Mobile>
