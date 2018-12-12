@@ -107,7 +107,6 @@ const Spacer = styled.div`
 // ==============================
 
 export const URL = "https://lambda-study-app.herokuapp.com/api/";
-
 class App extends Component {
   state = {
     isLoggedIn: false

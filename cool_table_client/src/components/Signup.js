@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
 const H1 = styled.h1`
   font-size: 20px;
   line-height: 30px;
@@ -22,6 +26,14 @@ const H1 = styled.h1`
     }
   }
 `;
+
+const Input = styled.input`
+  color: white;
+`;
+
+// ==============================
+// =====      Component     =====
+// ==============================
 
 export default class Signup extends Component {
   constructor() {
@@ -82,6 +94,7 @@ export default class Signup extends Component {
           required
           value={this.state.password}
           placeholder="Password..."
+          autoComplete="New Password"
           onChange={this.handleInputChange}
         />
         <input
@@ -90,15 +103,10 @@ export default class Signup extends Component {
           required
           value={this.state.passwordCheck}
           placeholder="Retype Password..."
+          autoComplete="New Password"
           onChange={this.handleInputChange}
         />
-        <input
-          type="url"
-          name="avatar"
-          value={this.state.avatar}
-          placeholder="Upload Avatar Image..."
-          onChange={this.handleInputChange}
-        />
+        <Input type="file" name="avatar" />
         <button type="submit">Submit</button>{" "}
         <button onClick={this.resetForm}>Reset</button>
       </form>
