@@ -67,14 +67,24 @@ const GlobalStyles = createGlobalStyle`
   }
 
   input {
-    background: lightblue;
+    background: #deb887;
     border: none;
     outline: none;
     border-bottom: 2px solid aqua;
     font-size: 16px;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 15px 20px;
     text-align: left;
+    display: block;
+    border-radius: 50px;
+    margin: 0 auto;
+    color: #0f0f0f;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 400px;
+
+    &::placeholder {
+      color: white;
+    }
 
     &:focus {
       border: none;
