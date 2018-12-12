@@ -57,7 +57,9 @@ export default class QuizHome extends Component {
   componentDidMount = () => {
     axios
       .get(`${URL}quizzes/`)
-      .then(({ data }) => this.setState({ quizzes: data })(console.log(data)))
+      .then(({ data }) => {
+        this.setState({ quizzes: data });
+      })
       .catch(err => console.log(err));
   };
 
@@ -70,7 +72,11 @@ export default class QuizHome extends Component {
             <ul>
               {this.state.quizzes.map((quiz, i) => {
                 return (
-                  <li key={i} id={quiz.id}>
+                  <li
+                    key={i}
+                    id={quiz.id}
+                    onClick={() => this.props.history.push(`/quiz/${quiz.id}`)}
+                  >
                     <p>
                       {quiz.title}: {quiz.topic}&nbsp;&nbsp;&nbsp;
                     </p>
