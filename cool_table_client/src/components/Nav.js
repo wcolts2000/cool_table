@@ -139,11 +139,11 @@ const Mobile = styled.div`
   font-size: 20px;
   flex-direction: column;
   transition: all 0.6s ease-in-out;
-  height: ${props => (props.mobileNavOpen ? "auto" : 0)};
-  padding-top: ${props => (props.mobileNavOpen ? "70px" : null)};
+  height: ${props => (props.mobilenavopen === "true" ? "auto" : 0)};
+  padding-top: ${props => (props.mobilenavopen === "true" ? "70px" : null)};
   display: flex;
   box-shadow: ${props =>
-    props.mobileNavOpen ? "1 3 60 rgba(0,200,220,.6)" : null};
+    props.mobilenavopen === "true" ? "1 3 60 rgba(0,200,220,.6)" : null};
   position: fixed;
   z-index: 100;
 `;
@@ -157,9 +157,10 @@ const MobileStyledNavLink = styled(Link)`
   text-transform: uppercase;
   border-bottom: 2px solid aqua;
   transition: all 0.3s ease-in-out;
-  height: ${props => (props.mobileNavOpen ? "auto" : 0)};
-  opacity: ${props => (props.mobileNavOpen ? 1 : 0)};
-  pointer-events: ${props => (props.mobileNavOpen ? "initial" : "none")};
+  height: ${props => (props.mobilenavopen === "true" ? "auto" : 0)};
+  opacity: ${props => (props.mobilenavopen === "true" ? 1 : 0)};
+  pointer-events: ${props =>
+    props.mobilenavopen === "true" ? "initial" : "none"};
 
   &:first-child {
     border-top: 2px solid aqua;
@@ -175,7 +176,7 @@ const MobileStyledNavLink = styled(Link)`
 // =====      Component     =====
 // ==============================
 
-export default function Nav({ isLoggedIn, mobileNavOpen, navOpen }) {
+export default function Nav({ isLoggedIn, mobilenavopen, navOpen }) {
   return (
     <>
       <NavBar>
@@ -198,14 +199,23 @@ export default function Nav({ isLoggedIn, mobileNavOpen, navOpen }) {
         <Hamburger>&nbsp;</Hamburger>
         <Backplate onClick={() => navOpen()}>&nbsp;</Backplate>
       </NavBar>
-      <Mobile mobileNavOpen={mobileNavOpen}>
-        <MobileStyledNavLink mobileNavOpen={mobileNavOpen} to="/home">
+      <Mobile mobilenavopen={mobilenavopen === "true" ? "true" : "false"}>
+        <MobileStyledNavLink
+          mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
+          to="/home"
+        >
           Home
         </MobileStyledNavLink>
-        <MobileStyledNavLink mobileNavOpen={mobileNavOpen} to="/quiz">
+        <MobileStyledNavLink
+          mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
+          to="/quiz"
+        >
           Quizzes
         </MobileStyledNavLink>
-        <MobileStyledNavLink mobileNavOpen={mobileNavOpen} to="/forum">
+        <MobileStyledNavLink
+          mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
+          to="/forum"
+        >
           Forum
         </MobileStyledNavLink>
       </Mobile>

@@ -111,12 +111,13 @@ export const URL = "https://lambda-study-app.herokuapp.com/api/";
 class App extends Component {
   state = {
     isLoggedIn: true,
-    mobileNavOpen: false
+    mobilenavopen: "false"
   };
 
   navOpen = () => {
+    // let toggle = this.state.mobilenavopen === "false" ? "false" : "true";
     this.setState({
-      mobileNavOpen: !this.state.mobileNavOpen
+      mobilenavopen: this.state.mobilenavopen === "false" ? "true" : "false"
     });
   };
 
@@ -127,7 +128,7 @@ class App extends Component {
         <AppDiv>
           <Nav
             isLoggedIn={this.state.isLoggedIn}
-            mobileNavOpen={this.state.mobileNavOpen}
+            mobilenavopen={this.state.mobilenavopen}
             navOpen={this.navOpen}
           />
           <Spacer />
