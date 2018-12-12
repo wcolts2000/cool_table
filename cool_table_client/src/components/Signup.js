@@ -28,7 +28,17 @@ const H1 = styled.h1`
 `;
 
 const Input = styled.input`
-  color: white;
+  color: transparent;
+  background: aqua;
+  border-bottom: 2px solid #0f0f0f;
+  opacity: 0.6;
+
+  &::after {
+    content: "Upload Avatar Image";
+    display: inline-block;
+    color: #0f0f0f;
+    padding-left: 10px;
+  }
 `;
 
 // ==============================
@@ -47,9 +57,9 @@ export default class Signup extends Component {
     };
   }
 
-  handleInputChange = e => {
+  handleInputChange = ({ target: { name, value } }) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [name]: value
     });
   };
 
