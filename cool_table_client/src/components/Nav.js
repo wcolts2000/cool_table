@@ -145,10 +145,12 @@ const Mobile = styled.div`
   box-shadow: ${props =>
     props.mobileNavOpen ? "1 3 60 rgba(0,200,220,.6)" : null};
   position: fixed;
+  z-index: 100;
 `;
 
 const MobileStyledNavLink = styled(Link)`
   text-decoration: none;
+  z-index: 150;
   color: aqua;
   font-weight: bolder;
   padding: 25px 0;
