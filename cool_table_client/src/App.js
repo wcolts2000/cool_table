@@ -49,7 +49,6 @@ const GlobalStyles = createGlobalStyle`
     text-transform: uppercase;
     margin-bottom: 10px;
     border-radius: 50px;
-    margin-right: 20px;
     font-weight: bolder;
     background: #0f0f0f;
 
@@ -115,7 +114,6 @@ class App extends Component {
   };
 
   navOpen = () => {
-    // let toggle = this.state.mobilenavopen === "false" ? "false" : "true";
     this.setState({
       mobilenavopen: this.state.mobilenavopen === "false" ? "true" : "false"
     });

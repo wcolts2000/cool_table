@@ -80,7 +80,6 @@ const Container = styled.div`
 const LinkBox = styled.div`
   width: 100%;
   margin-bottom: 30px;
-  padding-left: 10px;
   display: none;
 
   @media (max-width: 650px) {
@@ -102,7 +101,7 @@ export default class Home extends Component {
         </H1>
         <Container>
           <LinkBox>
-            <Link to="/quiz">
+            <Link to="/quiz" style={{ marginRight: 15 }}>
               <button>QUIZ</button>
             </Link>
             <Link to="/forum">
