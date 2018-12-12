@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import QuizHome from "./components/QuizHome";
@@ -110,7 +110,7 @@ const Spacer = styled.div`
 export const URL = "https://lambda-study-app.herokuapp.com/api/";
 class App extends Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: true
   };
 
   render() {
@@ -127,16 +127,28 @@ class App extends Component {
           <Route path="/login" component={UserLogin} />
           <Route path="/register" component={Signup} />
           <Route path="/home" component={Home} />
-          <Route exact path="/quiz" component={QuizHome} />
+          <Route
+            exact
+            path="/quiz"
+            render={props => (
+              <QuizHome isLoggedIn={this.state.isLoggedIn} {...props} />
+            )}
+          />
           <Route path="/quiz/:id" component={Quiz} />
-          <Route path="/quiz/form" component={QuizForm} />
-          <Route exact path="/forum" component={ForumHome} />
+          <Route path="/quizForm" component={QuizForm} />
+          <Route
+            exact
+            path="/forum/"
+            render={props => (
+              <ForumHome isLoggedIn={this.state.isLoggedIn} {...props} />
+            )}
+          />
           <Route path="/forum/:id" component={SingleForum} />
-          <Route path="/forum/post" component={ForumPost} />
+          <Route path="/forumPost" component={ForumPost} />
         </AppDiv>
       </>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

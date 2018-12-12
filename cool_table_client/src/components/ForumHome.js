@@ -77,6 +77,11 @@ export default class ForumHome extends Component {
           placeholder="Filter Posts Here..."
           onChange={this.handleSearchChange}
         />
+        {this.props.isLoggedIn ? (
+          <button onClick={() => this.props.history.push("forumPost")}>
+            Add A Post
+          </button>
+        ) : null}
         <PostCardContainer>
           {this.state.posts.map(({ id, title, created_at, body, author }) => {
             return (

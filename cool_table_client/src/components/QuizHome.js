@@ -68,6 +68,14 @@ export default class QuizHome extends Component {
       return (
         <>
           <h1> __QUIZZES__</h1>
+          {this.props.isLoggedIn ? (
+            <button
+              onClick={() => this.props.history.push("/quizForm")}
+              style={{ display: "block", margin: "0 auto" }}
+            >
+              Add A Quiz
+            </button>
+          ) : null}
           <QuizCard>
             <ul>
               {this.state.quizzes.map((quiz, i) => {
