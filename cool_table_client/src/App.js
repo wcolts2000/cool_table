@@ -110,7 +110,14 @@ const Spacer = styled.div`
 export const URL = "https://lambda-study-app.herokuapp.com/api/";
 class App extends Component {
   state = {
-    isLoggedIn: true
+    isLoggedIn: true,
+    mobileNavOpen: false
+  };
+
+  navOpen = () => {
+    this.setState({
+      mobileNavOpen: !this.state.mobileNavOpen
+    });
   };
 
   render() {
@@ -120,7 +127,8 @@ class App extends Component {
         <AppDiv>
           <Nav
             isLoggedIn={this.state.isLoggedIn}
-            mobileNav={this.state.mobileNav}
+            mobileNavOpen={this.state.mobileNavOpen}
+            navOpen={this.navOpen}
           />
           <Spacer />
           <Route exact path="/" component={Login} />

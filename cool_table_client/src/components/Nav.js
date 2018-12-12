@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
-import "./Nav.css";
 
 // ==============================
 // =====  Styled Component  =====
@@ -16,6 +15,7 @@ const NavBar = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  z-index: 200;
 
   @media (max-width: 500px) {
     justify-content: flex-start;
@@ -139,7 +139,12 @@ const Mobile = styled.div`
   font-size: 20px;
   flex-direction: column;
   transition: all 0.6s ease-in-out;
-  height: 0;
+  height: ${props => (props.mobileNavOpen ? "auto" : 0)};
+  padding-top: ${props => (props.mobileNavOpen ? "70px" : null)};
+  display: flex;
+  box-shadow: ${props =>
+    props.mobileNavOpen ? "1 3 60 rgba(0,200,220,.6)" : null};
+  position: fixed;
 `;
 
 const MobileStyledNavLink = styled(Link)`
@@ -150,9 +155,9 @@ const MobileStyledNavLink = styled(Link)`
   text-transform: uppercase;
   border-bottom: 2px solid aqua;
   transition: all 0.3s ease-in-out;
-  height: 0;
-  opacity: 0;
-  pointer-events: none;
+  height: ${props => (props.mobileNavOpen ? "auto" : 0)};
+  opacity: ${props => (props.mobileNavOpen ? 1 : 0)};
+  pointer-events: ${props => (props.mobileNavOpen ? "initial" : "none")};
 
   &:first-child {
     border-top: 2px solid aqua;
@@ -162,22 +167,13 @@ const MobileStyledNavLink = styled(Link)`
     background: aqua;
     color: #0f0f0f;
   }
-
-  & .nav-open {
-    height: auto;
-    opacity: 1;
-  }
 `;
 
 // ==============================
 // =====      Component     =====
 // ==============================
 
-export default function Nav({ isLoggedIn }) {
-  const openNav = () => {
-    const mobileNav = document.getElementById("mobile-nav-box");
-    mobileNav.classList.toggle("nav-open");
-  };
+export default function Nav({ isLoggedIn, mobileNavOpen, navOpen }) {
   return (
     <>
       <NavBar>
@@ -198,16 +194,16 @@ export default function Nav({ isLoggedIn }) {
           <StyledNavLink to="/forum">Forum</StyledNavLink>
         </NavRight>
         <Hamburger>&nbsp;</Hamburger>
-        <Backplate onClick={() => openNav()}>&nbsp;</Backplate>
+        <Backplate onClick={() => navOpen()}>&nbsp;</Backplate>
       </NavBar>
-      <Mobile id="mobile-nav-box">
-        <MobileStyledNavLink className="nav-link-open" to="/home">
+      <Mobile mobileNavOpen={mobileNavOpen}>
+        <MobileStyledNavLink mobileNavOpen={mobileNavOpen} to="/home">
           Home
         </MobileStyledNavLink>
-        <MobileStyledNavLink className="nav-link-open" to="/quiz">
+        <MobileStyledNavLink mobileNavOpen={mobileNavOpen} to="/quiz">
           Quizzes
         </MobileStyledNavLink>
-        <MobileStyledNavLink className="nav-link-open" to="/forum">
+        <MobileStyledNavLink mobileNavOpen={mobileNavOpen} to="/forum">
           Forum
         </MobileStyledNavLink>
       </Mobile>
