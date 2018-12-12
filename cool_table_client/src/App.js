@@ -129,8 +129,8 @@ class App extends Component {
           <Route exact path="/quiz" component={QuizHome} />
           <Route path="/quiz/:id" component={Quiz} />
           <Route path="/quiz/form" component={QuizForm} />
-          <Route path="/forum" component={ForumHome} />
-          <Route path="/forum:id" component={SingleForum} />
+          <Route exact path="/forum" component={ForumHome} />
+          <Route path="/forum/:id" component={SingleForum} />
           <Route path="/forum/post" component={ForumPost} />
         </AppDiv>
       </>

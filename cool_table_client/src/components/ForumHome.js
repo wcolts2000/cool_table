@@ -18,7 +18,14 @@ const PostCardContainer = styled.div`
 `;
 
 const PostCard = styled.div`
-  background: honeydew;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #eadbb4 0,
+    #eadbb4 20px,
+    lightblue 20px,
+    lightblue 22px,
+    #eadbb4 22px
+  );
   padding: 10px 10px;
   border-radius: 7px;
   height: 240px;
@@ -44,7 +51,8 @@ export default class ForumHome extends Component {
   constructor() {
     super();
     this.state = {
-      posts: []
+      posts: [],
+      search: ""
     };
   }
 
@@ -55,30 +63,46 @@ export default class ForumHome extends Component {
       .catch(err => console.log(err));
   };
 
+  handleSearchChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  };
+
   render() {
     return (
-      <PostCardContainer>
-        {this.state.posts.map(({ id, title, created_at, body, author }) => {
-          return (
-            <PostCard key={id}>
-              <h3>
-                {title.slice(0, 30)}
-                {title.length > 30 ? "..." : null}
-              </h3>
-              <p>
-                {body.slice(0, 150)}
-                {body.length > 150 ? "..." : null}
-              </p>
-              <p>
-                {author}{" "}
-                <span>
-                  {moment.utc(created_at).format("MMMM Do YYYY, hh:mm a")}
-                </span>
-              </p>
-            </PostCard>
-          );
-        })}
-      </PostCardContainer>
+      <div style={{ paddingTop: 50 }}>
+        <input
+          type="text"
+          name="search"
+          value={this.state.search}
+          placeholder="Filter Posts Here..."
+          onChange={this.handleSearchChange}
+        />
+        <PostCardContainer>
+          {this.state.posts.map(({ id, title, created_at, body, author }) => {
+            return (
+              <PostCard
+                key={id}
+                onClick={() => this.props.history.push(`/forum/${id}`)}
+              >
+                <h3>
+                  {title.slice(0, 30)}
+                  {title.length > 30 ? "..." : null}
+                </h3>
+                <p>
+                  {body.slice(0, 150)}
+                  {body.length > 150 ? "..." : null}
+                </p>
+                <p>
+                  {author}{" "}
+                  <span>
+                    {moment.utc(created_at).format("MMMM Do YYYY, hh:mm a")}
+                  </span>
+                </p>
+              </PostCard>
+            );
+          })}
+        </PostCardContainer>
+      </div>
     );
   }
 }
