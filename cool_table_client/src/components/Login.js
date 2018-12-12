@@ -55,10 +55,10 @@ export default class Login extends Component {
             COOL<span>TABLE</span>
           </h1>
         </Header>
-        <Link to="/login">
+        <Link to="/login" style={{ marginRight: 15 }}>
           <button>LOGIN</button>
         </Link>
-        <Link to="/home">
+        <Link to="/home" style={{ marginRight: 15 }}>
           <button>GUEST</button>
         </Link>
         <Link to="/register">

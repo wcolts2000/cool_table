@@ -118,7 +118,9 @@ export default class Signup extends Component {
           onChange={this.handleInputChange}
         />
         <Input type="file" name="avatar" />
-        <button type="submit">Submit</button>{" "}
+        <button type="submit" style={{ marginRight: 15 }}>
+          Submit
+        </button>{" "}
         <button onClick={this.resetForm}>Reset</button>
       </form>
     );
