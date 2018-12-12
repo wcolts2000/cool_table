@@ -70,7 +70,7 @@ export default class QuizHome extends Component {
           <h1> __QUIZZES__</h1>
           {this.props.isLoggedIn ? (
             <button
-              onClick={() => this.props.history.push("/quizForm")}
+              onClick={() => this.props.history.push("/quiz/form")}
               style={{ display: "block", margin: "0 auto" }}
             >
               Add A Quiz
@@ -83,7 +83,9 @@ export default class QuizHome extends Component {
                   <li
                     key={i}
                     id={quiz.id}
-                    onClick={() => this.props.history.push(`/quiz/${quiz.id}`)}
+                    onClick={() =>
+                      this.props.history.push(`/quiz/single-quiz/${quiz.id}`)
+                    }
                   >
                     <p>
                       {quiz.title}: {quiz.topic}&nbsp;&nbsp;&nbsp;

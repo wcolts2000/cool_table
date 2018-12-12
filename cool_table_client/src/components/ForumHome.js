@@ -78,7 +78,7 @@ export default class ForumHome extends Component {
           onChange={this.handleSearchChange}
         />
         {this.props.isLoggedIn ? (
-          <button onClick={() => this.props.history.push("forumPost")}>
+          <button onClick={() => this.props.history.push("/forum/post")}>
             Add A Post
           </button>
         ) : null}
@@ -87,7 +87,9 @@ export default class ForumHome extends Component {
             return (
               <PostCard
                 key={id}
-                onClick={() => this.props.history.push(`/forum/${id}`)}
+                onClick={() =>
+                  this.props.history.push(`/forum/single-post/${id}`)
+                }
               >
                 <h3>
                   {title.slice(0, 30)}

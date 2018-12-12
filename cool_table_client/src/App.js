@@ -134,8 +134,8 @@ class App extends Component {
               <QuizHome isLoggedIn={this.state.isLoggedIn} {...props} />
             )}
           />
-          <Route path="/quiz/:id" component={Quiz} />
-          <Route path="/quizForm" component={QuizForm} />
+          <Route path="/quiz/single-quiz/:id" component={Quiz} />
+          <Route path="/quiz/form" component={QuizForm} />
           <Route
             exact
             path="/forum/"
@@ -143,8 +143,8 @@ class App extends Component {
               <ForumHome isLoggedIn={this.state.isLoggedIn} {...props} />
             )}
           />
-          <Route path="/forum/:id" component={SingleForum} />
-          <Route path="/forumPost" component={ForumPost} />
+          <Route path="/forum/post" component={ForumPost} />
+          <Route path="/forum/single-post/:id" component={SingleForum} />
         </AppDiv>
       </>
     );
