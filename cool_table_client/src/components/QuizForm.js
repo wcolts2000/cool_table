@@ -147,7 +147,7 @@ export default class QuizForm extends Component {
                     onClick={() => this.selectTopic({ id })}
                     style={
                       this.state.topic_id === id
-                        ? { background: "Blue", color: "white" }
+                        ? { background: "yellow" }
                         : null
                     }
                   >
