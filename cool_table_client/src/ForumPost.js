@@ -50,7 +50,11 @@ export default class ForumPost extends Component {
     super(props);
     this.state = {
       title: "",
-      body: ""
+      votes: 0,
+      time_limit_seconds: 0,
+      topic: "",
+      question: "",
+      answers: []
     };
   }
 

@@ -113,6 +113,13 @@ class App extends Component {
     mobilenavopen: "false"
   };
 
+  componentDidUpdate = prevProps => {
+    if (prevProps.location !== this.props.location) {
+      this.setState({ mobilenavopen: "false" });
+    }
+    return null;
+  };
+
   navOpen = () => {
     this.setState({
       mobilenavopen: this.state.mobilenavopen === "false" ? "true" : "false"
