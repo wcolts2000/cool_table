@@ -14,6 +14,7 @@ const Card = styled.div`
   overflow: hidden;
   transform: rotate(-0.5deg);
   box-shadow: -1px 3px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
   background-image: repeating-linear-gradient(
     to bottom,
     #eadbb4 0,
@@ -41,10 +42,12 @@ class Quiz extends Component {
     axios
       .get(`${URL}quizzes/${id}`)
       .then(({ data }) => this.setState({ quiz: data }))
-      .catch(err => console.log(err));
-    axios
-      .get(`${URL}quizzes/${id}/questions/1`)
-      .then(({ data }) => this.setState({ questions: data }))
+      .then(
+        axios
+          .get(`${URL}quizzes/${id}/questions/`)
+          .then(({ data }) => this.setState({ questions: data }))
+          .catch(err => console.log(err))
+      )
       .catch(err => console.log(err));
   };
 
@@ -52,19 +55,29 @@ class Quiz extends Component {
     let { title, votes, author, topic } = this.state.quiz;
 
     if (!this.state.quiz) return <h4>Loading...</h4>;
-    return (
-      <div style={{ padding: 30 }}>
-        <Card>
-          <h1>Quiz on {topic}</h1>
-          <h2>{title}</h2>
-          <p>Submitted by: {author ? author["username"] : null}</p>
-          <p>votes: {votes}</p>
-        </Card>
-        <Card>
-          <h3>{}</h3>
-        </Card>
-      </div>
-    );
+    if (this.state.questions.length) {
+      let { question, options } = this.state.questions[0];
+      console.log(question);
+      return (
+        <div style={{ padding: 30 }}>
+          <Card>
+            <h1>Quiz on {topic}</h1>
+            <h2>{title}</h2>
+            <p>Submitted by: {author ? author["username"] : null}</p>
+            <p>votes: {votes}</p>
+          </Card>
+          <Card>
+            <h3>{question}</h3>
+            <ol style={{ textAlign: "left" }}>
+              {options.map((option, i) => (
+                <li key={i}>{option}</li>
+              ))}
+            </ol>
+          </Card>
+        </div>
+      );
+    }
+    return null;
   }
 }
 
