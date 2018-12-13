@@ -105,7 +105,8 @@ export default class QuizForm extends Component {
     });
   };
 
-  addPost = () => {
+  addPost = e => {
+    e.preventDefault();
     const userId = 1;
     axios
       .post(

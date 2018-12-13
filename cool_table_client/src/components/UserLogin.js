@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import { URL } from "../App";
+import axios from "axios";
 
 export default class UserLogin extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: ""
+      email: "",
+      password: "",
+      token: "",
+      user: {}
     };
   }
 
@@ -16,7 +20,13 @@ export default class UserLogin extends Component {
   };
 
   handleSubmit = e => {
+    let user = { email: this.state.email, password: this.state.password };
     e.preventDefault();
+    axios
+      .post(`${URL}auth/login`, user)
+      .then(({ token, user }) => this.setState({ token: token, user: user }))
+      .catch(err => console.log(err));
+    this.props.logIn({ token: this.state.token, user: this.state.user });
   };
 
   render() {
@@ -24,10 +34,10 @@ export default class UserLogin extends Component {
       <form style={{ padding: 40 }} onSubmit={this.handleSubmit}>
         <input
           type="text"
-          name="username"
-          value={this.state.username}
-          placeholder="Username..."
-          autoComplete="username"
+          name="email"
+          value={this.state.email}
+          placeholder="email..."
+          autoComplete="email"
           onChange={this.handleChange}
         />
         <input
@@ -43,3 +53,5 @@ export default class UserLogin extends Component {
     );
   }
 }
+
+//token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTU0NDcyNjY0OSwiZXhwIjoxNTc2Mjg0MjQ5fQ.GOA5uOFUaJ9Z1AXnGHZQZJfLsR_vS7DwySGj8nGGuZc","user":{"id":12,"username":"sean","img_url":"https://img.devrant.com/devrant/rant/r_1621414_CgMfU.jpg"}}

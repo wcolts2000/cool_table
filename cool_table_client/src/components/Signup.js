@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { URL } from "../App";
 
 // ==============================
 // =====  Styled Component  =====
@@ -29,16 +30,25 @@ const H1 = styled.h1`
 `;
 
 const Input = styled.input`
-  color: transparent;
   background: aqua;
   border-bottom: 2px solid #0f0f0f;
   opacity: 0.6;
-
-  &::after {
-    content: "Upload Avatar Image";
-    display: inline-block;
+  color: #0f0f0f;
+  &::placeholder {
     color: #0f0f0f;
-    padding-left: 10px;
+  }
+`;
+
+const Label = styled.label`
+  opacity: 0.4;
+  padding-right: 330px;
+
+  &:nth-of-type(4) {
+    padding-right: 240px;
+  }
+
+  &:nth-of-type(5) {
+    padding-right: 155px;
   }
 `;
 
@@ -54,7 +64,10 @@ export default class Signup extends Component {
       email: "",
       password: "",
       passwordCheck: "",
-      avatar: ""
+      avatar: "",
+      err: "",
+      token: "",
+      user: ""
     };
   }
 
@@ -76,9 +89,22 @@ export default class Signup extends Component {
   };
 
   handleSubmit = e => {
+    let userInfo = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+      // img_url: this.state.avatar
+    };
     e.preventDefault();
-    if (this.state.password === this.state.passwordCheck) return axios;
-    return null;
+    if (this.state.password === this.state.passwordCheck) {
+      axios
+        .post(`${URL}auth/register`, userInfo)
+        .then(({ token, user }) => this.setState({ token: token, user: user }))
+        .catch(({ error }) => console.log(error));
+    }
+    if (this.state.user.length) {
+      this.props.logIn({ token: this.state.token, user: this.state.user });
+    }
   };
 
   render() {
@@ -90,6 +116,7 @@ export default class Signup extends Component {
             Cool<span>Table</span>
           </span>
         </H1>
+        <Label>(required)</Label>
         <input
           type="text"
           name="username"
@@ -99,6 +126,7 @@ export default class Signup extends Component {
           placeholder="Username..."
           onChange={this.handleInputChange}
         />
+        <Label>(required)</Label>
         <input
           type="email"
           name="email"
@@ -107,6 +135,7 @@ export default class Signup extends Component {
           placeholder="Email..."
           onChange={this.handleInputChange}
         />
+        <Label>(required)</Label>
         <input
           type="password"
           name="password"
@@ -116,6 +145,7 @@ export default class Signup extends Component {
           autoComplete="New Password"
           onChange={this.handleInputChange}
         />
+        <Label>(required...must match)</Label>
         <input
           type="password"
           name="passwordCheck"
@@ -125,7 +155,13 @@ export default class Signup extends Component {
           autoComplete="New Password"
           onChange={this.handleInputChange}
         />
-        <Input type="file" name="avatar" />
+        <Label>Enter Avatar URL here...(optional)</Label>
+        <Input
+          type="url"
+          placeholder="Avatar URL..."
+          name="avatar"
+          onChange={this.handleInputChange}
+        />
         <button type="submit" style={{ marginRight: 15 }}>
           Submit
         </button>{" "}
@@ -134,3 +170,6 @@ export default class Signup extends Component {
     );
   }
 }
+
+// res: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTU0NDcyMzg2OCwiZXhwIjoxNTc2MjgxNDY4fQ.lGPClAhbaEaK0-c2wjXRCFpx3h3_5D7yA0ZGApAIGAs","user":{"id":12,"username":"sean"}}
+//"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTU0NDcyNjAwNCwiZXhwIjoxNTc2MjgzNjA0fQ.qf--SAbTVYiW90eu-qu-jW4CSZ2o-Z8Pgkjbi5_vIko","user":{"id":16,"username":"osadfi"}}

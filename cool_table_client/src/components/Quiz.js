@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { URL } from "./App";
+import { URL } from "../App";
 import styled from "styled-components";
 
 // ==============================
@@ -43,28 +43,25 @@ class Quiz extends Component {
       .then(({ data }) => this.setState({ quiz: data }))
       .catch(err => console.log(err));
     axios
-      .get(`${URL}quizzes/${id}/questions/`)
+      .get(`${URL}quizzes/${id}/questions/1`)
       .then(({ data }) => this.setState({ questions: data }))
       .catch(err => console.log(err));
   };
 
   render() {
-    // let quiz = this.state.quiz;
-    const {
-      title,
-      votes,
-      // author: { username },
-      topic
-    } = this.state.quiz;
-    // console.log(quiz.author);
+    let { title, votes, author, topic } = this.state.quiz;
+
     if (!this.state.quiz) return <h4>Loading...</h4>;
     return (
       <div style={{ padding: 30 }}>
         <Card>
           <h1>Quiz on {topic}</h1>
           <h2>{title}</h2>
-          {/* <p>Submitted by: {username}</p> */}
+          <p>Submitted by: {author ? author["username"] : null}</p>
           <p>votes: {votes}</p>
+        </Card>
+        <Card>
+          <h3>{}</h3>
         </Card>
       </div>
     );

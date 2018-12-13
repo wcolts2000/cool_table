@@ -8,7 +8,7 @@ import ForumHome from "./components/ForumHome";
 import SingleForum from "./components/SingleForum";
 import styled, { createGlobalStyle } from "styled-components";
 import Nav from "./components/Nav";
-import Quiz from "./Quiz";
+import Quiz from "./components/Quiz";
 import ForumPost from "./ForumPost";
 import Signup from "./components/Signup";
 import UserLogin from "./components/UserLogin";
@@ -109,8 +109,10 @@ const Spacer = styled.div`
 export const URL = "https://lambda-study-app.herokuapp.com/api/";
 class App extends Component {
   state = {
-    isLoggedIn: true,
-    mobilenavopen: "false"
+    isLoggedIn: false,
+    mobilenavopen: "false",
+    token: "",
+    user: {}
   };
 
   componentDidUpdate = prevProps => {
@@ -126,6 +128,14 @@ class App extends Component {
     });
   };
 
+  logIn = ({ token, user }) => {
+    this.setState({
+      isLoggedIn: true,
+      token: token,
+      user: user
+    });
+  };
+
   render() {
     return (
       <>
@@ -138,8 +148,14 @@ class App extends Component {
           />
           <Spacer />
           <Route exact path="/" component={Login} />
-          <Route path="/login" component={UserLogin} />
-          <Route path="/register" component={Signup} />
+          <Route
+            path="/login"
+            render={props => <UserLogin logIn={this.logIn} {...props} />}
+          />
+          <Route
+            path="/register"
+            render={props => <Signup logIn={this.logIn} {...props} />}
+          />
           <Route path="/home" component={Home} />
           <Route
             exact
