@@ -56,8 +56,7 @@ class Quiz extends Component {
 
     if (!this.state.quiz) return <h4>Loading...</h4>;
     if (this.state.questions.length) {
-      let { question, options } = this.state.questions[0];
-      console.log(question);
+      let questions = this.state.questions;
       return (
         <div style={{ padding: 30 }}>
           <Card>
@@ -66,18 +65,25 @@ class Quiz extends Component {
             <p>Submitted by: {author ? author["username"] : null}</p>
             <p>votes: {votes}</p>
           </Card>
-          <Card>
-            <h3>{question}</h3>
-            <ol style={{ textAlign: "left" }}>
-              {options.map((option, i) => (
-                <li key={i}>{option}</li>
-              ))}
-            </ol>
-          </Card>
+          {questions.map((question, i) => (
+            <Card key={i}>
+              <h3>{question.question}</h3>
+              <ol style={{ textAlign: "left" }}>
+                {question.options.map((option, i) => (
+                  <li key={i}>{option}</li>
+                ))}
+              </ol>
+            </Card>
+          ))}
         </div>
       );
     }
-    return null;
+    return (
+      <h1>
+        "Sorry...This quiz has not had any questions associated with it yet : (
+        "
+      </h1>
+    );
   }
 }
 
