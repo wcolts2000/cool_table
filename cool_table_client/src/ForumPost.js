@@ -79,6 +79,7 @@ export default class ForumPost extends Component {
           value={this.state.title}
           onChange={this.handleInputChange}
           placeholder="Title..."
+          name="title"
         />
         <Textarea
           value={this.state.body}

@@ -15,9 +15,13 @@ export default class UserLogin extends Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+  };
+
   render() {
     return (
-      <form style={{ padding: 40 }}>
+      <form style={{ padding: 40 }} onSubmit={this.handleSubmit}>
         <input
           type="text"
           name="username"

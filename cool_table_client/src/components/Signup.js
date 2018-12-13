@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 // ==============================
 // =====  Styled Component  =====
@@ -63,7 +64,8 @@ export default class Signup extends Component {
     });
   };
 
-  resetForm = () => {
+  resetForm = e => {
+    e.preventDefault();
     this.setState({
       username: "",
       email: "",
@@ -71,6 +73,12 @@ export default class Signup extends Component {
       passwordCheck: "",
       avatar: ""
     });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.state.password === this.state.passwordCheck) return axios;
+    return null;
   };
 
   render() {
