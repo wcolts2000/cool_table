@@ -42,13 +42,14 @@ const Textarea = styled.textarea`
 `;
 
 const PickTopic = styled.div`
-  max-width: 800px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   background: #0f0f0f;
   color: white;
   border-radius: 7px;
   margin-bottom: 20px;
+
   text-transform: uppercase;
 `;
 
