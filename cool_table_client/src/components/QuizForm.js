@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { URL } from "../App";
+import BackBtnAttribute from "./BackBtnAttribute";
+import BackButton from "./BackButton";
 
 // ==============================
 // =====  Styled Component  =====
@@ -126,6 +128,7 @@ export default class QuizForm extends Component {
   render() {
     return (
       <Form onSubmit={this.addPost}>
+        <BackButton props={this.props} />
         <input
           type="text"
           value={this.state.title}
@@ -160,6 +163,7 @@ export default class QuizForm extends Component {
           </TopicsBox>
         </PickTopic>
         <button>Test&nbsp;Peeps&nbsp;knowledge</button>
+        <BackBtnAttribute />
       </Form>
     );
   }

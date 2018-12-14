@@ -26,6 +26,13 @@ const Card = styled.div`
   line-height: 1.6;
 `;
 
+const Li = styled.li`
+  cursor: pointer;
+  &:hover {
+    color: darkgreen;
+  }
+`;
+
 // ==============================
 // =====      Component     =====
 // ==============================
@@ -51,6 +58,10 @@ class Quiz extends Component {
       .catch(err => console.log(err));
   };
 
+  pickAnswer = id => {
+    console.log("picked: #", id);
+  };
+
   render() {
     let { title, votes, author, topic } = this.state.quiz;
 
@@ -70,7 +81,9 @@ class Quiz extends Component {
               <h3>{question.question}</h3>
               <ol style={{ textAlign: "left" }}>
                 {question.options.map((option, i) => (
-                  <li key={i}>{option}</li>
+                  <Li key={i} onClick={() => this.pickAnswer()}>
+                    {option}
+                  </Li>
                 ))}
               </ol>
             </Card>
