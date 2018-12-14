@@ -136,6 +136,13 @@ class App extends Component {
     });
   };
 
+  logout = () => {
+    this.setState({
+      isLoggedIn: false
+    });
+    this.props.history.push("/");
+  };
+
   render() {
     return (
       <>
@@ -145,6 +152,8 @@ class App extends Component {
             isLoggedIn={this.state.isLoggedIn}
             mobilenavopen={this.state.mobilenavopen}
             navOpen={this.navOpen}
+            props={this.props}
+            logout={this.logout}
           />
           <Spacer />
           <Route exact path="/" component={Login} />

@@ -43,12 +43,11 @@ const NavRight = styled.div`
   }
 `;
 
-const User = styled(Link)`
+const User = styled.div`
   display: inline-block;
   font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  text-decoration: none;
 
   &:hover {
     opacity: 0.7;
@@ -176,7 +175,7 @@ const MobileStyledNavLink = styled(Link)`
 // =====      Component     =====
 // ==============================
 
-export default function Nav({ isLoggedIn, mobilenavopen, navOpen }) {
+export default function Nav({ isLoggedIn, mobilenavopen, navOpen, props }) {
   return (
     <>
       <NavBar>
@@ -185,7 +184,11 @@ export default function Nav({ isLoggedIn, mobilenavopen, navOpen }) {
             COOL<span>TABLE</span>
           </Logo>
           <User
-            to="/"
+            onClick={
+              isLoggedIn
+                ? () => props.logout()
+                : () => props.history.push("/login")
+            }
             style={isLoggedIn ? { color: "tomato" } : { color: "limeGreen" }}
           >
             {isLoggedIn ? "LOGOUT" : "LOGIN"}

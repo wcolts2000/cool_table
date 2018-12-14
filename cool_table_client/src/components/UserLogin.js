@@ -27,6 +27,7 @@ export default class UserLogin extends Component {
       .then(({ token, user }) => this.setState({ token: token, user: user }))
       .catch(err => console.log(err));
     this.props.logIn({ token: this.state.token, user: this.state.user });
+    this.props.history.push("/home");
   };
 
   render() {
