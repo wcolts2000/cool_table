@@ -12,6 +12,7 @@ import Quiz from "./components/Quiz";
 import ForumPost from "./ForumPost";
 import Signup from "./components/Signup";
 import UserLogin from "./components/UserLogin";
+import { connect } from "react-redux";
 
 // ==============================
 // =====  Styled Component  =====
@@ -190,4 +191,11 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+const mapStateToProps = ({}) => ({});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(App)
+);
