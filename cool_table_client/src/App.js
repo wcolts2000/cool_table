@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, withRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import QuizHome from "./components/QuizHome";
@@ -13,6 +13,7 @@ import ForumPost from "./ForumPost";
 import Signup from "./components/Signup";
 import UserLogin from "./components/UserLogin";
 import { connect } from "react-redux";
+import { navOpen } from "./store/actions";
 
 // ==============================
 // =====  Styled Component  =====
@@ -109,40 +110,40 @@ const Spacer = styled.div`
 
 export const URL = "https://lambda-study-app.herokuapp.com/api/";
 class App extends Component {
-  state = {
-    isLoggedIn: false,
-    mobilenavopen: "false",
-    token: "",
-    user: {}
-  };
+  // state = {
+  //   isLoggedIn: false,
+  //   mobilenavopen: "false",
+  //   token: "",
+  //   user: {}
+  // };
 
-  componentDidUpdate = prevProps => {
-    if (prevProps.location !== this.props.location) {
-      this.setState({ mobilenavopen: "false" });
-    }
-    return null;
-  };
+  // componentDidUpdate = prevProps => {
+  //   if (prevProps.location !== this.props.location) {
+  //     this.setState({ mobilenavopen: "false" });
+  //   }
+  //   return null;
+  // };
 
-  navOpen = () => {
-    this.setState({
-      mobilenavopen: this.state.mobilenavopen === "false" ? "true" : "false"
-    });
-  };
+  // navOpen = () => {
+  //   this.setState({
+  //     mobilenavopen: this.state.mobilenavopen === "false" ? "true" : "false"
+  //   });
+  // };
 
-  logIn = ({ token, user }) => {
-    this.setState({
-      isLoggedIn: true,
-      token: token,
-      user: user
-    });
-  };
+  // logIn = ({ token, user }) => {
+  //   this.setState({
+  //     isLoggedIn: true,
+  //     token: token,
+  //     user: user
+  //   });
+  // };
 
-  logout = () => {
-    this.setState({
-      isLoggedIn: false
-    });
-    this.props.history.push("/");
-  };
+  // logout = () => {
+  //   this.setState({
+  //     isLoggedIn: false
+  //   });
+  //   this.props.history.push("/");
+  // };
 
   render() {
     return (
@@ -150,11 +151,11 @@ class App extends Component {
         <GlobalStyles />
         <AppDiv>
           <Nav
-            isLoggedIn={this.state.isLoggedIn}
-            mobilenavopen={this.state.mobilenavopen}
-            navOpen={this.navOpen}
+            isLoggedIn={this.props.isLoggedIn}
+            mobilenavopen={this.props.mobilenavopen}
+            navOpen={navOpen}
             props={this.props}
-            logout={this.logout}
+            // logout={this.logout}
           />
           <Spacer />
           <Route exact path="/" component={Login} />
@@ -191,11 +192,14 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = ({ user, token, isLoggedIn, mobilenavopen }) => ({
+  user,
+  token,
+  isLoggedIn,
+  mobilenavopen
+});
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    {}
-  )(App)
-);
+export default connect(
+  mapStateToProps,
+  { navOpen }
+)(App);

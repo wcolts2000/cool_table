@@ -26,3 +26,7 @@ export const REGISTER_USER = "REGISTER_USER",
   PATCHING_COMMENT = "PATCHING_COMMENT",
   DELETE_COMMENT = "DELETE_COMMENT",
   RES_FAILURE = "RES_FAILURE";
+
+export const navOpen = () => dispatch => {
+  dispatch({ type: MOBILE_NAV_TOGGLE });
+};
