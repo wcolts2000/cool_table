@@ -175,7 +175,13 @@ const MobileStyledNavLink = styled(Link)`
 // =====      Component     =====
 // ==============================
 
-export default function Nav({ isLoggedIn, mobilenavopen, navOpen, props }) {
+export default function Nav({
+  isLoggedIn,
+  mobilenavopen,
+  navOpen,
+  props,
+  logout
+}) {
   return (
     <>
       <NavBar>
@@ -185,9 +191,7 @@ export default function Nav({ isLoggedIn, mobilenavopen, navOpen, props }) {
           </Logo>
           <User
             onClick={
-              isLoggedIn
-                ? () => props.logout()
-                : () => props.history.push("/login")
+              isLoggedIn ? () => logout() : () => props.history.push("/login")
             }
             style={isLoggedIn ? { color: "tomato" } : { color: "limeGreen" }}
           >
