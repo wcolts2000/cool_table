@@ -43,11 +43,12 @@ const NavRight = styled.div`
   }
 `;
 
-const User = styled.div`
+const User = styled(Link)`
   display: inline-block;
   font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  text-decoration: none;
 
   &:hover {
     opacity: 0.7;
@@ -142,7 +143,7 @@ const Mobile = styled.div`
   padding-top: ${props => (props.mobilenavopen === "true" ? "70px" : null)};
   display: flex;
   box-shadow: ${props =>
-    props.mobilenavopen === "true" ? "1 3 60 rgba(0,200,220,.6)" : null};
+    props.mobilenavopen === "true" ? "1px 3px 60px rgba(0,200,220,.6)" : null};
   position: fixed;
   z-index: 100;
 `;
@@ -175,13 +176,7 @@ const MobileStyledNavLink = styled(Link)`
 // =====      Component     =====
 // ==============================
 
-export default function Nav({
-  isLoggedIn,
-  mobilenavopen,
-  navOpen,
-  props,
-  logout
-}) {
+export default function Nav({ isLoggedIn, navOpen, mobilenavopen }) {
   return (
     <>
       <NavBar>
@@ -190,38 +185,54 @@ export default function Nav({
             COOL<span>TABLE</span>
           </Logo>
           <User
-            onClick={
-              isLoggedIn ? () => logout() : () => props.history.push("/login")
-            }
+            to={isLoggedIn ? "/logout" : "/login"}
             style={isLoggedIn ? { color: "tomato" } : { color: "limeGreen" }}
           >
             {isLoggedIn ? "LOGOUT" : "LOGIN"}
           </User>
         </NavLeft>
-        <NavRight>
-          <StyledNavLink to="/home">Home</StyledNavLink>
-          <StyledNavLink to="/quiz">Quizzes</StyledNavLink>
-          <StyledNavLink to="/forum">Forum</StyledNavLink>
+        <NavRight mobilenavopen={mobilenavopen === "false" ? "false" : "true"}>
+          <StyledNavLink
+            mobilenavopen={mobilenavopen === "false" ? "false" : "true"}
+            to="/home"
+          >
+            Home
+          </StyledNavLink>
+          <StyledNavLink
+            mobilenavopen={mobilenavopen === "false" ? "false" : "true"}
+            to="/quiz"
+          >
+            Quizzes
+          </StyledNavLink>
+          <StyledNavLink
+            mobilenavopen={mobilenavopen === "false" ? "false" : "true"}
+            to="/forum"
+          >
+            Forum
+          </StyledNavLink>
         </NavRight>
         <Hamburger>&nbsp;</Hamburger>
-        <Backplate onClick={() => navOpen()}>&nbsp;</Backplate>
+        <Backplate onClick={() => navOpen(mobilenavopen)}>&nbsp;</Backplate>
       </NavBar>
       <Mobile mobilenavopen={mobilenavopen === "true" ? "true" : "false"}>
         <MobileStyledNavLink
           mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
           to="/home"
+          onClick={() => navOpen(mobilenavopen)}
         >
           Home
         </MobileStyledNavLink>
         <MobileStyledNavLink
           mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
           to="/quiz"
+          onClick={() => navOpen(mobilenavopen)}
         >
           Quizzes
         </MobileStyledNavLink>
         <MobileStyledNavLink
           mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
           to="/forum"
+          onClick={() => navOpen(mobilenavopen)}
         >
           Forum
         </MobileStyledNavLink>

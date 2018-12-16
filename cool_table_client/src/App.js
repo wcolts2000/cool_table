@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import QuizHome from "./components/QuizHome";
@@ -108,7 +108,7 @@ const Spacer = styled.div`
 // =====      Component     =====
 // ==============================
 
-export const URL = "https://lambda-study-app.herokuapp.com/api/";
+// export const URL = "https://lambda-study-app.herokuapp.com/api/";
 class App extends Component {
   // state = {
   //   isLoggedIn: false,
@@ -153,9 +153,7 @@ class App extends Component {
           <Nav
             isLoggedIn={this.props.isLoggedIn}
             mobilenavopen={this.props.mobilenavopen}
-            navOpen={navOpen}
-            props={this.props}
-            // logout={this.logout}
+            navOpen={this.props.navOpen}
           />
           <Spacer />
           <Route exact path="/" component={Login} />
@@ -199,7 +197,9 @@ const mapStateToProps = ({ user, token, isLoggedIn, mobilenavopen }) => ({
   mobilenavopen
 });
 
-export default connect(
-  mapStateToProps,
-  { navOpen }
-)(App);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { navOpen }
+  )(App)
+);

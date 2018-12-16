@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { URL } from "../App";
+import { URL } from "../store/actions";
 import axios from "axios";
 
 export default class UserLogin extends Component {

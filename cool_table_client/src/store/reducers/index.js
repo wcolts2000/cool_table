@@ -12,7 +12,7 @@ const navReducer = (state = initialState, action) => {
     case actions.MOBILE_NAV_TOGGLE:
       return {
         ...state,
-        mobilenavopen: state.mobilenavopen === "false" ? "true" : "false"
+        mobilenavopen: action.payload === "false" ? "true" : "false"
       };
     default:
       return state;
