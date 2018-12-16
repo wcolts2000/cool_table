@@ -191,25 +191,10 @@ export default function Nav({ isLoggedIn, navOpen, mobilenavopen }) {
             {isLoggedIn ? "LOGOUT" : "LOGIN"}
           </User>
         </NavLeft>
-        <NavRight mobilenavopen={mobilenavopen === "false" ? "false" : "true"}>
-          <StyledNavLink
-            mobilenavopen={mobilenavopen === "false" ? "false" : "true"}
-            to="/home"
-          >
-            Home
-          </StyledNavLink>
-          <StyledNavLink
-            mobilenavopen={mobilenavopen === "false" ? "false" : "true"}
-            to="/quiz"
-          >
-            Quizzes
-          </StyledNavLink>
-          <StyledNavLink
-            mobilenavopen={mobilenavopen === "false" ? "false" : "true"}
-            to="/forum"
-          >
-            Forum
-          </StyledNavLink>
+        <NavRight>
+          <StyledNavLink to="/home">Home</StyledNavLink>
+          <StyledNavLink to="/quiz">Quizzes</StyledNavLink>
+          <StyledNavLink to="/forum">Forum</StyledNavLink>
         </NavRight>
         <Hamburger>&nbsp;</Hamburger>
         <Backplate onClick={() => navOpen(mobilenavopen)}>&nbsp;</Backplate>
