@@ -13,7 +13,7 @@ import ForumPost from "./ForumPost";
 import Signup from "./components/Signup";
 import UserLogin from "./components/UserLogin";
 import { connect } from "react-redux";
-import { navOpen } from "./store/actions";
+import { navOpen, logIn } from "./store/actions";
 
 // ==============================
 // =====  Styled Component  =====
@@ -157,14 +157,8 @@ class App extends Component {
           />
           <Spacer />
           <Route exact path="/" component={Login} />
-          <Route
-            path="/login"
-            render={props => <UserLogin logIn={this.logIn} {...props} />}
-          />
-          <Route
-            path="/register"
-            render={props => <Signup logIn={this.logIn} {...props} />}
-          />
+          <Route path="/login" component={UserLogin} />
+          <Route path="/register" component={Signup} />
           <Route path="/home" component={Home} />
           <Route
             exact

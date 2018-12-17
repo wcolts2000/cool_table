@@ -3,17 +3,10 @@ import { URL } from "../store/actions";
 import axios from "axios";
 
 export default class UserLogin extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      token: "",
-      user: {}
-    };
-  }
-
-  componentWillUnmount = () => {};
+  state = {
+    email: "",
+    password: ""
+  };
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({
@@ -24,20 +17,22 @@ export default class UserLogin extends Component {
   handleSubmit = e => {
     let user = { email: this.state.email, password: this.state.password };
     e.preventDefault();
-    axios
-      .post(`${URL}auth/login`, user)
-      .then(({ token, user }) => this.setState({ token: token, user: user }))
-      .then(
-        this.props.logIn({ token: this.state.token, user: this.state.user }),
-        this.props.history.push("/home")
-      )
-      .catch(err => console.log(err));
   };
 
   render() {
+    const Input = (name, type = "text") => (
+      <input
+        type={type}
+        name={name}
+        id={name}
+        autoComplete="off"
+        required
+        onChange={this.handleChange}
+      />
+    );
     return (
       <form style={{ padding: 40 }} onSubmit={this.handleSubmit}>
-        <input
+        {/* <input
           type="text"
           name="email"
           value={this.state.email}
@@ -52,7 +47,9 @@ export default class UserLogin extends Component {
           placeholder="Password..."
           autoComplete="current-password"
           onChange={this.handleChange}
-        />
+        /> */}
+        <Input />
+        <Input name="password" type="password" />
         <button>LOGIN</button>
       </form>
     );

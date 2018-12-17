@@ -144,9 +144,9 @@ const Mobile = styled.div`
   letter-spacing: 3px;
   font-size: 20px;
   flex-direction: column;
-  transition: all 0.6s ease-in-out;
-  height: ${props => (props.mobilenavopen === "open" ? "auto" : 0)};
-  padding-top: ${props => (props.mobilenavopen === "open" ? "70px" : null)};
+  transition: all 0.8s ease-in-out;
+  top: ${props => (props.mobilenavopen === "open" ? 0 : "-230px")};
+  padding-top: 70px;
   display: flex;
   box-shadow: ${props =>
     props.mobilenavopen === "open" ? "1px 3px 60px rgba(0,200,220,.6)" : null};
@@ -163,8 +163,6 @@ const MobileStyledNavLink = styled(Link)`
   text-transform: uppercase;
   border-bottom: 2px solid aqua;
   transition: all 0.3s ease-in-out;
-  height: ${props => (props.mobilenavopen === "open" ? "auto" : 0)};
-  opacity: ${props => (props.mobilenavopen === "open" ? 1 : 0)};
   pointer-events: ${props =>
     props.mobilenavopen === "open" ? "initial" : "none"};
 

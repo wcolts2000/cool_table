@@ -60,7 +60,7 @@ export const navOpen = mobilenavopen => dispatch => {
 export const logIn = ({ user }) => dispatch => {
   dispatch({ type: LOGGING_IN });
   axios
-    .post(`${URL}`)
+    .post(`${URL}login`, user)
     .then(({ data }) => dispatch({ type: LOGGING_IN_SUCCESS, payload: data }))
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
