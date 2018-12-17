@@ -57,10 +57,12 @@ export const navOpen = mobilenavopen => dispatch => {
   dispatch({ type: MOBILE_NAV_TOGGLE, payload: mobilenavopen });
 };
 
-export const logIn = ({ user }) => dispatch => {
+export const logIn = user => dispatch => {
+  console.log("actions user: ", user);
+
   dispatch({ type: LOGGING_IN });
   axios
-    .post(`${URL}login`, user)
+    .post(`${URL}auth/login`, user)
     .then(({ data }) => dispatch({ type: LOGGING_IN_SUCCESS, payload: data }))
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };

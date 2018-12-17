@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { URL } from "../store/actions";
-import axios from "axios";
+import { logIn } from "../store/actions";
+import { connect } from "react-redux";
 
-export default class UserLogin extends Component {
+class UserLogin extends Component {
   state = {
     email: "",
     password: ""
@@ -15,46 +15,46 @@ export default class UserLogin extends Component {
   };
 
   handleSubmit = e => {
-    let user = { email: this.state.email, password: this.state.password };
     e.preventDefault();
+    this.props.logIn({
+      email: this.state.email,
+      password: this.state.password
+    });
+    this.props.history.push("/home");
   };
 
   render() {
-    const Input = (name, type = "text") => (
+    const Input = (name, type = "text", placeholder) => (
       <input
         type={type}
         name={name}
         id={name}
         autoComplete="off"
+        placeholder={placeholder}
         required
         onChange={this.handleChange}
       />
     );
     return (
       <form style={{ padding: 40 }} onSubmit={this.handleSubmit}>
-        {/* <input
-          type="text"
-          name="email"
-          value={this.state.email}
-          placeholder="email..."
-          autoComplete="email"
-          onChange={this.handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          placeholder="Password..."
-          autoComplete="current-password"
-          onChange={this.handleChange}
-        /> */}
-        <Input />
-        <Input name="password" type="password" />
+        {Input("email", "email", "email...")}
+        {Input("password", "password", "password")}
         <button>LOGIN</button>
       </form>
     );
   }
 }
+
+const mapStateToProps = ({ isLoggedIn, user, token }) => ({
+  isLoggedIn,
+  user,
+  token
+});
+
+export default connect(
+  mapStateToProps,
+  { logIn }
+)(UserLogin);
 
 // const Input = (name, type = 'text') => (
 //   <input

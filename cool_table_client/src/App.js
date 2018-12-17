@@ -13,7 +13,7 @@ import ForumPost from "./ForumPost";
 import Signup from "./components/Signup";
 import UserLogin from "./components/UserLogin";
 import { connect } from "react-redux";
-import { navOpen, logIn } from "./store/actions";
+import { navOpen } from "./store/actions";
 
 // ==============================
 // =====  Styled Component  =====

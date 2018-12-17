@@ -5,6 +5,7 @@ const initialState = {
   user: {},
   token: "",
   mobilenavopen: "closed",
+  requesting: false,
   error: null
 };
 
@@ -15,17 +16,26 @@ const navReducer = (state = initialState, action) => {
         ...state,
         mobilenavopen: action.payload === "closed" ? "open" : "closed"
       };
-    case actions.LOGGING_IN_SUCCESS:
+    case actions.LOGGING_IN:
       return {
         ...state,
-        user: action.user.payload,
-        token: action.token.payload,
+        requesting: true
+      };
+    case actions.LOGGING_IN_SUCCESS:
+      console.log("reducers payload: ", action.payload);
+
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
         isLoggedIn: true,
+        requesting: false,
         error: null
       };
     case actions.RES_FAILURE:
       return {
         ...state,
+        requesting: false,
         error: action.payload
       };
     default:
