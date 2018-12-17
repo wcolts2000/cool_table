@@ -108,43 +108,7 @@ const Spacer = styled.div`
 // =====      Component     =====
 // ==============================
 
-// export const URL = "https://lambda-study-app.herokuapp.com/api/";
 class App extends Component {
-  // state = {
-  //   isLoggedIn: false,
-  //   mobilenavopen: "false",
-  //   token: "",
-  //   user: {}
-  // };
-
-  // componentDidUpdate = prevProps => {
-  //   if (prevProps.location !== this.props.location) {
-  //     this.setState({ mobilenavopen: "false" });
-  //   }
-  //   return null;
-  // };
-
-  // navOpen = () => {
-  //   this.setState({
-  //     mobilenavopen: this.state.mobilenavopen === "false" ? "true" : "false"
-  //   });
-  // };
-
-  // logIn = ({ token, user }) => {
-  //   this.setState({
-  //     isLoggedIn: true,
-  //     token: token,
-  //     user: user
-  //   });
-  // };
-
-  // logout = () => {
-  //   this.setState({
-  //     isLoggedIn: false
-  //   });
-  //   this.props.history.push("/");
-  // };
-
   render() {
     return (
       <>
@@ -163,13 +127,7 @@ class App extends Component {
           <Route exact path="/quiz" component={QuizHome} />
           <Route path="/quiz/single-quiz/:id" component={Quiz} />
           <Route path="/quiz/form" component={QuizForm} />
-          <Route
-            exact
-            path="/forum/"
-            render={props => (
-              <ForumHome isLoggedIn={this.state.isLoggedIn} {...props} />
-            )}
-          />
+          <Route exact path="/forum/" component={ForumHome} />
           <Route path="/forum/post" component={ForumPost} />
           <Route path="/forum/single-post/:id" component={SingleForum} />
         </AppDiv>

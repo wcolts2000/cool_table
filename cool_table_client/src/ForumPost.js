@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import { URL } from "./store/actions";
+import { addSinglePost } from "./store/actions";
+import { connect } from "react-redux";
 
 // ==============================
 // =====  Styled Component  =====
@@ -45,16 +45,12 @@ const Textarea = styled.textarea`
 // =====      Component     =====
 // ==============================
 
-export default class ForumPost extends Component {
+class ForumPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
-      votes: 0,
-      time_limit_seconds: 0,
-      topic: "",
-      question: "",
-      answers: []
+      body: ""
     };
   }
 
@@ -64,20 +60,11 @@ export default class ForumPost extends Component {
     });
   };
 
-  addPost = () => {
-    const userId = 1;
-    axios
-      .post(
-        `${URL}posts`,
-        `{this.state, id: ${userId}, created_at: ${Date.now()}}`
-      )
-      .then(({ data }) => console.log(data))
-      .catch(err => console.log(err));
-  };
-
   render() {
+    let post = this.state;
+    let { user, token } = this.props;
     return (
-      <Form onSubmit={this.addPost}>
+      <Form onSubmit={() => this.props.addSinglePost({ user, token, post })}>
         <input
           type="text"
           value={this.state.title}
@@ -96,3 +83,13 @@ export default class ForumPost extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ user, token }) => ({
+  user,
+  token
+});
+
+export default connect(
+  mapStateToProps,
+  { addSinglePost }
+)(ForumPost);

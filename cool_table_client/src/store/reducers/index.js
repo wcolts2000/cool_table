@@ -7,6 +7,7 @@ const initialState = {
   mobilenavopen: "closed",
   requesting: false,
   quizzes: [],
+  posts: [],
   error: null
 };
 
@@ -58,6 +59,18 @@ const navReducer = (state = initialState, action) => {
         requesting: false,
         error: null,
         quizzes: [...action.payload]
+      };
+    case actions.FETCHING_POSTS:
+      return {
+        ...state,
+        requesting: true
+      };
+    case actions.FETCHING_POSTS_SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        error: null,
+        posts: [...action.payload]
       };
     case actions.RES_FAILURE:
       return {

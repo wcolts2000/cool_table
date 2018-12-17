@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { fetchQuizzes } from "../store/actions";
 import { connect } from "react-redux";
 
@@ -54,8 +53,6 @@ class QuizHome extends Component {
 
   render() {
     let { quizzes, isLoggedIn } = this.props;
-    // if (quizzes.length) {
-    // return (
     return (
       quizzes && (
         <>
@@ -95,8 +92,6 @@ class QuizHome extends Component {
       )
     );
   }
-  // return null;
-  // }
 }
 
 const mapStateToProps = ({ quizzes, isLoggedIn }) => ({

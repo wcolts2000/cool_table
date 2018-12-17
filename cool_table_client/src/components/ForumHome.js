@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { URL } from "../store/actions";
 import styled from "styled-components";
+import { fetchPosts } from "../store/actions";
+import { connect } from "react-redux";
 
 // ==============================
 // =====  Styled Component  =====
@@ -47,20 +47,13 @@ const PostCard = styled.div`
 // ==============================
 
 let moment = require("moment");
-export default class ForumHome extends Component {
-  constructor() {
-    super();
-    this.state = {
-      posts: [],
-      search: ""
-    };
-  }
+class ForumHome extends Component {
+  state = {
+    search: ""
+  };
 
   componentDidMount = () => {
-    axios
-      .get(`${URL}posts/`)
-      .then(({ data }) => this.setState({ posts: data }))
-      .catch(err => console.log(err));
+    this.props.fetchPosts();
   };
 
   handleSearchChange = ({ target: { name, value } }) => {
@@ -68,6 +61,7 @@ export default class ForumHome extends Component {
   };
 
   render() {
+    let { isLoggedIn, posts } = this.props;
     return (
       <div style={{ paddingTop: 50 }}>
         <input
@@ -77,13 +71,13 @@ export default class ForumHome extends Component {
           placeholder="Filter Posts Here..."
           onChange={this.handleSearchChange}
         />
-        {this.props.isLoggedIn ? (
+        {isLoggedIn ? (
           <button onClick={() => this.props.history.push("/forum/post")}>
             Add A Post
           </button>
         ) : null}
         <PostCardContainer>
-          {this.state.posts.map(({ id, title, created_at, body, author }) => {
+          {posts.map(({ id, title, created_at, body, author }) => {
             return (
               <PostCard
                 key={id}
@@ -113,3 +107,13 @@ export default class ForumHome extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ isLoggedIn, posts }) => ({
+  isLoggedIn,
+  posts
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchPosts }
+)(ForumHome);

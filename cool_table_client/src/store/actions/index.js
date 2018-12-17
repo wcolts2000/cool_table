@@ -86,3 +86,21 @@ export const fetchQuizzes = () => dispatch => {
     )
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
+
+export const fetchPosts = () => dispatch => {
+  dispatch({ type: FETCHING_POSTS });
+  axios
+    .get(`${URL}posts/`)
+    .then(({ data }) =>
+      dispatch({ type: FETCHING_POSTS_SUCCESS, payload: data })
+    )
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
+
+export const addSinglePost = post => dispatch => {
+  dispatch({ type: POSTING_POST });
+  axios
+    .post(`${URL}posts`, post)
+    .then(({ data }) => dispatch({ type: POSTING_POST_SUCCESS, payload: data }))
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
