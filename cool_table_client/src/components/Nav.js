@@ -49,6 +49,7 @@ const User = styled(Link)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
+  margin-right: 5px;
 
   &:hover {
     opacity: 0.7;
@@ -194,6 +195,14 @@ export default function Nav({ isLoggedIn, navOpen, mobilenavopen }) {
           >
             {isLoggedIn ? "LOGOUT" : "LOGIN"}
           </User>
+          {isLoggedIn ? null : (
+            <User
+              to="/register"
+              style={{ textTransform: "uppercase", color: "tomato" }}
+            >
+              Register
+            </User>
+          )}
         </NavLeft>
         <NavRight>
           <StyledNavLink to="/home">Home</StyledNavLink>
