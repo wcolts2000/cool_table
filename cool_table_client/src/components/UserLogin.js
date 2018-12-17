@@ -29,7 +29,6 @@ class UserLogin extends Component {
         type={type}
         name={name}
         id={name}
-        autoComplete="off"
         placeholder={placeholder}
         required
         onChange={this.handleChange}

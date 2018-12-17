@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import { URL } from "../store/actions";
+import { registerUser } from "../store/actions";
+import { connect } from "react-redux";
 
 // ==============================
 // =====  Styled Component  =====
@@ -29,15 +29,15 @@ const H1 = styled.h1`
   }
 `;
 
-const Input = styled.input`
-  background: aqua;
-  border-bottom: 2px solid #0f0f0f;
-  opacity: 0.6;
-  color: #0f0f0f;
-  &::placeholder {
-    color: #0f0f0f;
-  }
-`;
+// const Input = styled.input`
+//   background: aqua;
+//   border-bottom: 2px solid #0f0f0f;
+//   opacity: 0.6;
+//   color: #0f0f0f;
+//   &::placeholder {
+//     color: #0f0f0f;
+//   }
+// `;
 
 const Label = styled.label`
   opacity: 0.4;
@@ -56,7 +56,7 @@ const Label = styled.label`
 // =====      Component     =====
 // ==============================
 
-export default class Signup extends Component {
+class Signup extends Component {
   constructor() {
     super();
     this.state = {
@@ -64,14 +64,11 @@ export default class Signup extends Component {
       email: "",
       password: "",
       passwordCheck: "",
-      avatar: "",
-      err: "",
-      token: "",
-      user: ""
+      avatar: ""
     };
   }
 
-  handleInputChange = ({ target: { name, value } }) => {
+  handleChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
     });
@@ -89,25 +86,40 @@ export default class Signup extends Component {
   };
 
   handleSubmit = e => {
-    let userInfo = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password
-      // img_url: this.state.avatar
-    };
+    let user;
+    this.state.avatar.length
+      ? (user = {
+          username: this.state.username,
+          email: this.state.email,
+          password: this.state.password,
+          img_url: this.state.avatar
+        })
+      : (user = {
+          username: this.state.username,
+          email: this.state.email,
+          password: this.state.password
+        });
     e.preventDefault();
-    if (this.state.password === this.state.passwordCheck) {
-      axios
-        .post(`${URL}auth/register`, userInfo)
-        .then(({ token, user }) => this.setState({ token: token, user: user }))
-        .catch(({ error }) => console.log(error));
-    }
-    if (this.state.user.length) {
-      this.props.logIn({ token: this.state.token, user: this.state.user });
+    if (
+      this.state.password === this.state.passwordCheck &&
+      this.state.username.length
+    ) {
+      this.props.registerUser(user);
+      this.props.history.push("/home");
     }
   };
 
   render() {
+    const Input = (name, placeholder, type = "text") => (
+      <input
+        type={type}
+        name={name}
+        id={name}
+        placeholder={placeholder}
+        required
+        onChange={this.handleChange}
+      />
+    );
     return (
       <form onSubmit={this.handleSubmit}>
         <H1>
@@ -117,7 +129,7 @@ export default class Signup extends Component {
           </span>
         </H1>
         <Label>(required)</Label>
-        <input
+        {/* <input
           type="text"
           name="username"
           required
@@ -125,18 +137,20 @@ export default class Signup extends Component {
           value={this.state.username}
           placeholder="Username..."
           onChange={this.handleInputChange}
-        />
+        /> */}
+        {Input("username", "Username")}
         <Label>(required)</Label>
-        <input
+        {/* <input
           type="email"
           name="email"
           required
           value={this.state.email}
           placeholder="Email..."
           onChange={this.handleInputChange}
-        />
+        /> */}
+        {Input("email", "Email", "email")}
         <Label>(required)</Label>
-        <input
+        {/* <input
           type="password"
           name="password"
           required
@@ -144,9 +158,10 @@ export default class Signup extends Component {
           placeholder="Password..."
           autoComplete="New Password"
           onChange={this.handleInputChange}
-        />
+        /> */}
+        {Input("password", "Password", "password")}
         <Label>(required...must match)</Label>
-        <input
+        {/* <input
           type="password"
           name="passwordCheck"
           required
@@ -154,14 +169,16 @@ export default class Signup extends Component {
           placeholder="Retype Password..."
           autoComplete="New Password"
           onChange={this.handleInputChange}
-        />
+        /> */}
+        {Input("passwordCheck", "PasswordCheck", "password")}
         <Label>Enter Avatar URL here...(optional)</Label>
-        <Input
+        {/* <Input
           type="url"
           placeholder="Avatar URL..."
           name="avatar"
           onChange={this.handleInputChange}
-        />
+        /> */}
+        {Input("avatar", "Avatar URL...", "url")}
         <button type="submit" style={{ marginRight: 15 }}>
           Submit
         </button>{" "}
@@ -171,5 +188,13 @@ export default class Signup extends Component {
   }
 }
 
-// res: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTU0NDcyMzg2OCwiZXhwIjoxNTc2MjgxNDY4fQ.lGPClAhbaEaK0-c2wjXRCFpx3h3_5D7yA0ZGApAIGAs","user":{"id":12,"username":"sean"}}
-//"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsImlhdCI6MTU0NDcyNjAwNCwiZXhwIjoxNTc2MjgzNjA0fQ.qf--SAbTVYiW90eu-qu-jW4CSZ2o-Z8Pgkjbi5_vIko","user":{"id":16,"username":"osadfi"}}
+export default connect(
+  null,
+  { registerUser }
+)(Signup);
+
+// {username: "sampleuser", email: "email@email.com", password: "password",…}
+// email: "email@email.com"
+// img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdu_tIfOlHoq3_A60curgxLzwIkcOWyK8uLa4R0rBwbDNfvkyFzQ"
+// password: "password"
+// username: "sampleuser"

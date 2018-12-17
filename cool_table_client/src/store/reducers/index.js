@@ -32,6 +32,20 @@ const navReducer = (state = initialState, action) => {
         requesting: false,
         error: null
       };
+    case actions.REGISTER_USER:
+      return {
+        ...state,
+        requesting: true
+      };
+    case actions.REGISTER_USER_SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        error: null,
+        user: action.payload.user,
+        token: action.payload.token,
+        isLoggedIn: true
+      };
     case actions.RES_FAILURE:
       return {
         ...state,

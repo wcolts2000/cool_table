@@ -57,6 +57,16 @@ export const navOpen = mobilenavopen => dispatch => {
   dispatch({ type: MOBILE_NAV_TOGGLE, payload: mobilenavopen });
 };
 
+export const registerUser = user => dispatch => {
+  dispatch({ type: REGISTER_USER });
+  axios
+    .post(`${URL}auth/register`, user)
+    .then(({ data }) =>
+      dispatch({ type: REGISTER_USER_SUCCESS, payload: data })
+    )
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
+
 export const logIn = user => dispatch => {
   console.log("actions user: ", user);
 
