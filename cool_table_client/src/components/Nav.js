@@ -186,9 +186,11 @@ export default function Nav({ isLoggedIn, navOpen, mobilenavopen }) {
     <>
       <NavBar>
         <NavLeft>
-          <Logo>
-            COOL<span>TABLE</span>
-          </Logo>
+          <Link to="/">
+            <Logo>
+              COOL<span>TABLE</span>
+            </Logo>
+          </Link>
           <User
             to={isLoggedIn ? "/logout" : "/login"}
             style={isLoggedIn ? { color: "tomato" } : { color: "limeGreen" }}
