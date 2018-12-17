@@ -4,7 +4,7 @@ const initialState = {
   isLoggedIn: false,
   user: {},
   token: "",
-  mobilenavopen: "false"
+  mobilenavopen: "closed"
 };
 
 const navReducer = (state = initialState, action) => {
@@ -12,7 +12,7 @@ const navReducer = (state = initialState, action) => {
     case actions.MOBILE_NAV_TOGGLE:
       return {
         ...state,
-        mobilenavopen: action.payload === "false" ? "true" : "false"
+        mobilenavopen: action.payload === "closed" ? "open" : "closed"
       };
     default:
       return state;

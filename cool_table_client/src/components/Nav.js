@@ -73,7 +73,7 @@ const StyledNavLink = styled(NavLink)`
 
 const Hamburger = styled.div`
   width: 27px;
-  height: 3px;
+  height: ${props => (props.mobilenavopen === "open" ? 0 : "3px")};
   border-radius: 50px;
   background: #0f0f0f;
   position: absolute;
@@ -81,6 +81,7 @@ const Hamburger = styled.div`
   display: none;
   z-index: 100;
   pointer-events: none;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
     opacity: 0.8;
@@ -100,11 +101,15 @@ const Hamburger = styled.div`
   }
 
   &::before {
-    top: -7px;
+    top: ${props => (props.mobilenavopen === "open" ? 0 : "-7px")};
+    transform: ${props =>
+      props.mobilenavopen === "open" ? "rotate(45deg)" : null};
   }
 
   &::after {
-    top: 7px;
+    top: ${props => (props.mobilenavopen === "open" ? 0 : "7px")};
+    transform: ${props =>
+      props.mobilenavopen === "open" ? "rotate(-45deg)" : null};
   }
   @media (max-width: 500px) {
     display: initial;
@@ -139,11 +144,11 @@ const Mobile = styled.div`
   font-size: 20px;
   flex-direction: column;
   transition: all 0.6s ease-in-out;
-  height: ${props => (props.mobilenavopen === "true" ? "auto" : 0)};
-  padding-top: ${props => (props.mobilenavopen === "true" ? "70px" : null)};
+  height: ${props => (props.mobilenavopen === "open" ? "auto" : 0)};
+  padding-top: ${props => (props.mobilenavopen === "open" ? "70px" : null)};
   display: flex;
   box-shadow: ${props =>
-    props.mobilenavopen === "true" ? "1px 3px 60px rgba(0,200,220,.6)" : null};
+    props.mobilenavopen === "open" ? "1px 3px 60px rgba(0,200,220,.6)" : null};
   position: fixed;
   z-index: 100;
 `;
@@ -157,10 +162,10 @@ const MobileStyledNavLink = styled(Link)`
   text-transform: uppercase;
   border-bottom: 2px solid aqua;
   transition: all 0.3s ease-in-out;
-  height: ${props => (props.mobilenavopen === "true" ? "auto" : 0)};
-  opacity: ${props => (props.mobilenavopen === "true" ? 1 : 0)};
+  height: ${props => (props.mobilenavopen === "open" ? "auto" : 0)};
+  opacity: ${props => (props.mobilenavopen === "open" ? 1 : 0)};
   pointer-events: ${props =>
-    props.mobilenavopen === "true" ? "initial" : "none"};
+    props.mobilenavopen === "open" ? "initial" : "none"};
 
   &:first-child {
     border-top: 2px solid aqua;
@@ -196,26 +201,28 @@ export default function Nav({ isLoggedIn, navOpen, mobilenavopen }) {
           <StyledNavLink to="/quiz">Quizzes</StyledNavLink>
           <StyledNavLink to="/forum">Forum</StyledNavLink>
         </NavRight>
-        <Hamburger>&nbsp;</Hamburger>
+        <Hamburger mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}>
+          &nbsp;
+        </Hamburger>
         <Backplate onClick={() => navOpen(mobilenavopen)}>&nbsp;</Backplate>
       </NavBar>
-      <Mobile mobilenavopen={mobilenavopen === "true" ? "true" : "false"}>
+      <Mobile mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}>
         <MobileStyledNavLink
-          mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
+          mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}
           to="/home"
           onClick={() => navOpen(mobilenavopen)}
         >
           Home
         </MobileStyledNavLink>
         <MobileStyledNavLink
-          mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
+          mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}
           to="/quiz"
           onClick={() => navOpen(mobilenavopen)}
         >
           Quizzes
         </MobileStyledNavLink>
         <MobileStyledNavLink
-          mobilenavopen={mobilenavopen === "true" ? "true" : "false"}
+          mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}
           to="/forum"
           onClick={() => navOpen(mobilenavopen)}
         >
