@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { URL } from "../store/actions";
 import styled from "styled-components";
+import { getSingleQuiz } from "../store/actions";
+import { connect } from "react-redux";
 
 // ==============================
 // =====  Styled Component  =====
@@ -38,24 +38,20 @@ const Li = styled.li`
 // ==============================
 
 class Quiz extends Component {
-  state = {
-    quiz: [],
-    questions: []
-  };
-
   componentDidMount = () => {
     let id = this.props.match.params.id;
 
-    axios
-      .get(`${URL}quizzes/${id}`)
-      .then(({ data }) => this.setState({ quiz: data }))
-      .then(
-        axios
-          .get(`${URL}quizzes/${id}/questions/`)
-          .then(({ data }) => this.setState({ questions: data }))
-          .catch(err => console.log(err))
-      )
-      .catch(err => console.log(err));
+    this.props.getSingleQuiz(id);
+    // axios
+    //   .get(`${URL}quizzes/${id}`)
+    //   .then(({ data }) => this.setState({ quiz: data }))
+    //   .then(
+    //     axios
+    //       .get(`${URL}quizzes/${id}/questions/`)
+    //       .then(({ data }) => this.setState({ questions: data }))
+    //       .catch(err => console.log(err))
+    //   )
+    //   .catch(err => console.log(err));
   };
 
   pickAnswer = id => {
@@ -63,11 +59,11 @@ class Quiz extends Component {
   };
 
   render() {
-    let { title, votes, author, topic } = this.state.quiz;
+    let { title, votes, author, topic } = this.props.singleQuiz;
 
-    if (!this.state.quiz) return <h4>Loading...</h4>;
-    if (this.state.questions.length) {
-      let questions = this.state.questions;
+    if (!this.props.singleQuiz) return <h4>Loading...</h4>;
+    if (this.props.questions.length) {
+      let questions = this.props.questions;
       return (
         <div style={{ padding: 30 }}>
           <Card>
@@ -100,4 +96,12 @@ class Quiz extends Component {
   }
 }
 
-export default Quiz;
+const mapStateToProps = ({ singleQuiz, questions }) => ({
+  singleQuiz,
+  questions
+});
+
+export default connect(
+  mapStateToProps,
+  { getSingleQuiz }
+)(Quiz);

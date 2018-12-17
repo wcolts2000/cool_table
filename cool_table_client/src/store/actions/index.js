@@ -19,7 +19,6 @@ export const REGISTER_USER = "REGISTER_USER",
   PATCH_QUIZ_SUCCESS = "PATCH_QUIZ_SUCCESS",
   DELETE_QUIZ = "DELETE_QUIZ",
   DELETE_QUIZ_SUCCESS = "DELETE_QUIZ_SUCCESS",
-  FETCHING_QUESTIONS = "FETCHING_QUESTIONS",
   FETCHING_QUESTIONS_SUCCESS = "FETCHING_QUESTIONS_SUCCESS",
   FETCHING_SINGLE_QUESTION_SUCCESS = "FETCHING_SINGLE_QUESTION_SUCCESS",
   FETCHING_SINGLE_QUESTION = "FETCHING_SINGLE_QUESTION",
@@ -111,6 +110,24 @@ export const getSinglePost = id => dispatch => {
     .get(`${URL}posts/${id}`)
     .then(({ data }) =>
       dispatch({ type: FETCHING_SINGLE_POST_SUCCESS, payload: data })
+    )
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
+
+export const getSingleQuiz = id => dispatch => {
+  dispatch({ type: FETCHING_SINGLE_QUIZ });
+  axios
+    .get(`${URL}quizzes/${id}`)
+    .then(({ data }) =>
+      dispatch({ type: FETCHING_SINGLE_QUIZ_SUCCESS, payload: data })
+    )
+    .then(
+      axios
+        .get(`${URL}quizzes/${id}/questions/`)
+        .then(({ data }) =>
+          dispatch({ type: FETCHING_QUESTIONS_SUCCESS, payload: data })
+        )
+        .catch(err => dispatch({ type: RES_FAILURE, payload: err }))
     )
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };

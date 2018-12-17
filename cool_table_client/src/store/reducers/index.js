@@ -8,6 +8,7 @@ const initialState = {
   requesting: false,
   quizzes: [],
   singleQuiz: [],
+  questions: [],
   posts: [],
   singlePost: [],
   error: null
@@ -85,6 +86,25 @@ const navReducer = (state = initialState, action) => {
         requesting: false,
         error: null,
         singlePost: [action.payload]
+      };
+    case actions.FETCHING_SINGLE_QUIZ:
+      return {
+        ...state,
+        requesting: true
+      };
+    case actions.FETCHING_SINGLE_QUIZ_SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        error: null,
+        singleQuiz: [action.payload]
+      };
+    case actions.FETCHING_QUESTIONS_SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        error: null,
+        questions: [...action.payload]
       };
     case actions.RES_FAILURE:
       return {
