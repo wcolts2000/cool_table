@@ -81,7 +81,7 @@ const Hamburger = styled.div`
   display: none;
   z-index: 100;
   pointer-events: none;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     opacity: 0.8;
@@ -98,18 +98,19 @@ const Hamburger = styled.div`
     background: #0f0f0f;
     padding: 0;
     margin: 0;
+    transition: all 0.3s ease-in-out;
   }
 
   &::before {
     top: ${props => (props.mobilenavopen === "open" ? 0 : "-7px")};
     transform: ${props =>
-      props.mobilenavopen === "open" ? "rotate(45deg)" : null};
+      props.mobilenavopen === "open" ? "rotate(405deg)" : null};
   }
 
   &::after {
     top: ${props => (props.mobilenavopen === "open" ? 0 : "7px")};
     transform: ${props =>
-      props.mobilenavopen === "open" ? "rotate(-45deg)" : null};
+      props.mobilenavopen === "open" ? "rotate(-405deg)" : null};
   }
   @media (max-width: 500px) {
     display: initial;
