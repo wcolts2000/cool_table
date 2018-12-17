@@ -6,6 +6,7 @@ const initialState = {
   token: "",
   mobilenavopen: "closed",
   requesting: false,
+  quizzes: [],
   error: null
 };
 
@@ -45,6 +46,18 @@ const navReducer = (state = initialState, action) => {
         user: action.payload.user,
         token: action.payload.token,
         isLoggedIn: true
+      };
+    case actions.FETCHING_QUIZZES:
+      return {
+        ...state,
+        requesting: true
+      };
+    case actions.FETCHING_QUIZZES_SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        error: null,
+        quizzes: [...action.payload]
       };
     case actions.RES_FAILURE:
       return {

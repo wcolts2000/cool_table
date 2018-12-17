@@ -160,13 +160,7 @@ class App extends Component {
           <Route path="/login" component={UserLogin} />
           <Route path="/register" component={Signup} />
           <Route path="/home" component={Home} />
-          <Route
-            exact
-            path="/quiz"
-            render={props => (
-              <QuizHome isLoggedIn={this.state.isLoggedIn} {...props} />
-            )}
-          />
+          <Route exact path="/quiz" component={QuizHome} />
           <Route path="/quiz/single-quiz/:id" component={Quiz} />
           <Route path="/quiz/form" component={QuizForm} />
           <Route

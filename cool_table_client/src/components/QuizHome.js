@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { URL } from "../store/actions";
+import { fetchQuizzes } from "../store/actions";
+import { connect } from "react-redux";
 
 // ==============================
 // =====  Styled Component  =====
@@ -46,29 +47,20 @@ const QuizCard = styled.div`
 // =====      Component     =====
 // ==============================
 
-export default class QuizHome extends Component {
-  constructor() {
-    super();
-    this.state = {
-      quizzes: []
-    };
-  }
-
+class QuizHome extends Component {
   componentDidMount = () => {
-    axios
-      .get(`${URL}quizzes/`)
-      .then(({ data }) => {
-        this.setState({ quizzes: data });
-      })
-      .catch(err => console.log(err));
+    this.props.fetchQuizzes();
   };
 
   render() {
-    if (this.state.quizzes.length) {
-      return (
+    let { quizzes, isLoggedIn } = this.props;
+    // if (quizzes.length) {
+    // return (
+    return (
+      quizzes && (
         <>
           <h1> __QUIZZES__</h1>
-          {this.props.isLoggedIn ? (
+          {isLoggedIn ? (
             <button
               onClick={() => this.props.history.push("/quiz/form")}
               style={{ display: "block", margin: "0 auto" }}
@@ -78,7 +70,7 @@ export default class QuizHome extends Component {
           ) : null}
           <QuizCard>
             <ul>
-              {this.state.quizzes.map((quiz, i) => {
+              {quizzes.map((quiz, i) => {
                 return (
                   <li
                     key={i}
@@ -100,8 +92,19 @@ export default class QuizHome extends Component {
             </ul>
           </QuizCard>
         </>
-      );
-    }
-    return null;
+      )
+    );
   }
+  // return null;
+  // }
 }
+
+const mapStateToProps = ({ quizzes, isLoggedIn }) => ({
+  quizzes,
+  isLoggedIn
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchQuizzes }
+)(QuizHome);

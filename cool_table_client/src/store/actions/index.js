@@ -76,3 +76,13 @@ export const logIn = user => dispatch => {
     .then(({ data }) => dispatch({ type: LOGGING_IN_SUCCESS, payload: data }))
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
+
+export const fetchQuizzes = () => dispatch => {
+  dispatch({ type: FETCHING_QUIZZES });
+  axios
+    .get(`${URL}quizzes/`)
+    .then(({ data }) =>
+      dispatch({ type: FETCHING_QUIZZES_SUCCESS, payload: data })
+    )
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
