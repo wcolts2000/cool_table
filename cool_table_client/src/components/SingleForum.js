@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { URL } from "../store/actions";
 import styled from "styled-components";
+import { getSinglePost } from "../store/actions";
+import { connect } from "react-redux";
 
 // ==============================
 // =====  Styled Component  =====
@@ -30,47 +30,50 @@ const Card = styled.div`
 // ==============================
 
 let moment = require("moment");
-export default class SingleForum extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      post: {}
-    };
-  }
-
+class SingleForum extends Component {
   componentDidMount = () => {
     let id = this.props.match.params.id;
-
-    axios
-      .get(`${URL}posts/${id}`)
-      .then(({ data }) => this.setState({ post: data }))
-      .catch(err => console.log(err));
+    this.props.getSinglePost(id);
   };
 
   render() {
-    let post = this.state.post;
-    if (!post.author) return <h4>Loading Post....</h4>;
+    let post = this.props.singlePost[0];
 
-    return (
-      <div style={{ padding: 20 }}>
-        <Card>
-          <h1>
-            {post.title}{" "}
-            <span style={{ fontSize: 16, opacity: 0.7 }}>
-              posted by:{" "}
-              <img
-                src={`${post.author.img_url}`}
-                alt="[ __ users avatar goes here __ ]"
-                style={{ width: 20 }}
-              />
-              &nbsp;
-              {post.author.username}
-            </span>
-          </h1>
-          <p>{post.body}</p>
-          <p>{moment.utc(post.created_at).format("MMMM Do YYYY, hh:mm a")}</p>
-        </Card>
-      </div>
-    );
+    if (!post) return <h4>Loading Post....</h4>;
+    if (post.author.username.length) {
+      return (
+        <div style={{ padding: 20 }}>
+          <Card>
+            <h1>
+              {post.title}{" "}
+              <span style={{ fontSize: 16, opacity: 0.7 }}>
+                posted by:{" "}
+                {post.author.img_url !== null ? (
+                  <img
+                    src={`${post.author.img_url}`}
+                    alt="[ __ users avatar goes here __ ]"
+                    style={{ width: 20 }}
+                  />
+                ) : null}
+                &nbsp;
+                {post.author.username}
+              </span>
+            </h1>
+            <p>{post.body}</p>
+            <p>{moment.utc(post.created_at).format("MMMM Do YYYY, hh:mm a")}</p>
+          </Card>
+        </div>
+      );
+    }
+    return null;
   }
 }
+
+const mapStateToProps = ({ singlePost }) => ({
+  singlePost
+});
+
+export default connect(
+  mapStateToProps,
+  { getSinglePost }
+)(SingleForum);

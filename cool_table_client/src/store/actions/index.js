@@ -104,3 +104,13 @@ export const addSinglePost = post => dispatch => {
     .then(({ data }) => dispatch({ type: POSTING_POST_SUCCESS, payload: data }))
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
+
+export const getSinglePost = id => dispatch => {
+  dispatch({ type: FETCHING_SINGLE_POST });
+  axios
+    .get(`${URL}posts/${id}`)
+    .then(({ data }) =>
+      dispatch({ type: FETCHING_SINGLE_POST_SUCCESS, payload: data })
+    )
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
