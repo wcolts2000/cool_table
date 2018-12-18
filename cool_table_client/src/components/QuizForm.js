@@ -186,6 +186,7 @@ export default class QuizForm extends Component {
     return (
       <Form onSubmit={this.addPost}>
         <BackButton props={this.props} />
+        <h1>Add Your Quiz Below...</h1>
         <Label>(required)</Label>
         {Input("title", "Quiz title...")}
         <Label>(required)</Label>
