@@ -2,13 +2,21 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { addSinglePost } from "./store/actions";
 import { connect } from "react-redux";
+import BackBtnAttribute from "./components/BackBtnAttribute";
+import BackButton from "./components/BackButton";
 
 // ==============================
 // =====  Styled Component  =====
 // ==============================
 
 const Form = styled.form`
-  padding: 30px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 `;
 
 const Textarea = styled.textarea`
@@ -41,6 +49,12 @@ const Textarea = styled.textarea`
   }
 `;
 
+const FormBox = styled.div`
+  width: 440px;
+  padding: 20px;
+  margin: 0 auto;
+`;
+
 // ==============================
 // =====      Component     =====
 // ==============================
@@ -65,20 +79,24 @@ class ForumPost extends Component {
     let { user, token } = this.props;
     return (
       <Form onSubmit={() => this.props.addSinglePost({ user, token, post })}>
-        <input
-          type="text"
-          value={this.state.title}
-          onChange={this.handleInputChange}
-          placeholder="Title..."
-          name="title"
-        />
-        <Textarea
-          value={this.state.body}
-          onChange={this.handleInputChange}
-          placeholder="Your thoughts..."
-          name="body"
-        />
-        <button>Drop&nbsp;some&nbsp;knowledge</button>
+        <BackButton props={this.props} />
+        <FormBox>
+          <input
+            type="text"
+            value={this.state.title}
+            onChange={this.handleInputChange}
+            placeholder="Title..."
+            name="title"
+          />
+          <Textarea
+            value={this.state.body}
+            onChange={this.handleInputChange}
+            placeholder="Your thoughts..."
+            name="body"
+          />
+          <button>Drop&nbsp;some&nbsp;knowledge</button>
+        </FormBox>
+        <BackBtnAttribute />
       </Form>
     );
   }

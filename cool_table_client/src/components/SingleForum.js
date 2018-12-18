@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { getSinglePost } from "../store/actions";
 import { connect } from "react-redux";
+import BackBtnAttribute from "./BackBtnAttribute";
+import BackButton from "./BackButton";
 
 // ==============================
 // =====  Styled Component  =====
@@ -12,6 +14,9 @@ const Card = styled.div`
   color: #0f0f0f;
   background: #eadbb4;
   overflow: hidden;
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
   transform: rotate(-0.5deg);
   box-shadow: -1px 3px 10px rgba(0, 0, 0, 0.3);
   background-image: repeating-linear-gradient(
@@ -42,7 +47,16 @@ class SingleForum extends Component {
     if (!post) return <h4>Loading Post....</h4>;
     if (post.author.username.length) {
       return (
-        <div style={{ padding: 20 }}>
+        <div
+          style={{
+            padding: 20,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            minHeight: "100vh"
+          }}
+        >
+          <BackButton props={this.props} />
           <Card>
             <h1>
               {post.title}{" "}
@@ -62,6 +76,7 @@ class SingleForum extends Component {
             <p>{post.body}</p>
             <p>{moment.utc(post.created_at).format("MMMM Do YYYY, hh:mm a")}</p>
           </Card>
+          <BackBtnAttribute />
         </div>
       );
     }
