@@ -83,7 +83,7 @@ const Label = styled.label`
   opacity: 0.4;
   padding-right: 330px;
 
-  &:nth-of-type(2) {
+  &:last-of-type {
     padding-right: 10px;
   }
 `;
@@ -188,8 +188,6 @@ export default class QuizForm extends Component {
         <BackButton props={this.props} />
         <Label>(required)</Label>
         {Input("title", "Quiz title...")}
-        <Label>(only if you dont select one from existing topics below)</Label>
-        {Input("topic", "topic if not in topics below")}
         <Label>(required)</Label>
         {Input("question", "Question...")}
         <Label>(required)</Label>
@@ -202,6 +200,8 @@ export default class QuizForm extends Component {
         {Input("options4", "Answer option 4...")}
         <Label>(required)</Label>
         {Input("answer", "Correct Answer #", "number", 1, 4)}
+        <Label>(only if you dont select one from existing topics below)</Label>
+        {Input("topic", "topic if not in topics below")}
         <PickTopic>
           <h3>
             pick your quiz topic{" "}
