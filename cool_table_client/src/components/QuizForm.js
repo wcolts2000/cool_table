@@ -139,6 +139,7 @@ export default class QuizForm extends Component {
 
   render() {
     const Input = (
+      value,
       name,
       placeholder,
       type = "text",
@@ -147,6 +148,7 @@ export default class QuizForm extends Component {
       max
     ) => (
       <input
+        value={value || ""}
         type={type.toString()}
         name={name}
         id={name}
@@ -162,19 +164,27 @@ export default class QuizForm extends Component {
         <BackButton props={this.props} />
         <h1>Add Your Quiz Below...</h1>
         <Label>(required)</Label>
-        {Input("title", "Quiz title...", true)}
+        {Input(this.state.title, "title", "Quiz title...", true)}
         <Label>(required)</Label>
-        {Input("question", "Question...", true)}
+        {Input(this.state.question, "question", "Question...", true)}
         <Label>(required)</Label>
-        {Input("options1", "Answer option 1...", true)}
+        {Input(this.state.options1, "options1", "Answer option 1...", true)}
         <Label>(required)</Label>
-        {Input("options2", "Answer option 2...", true)}
+        {Input(this.state.options2, "options2", "Answer option 2...", true)}
         <Label>(optional)</Label>
-        {Input("options3", "Answer option 3...")}
+        {Input(this.state.options3, "options3", "Answer option 3...")}
         <Label>(optional)</Label>
-        {Input("options4", "Answer option 4...")}
+        {Input(this.state.options4, "options4", "Answer option 4...")}
         <Label>(required)</Label>
-        {Input("answer", "Correct Answer #", "number", true, 1, 4)}
+        {Input(
+          this.state.answer,
+          "answer",
+          "Correct Answer #",
+          "number",
+          true,
+          1,
+          4
+        )}
         <Label>(must pick from topics below or add new topic)</Label>
         <input
           type="text"

@@ -10,7 +10,7 @@ import BackButton from "./components/BackButton";
 // ==============================
 
 const Form = styled.form`
-  min-height: 100vh;
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
   justify-content: space-around;

@@ -65,7 +65,7 @@ class Quiz extends Component {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
-            minHeight: "100vh"
+            minHeight: "calc(100vh - 70px)"
           }}
         >
           <BackButton props={this.props} />
@@ -97,12 +97,12 @@ class Quiz extends Component {
           padding: 20,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
-          minHeight: "100vh"
+          justifyContent: "space-between",
+          minHeight: "calc(100vh - 110px)"
         }}
       >
         <BackButton props={this.props} />
-        <h1>
+        <h1 style={{ paddingTop: 50 }}>
           "Sorry...This quiz has not had any questions associated with it yet :
           ( "
         </h1>

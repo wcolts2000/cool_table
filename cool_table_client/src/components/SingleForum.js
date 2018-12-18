@@ -50,10 +50,11 @@ class SingleForum extends Component {
         <div
           style={{
             padding: 20,
+            paddingTop: 70,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-around",
-            minHeight: "100vh"
+            justifyContent: "space-between",
+            minHeight: "calc(100vh - 180px)"
           }}
         >
           <BackButton props={this.props} />

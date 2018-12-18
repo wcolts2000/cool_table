@@ -15,7 +15,7 @@ export default function EyeIconAttribute() {
   return (
     <div>
       <P>
-        back icon by{" "}
+        eye icon by{" "}
         <a
           href="https://www.flaticon.com/authors/gregor-cresnar"
           target="_blank"

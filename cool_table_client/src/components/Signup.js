@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { registerUser } from "../store/actions";
 import { connect } from "react-redux";
 import PasswordInput from "./PasswordInput";
+import EyeIconAttribute from "./EyeIconAttribute";
 
 // ==============================
 // =====  Styled Component  =====
@@ -122,40 +123,43 @@ class Signup extends Component {
       />
     );
     return (
-      <form onSubmit={this.handleSubmit}>
-        <H1>
-          Get Your Seat At The <br />
-          <span>
-            Cool<span>Table</span>
-          </span>
-        </H1>
-        <Label>(required)</Label>
-        {Input("username", "Username")}
-        <Label>(required)</Label>
-        {Input("email", "Email", "email")}
-        <Label>(required)</Label>
-        <PasswordInput
-          password={this.state.password}
-          change={this.handleChange}
-          inputValue={this.state.password}
-          placeholder="Password..."
-          name="password"
-        />
-        <Label>(required...must match)</Label>
-        <PasswordInput
-          password={this.state.passwordCheck}
-          change={this.handleChange}
-          inputValue={this.state.passwordCheck}
-          placeholder="Re-Enter Password..."
-          name="passwordCheck"
-        />
-        <Label>Enter Avatar URL here...(optional)</Label>
-        {Input("avatar", "Avatar URL...", "url")}
-        <button type="submit" style={{ marginRight: 15 }}>
-          Submit
-        </button>{" "}
-        <button onClick={this.resetForm}>Reset</button>
-      </form>
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <H1>
+            Get Your Seat At The <br />
+            <span>
+              Cool<span>Table</span>
+            </span>
+          </H1>
+          <Label>(required)</Label>
+          {Input("username", "Username")}
+          <Label>(required)</Label>
+          {Input("email", "Email", "email")}
+          <Label>(required)</Label>
+          <PasswordInput
+            password={this.state.password}
+            change={this.handleChange}
+            inputValue={this.state.password}
+            placeholder="Password..."
+            name="password"
+          />
+          <Label>(required...must match)</Label>
+          <PasswordInput
+            password={this.state.passwordCheck}
+            change={this.handleChange}
+            inputValue={this.state.passwordCheck}
+            placeholder="Re-Enter Password..."
+            name="passwordCheck"
+          />
+          <Label>Enter Avatar URL here...(optional)</Label>
+          {Input("avatar", "Avatar URL...", "url")}
+          <button type="submit" style={{ marginRight: 15 }}>
+            Submit
+          </button>{" "}
+          <button onClick={this.resetForm}>Reset</button>
+        </form>
+        <EyeIconAttribute />
+      </>
     );
   }
 }
