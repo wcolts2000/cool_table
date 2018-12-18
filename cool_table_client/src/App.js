@@ -14,6 +14,7 @@ import Signup from "./components/Signup";
 import UserLogin from "./components/UserLogin";
 import { connect } from "react-redux";
 import { navOpen } from "./store/actions";
+import LogOut from "./components/LogOut";
 
 // ==============================
 // =====  Styled Component  =====
@@ -122,6 +123,7 @@ class App extends Component {
           <Spacer />
           <Route exact path="/" component={Login} />
           <Route path="/login" component={UserLogin} />
+          <Route path="/logout" component={LogOut} />
           <Route path="/register" component={Signup} />
           <Route path="/home" component={Home} />
           <Route exact path="/quiz" component={QuizHome} />

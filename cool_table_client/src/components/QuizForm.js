@@ -79,6 +79,29 @@ const Topic = styled.div`
   }
 `;
 
+const Label = styled.label`
+  opacity: 0.4;
+  padding-right: 330px;
+
+  &:nth-of-type(2) {
+    padding-right: 10px;
+  }
+`;
+
+const Span = styled.span`
+  font-size: 10px;
+  color: white;
+  border-radius: 7px;
+  background: tomato;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 35px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
 // ==============================
 // =====      Component     =====
 // ==============================
@@ -88,7 +111,13 @@ export default class QuizForm extends Component {
     super(props);
     this.state = {
       title: "",
-      body: "",
+      topic: "",
+      question: "",
+      options1: "",
+      options2: "",
+      options3: "",
+      options4: "",
+      answer: null,
       topics: [],
       topic_id: null
     };
@@ -99,6 +128,22 @@ export default class QuizForm extends Component {
       .get(`${URL}quizzes/topics/`)
       .then(({ data }) => this.setState({ topics: data }))
       .catch(err => console.log(err));
+  };
+
+  resetForm = e => {
+    e.preventDefault();
+    this.setState({
+      title: "",
+      topic: "",
+      question: "",
+      options1: "",
+      options2: "",
+      options3: "",
+      options4: "",
+      answer: null,
+      topics: [],
+      topic_id: null
+    });
   };
 
   handleInputChange = ({ target: { name, value } }) => {
@@ -126,23 +171,46 @@ export default class QuizForm extends Component {
   };
 
   render() {
+    const Input = (name, placeholder, type = "text", min, max) => (
+      <input
+        type={type}
+        name={name}
+        id={name}
+        placeholder={placeholder}
+        required
+        onChange={this.handleChange}
+        min={min}
+        max={max}
+      />
+    );
     return (
       <Form onSubmit={this.addPost}>
         <BackButton props={this.props} />
-        <input
-          type="text"
-          value={this.state.title}
-          onChange={this.handleInputChange}
-          placeholder="Title..."
-        />
-        <Textarea
-          value={this.state.body}
-          onChange={this.handleInputChange}
-          placeholder="Your thoughts..."
-          name="body"
-        />
+        <Label>(required)</Label>
+        {Input("title", "Quiz title...")}
+        <Label>(only if you dont select one from existing topics below)</Label>
+        {Input("topic", "topic if not in topics below")}
+        <Label>(required)</Label>
+        {Input("question", "Question...")}
+        <Label>(required)</Label>
+        {Input("options1", "Answer option 1...")}
+        <Label>(required)</Label>
+        {Input("options2", "Answer option 2...")}
+        <Label>(optional)</Label>
+        {Input("options3", "Answer option 3...")}
+        <Label>(optional)</Label>
+        {Input("options4", "Answer option 4...")}
+        <Label>(required)</Label>
+        {Input("answer", "Correct Answer #", "number", 1, 4)}
         <PickTopic>
-          <h3>pick your quiz topic</h3>
+          <h3>
+            pick your quiz topic{" "}
+            {this.state.topic_id && (
+              <Span onClick={() => this.setState({ topic_id: null })}>
+                UNSELECT
+              </Span>
+            )}
+          </h3>
           <TopicsBox>
             {this.state.topics
               ? this.state.topics.map(({ id, name }) => (
@@ -163,6 +231,8 @@ export default class QuizForm extends Component {
           </TopicsBox>
         </PickTopic>
         <button>Test&nbsp;Peeps&nbsp;knowledge</button>
+        {"  "}
+        <button onClick={this.resetForm}>Reset</button>
         <BackBtnAttribute />
       </Form>
     );

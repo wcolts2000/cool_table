@@ -129,55 +129,14 @@ class Signup extends Component {
           </span>
         </H1>
         <Label>(required)</Label>
-        {/* <input
-          type="text"
-          name="username"
-          required
-          autoComplete="username"
-          value={this.state.username}
-          placeholder="Username..."
-          onChange={this.handleInputChange}
-        /> */}
         {Input("username", "Username")}
         <Label>(required)</Label>
-        {/* <input
-          type="email"
-          name="email"
-          required
-          value={this.state.email}
-          placeholder="Email..."
-          onChange={this.handleInputChange}
-        /> */}
         {Input("email", "Email", "email")}
         <Label>(required)</Label>
-        {/* <input
-          type="password"
-          name="password"
-          required
-          value={this.state.password}
-          placeholder="Password..."
-          autoComplete="New Password"
-          onChange={this.handleInputChange}
-        /> */}
         {Input("password", "Password", "password")}
         <Label>(required...must match)</Label>
-        {/* <input
-          type="password"
-          name="passwordCheck"
-          required
-          value={this.state.passwordCheck}
-          placeholder="Retype Password..."
-          autoComplete="New Password"
-          onChange={this.handleInputChange}
-        /> */}
         {Input("passwordCheck", "PasswordCheck", "password")}
         <Label>Enter Avatar URL here...(optional)</Label>
-        {/* <Input
-          type="url"
-          placeholder="Avatar URL..."
-          name="avatar"
-          onChange={this.handleInputChange}
-        /> */}
         {Input("avatar", "Avatar URL...", "url")}
         <button type="submit" style={{ marginRight: 15 }}>
           Submit
