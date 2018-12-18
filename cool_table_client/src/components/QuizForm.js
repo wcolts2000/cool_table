@@ -147,7 +147,7 @@ export default class QuizForm extends Component {
       max
     ) => (
       <input
-        type={type}
+        type={type.toString()}
         name={name}
         id={name}
         placeholder={placeholder}
