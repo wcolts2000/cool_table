@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { registerUser } from "../store/actions";
 import { connect } from "react-redux";
+import PasswordInput from "./PasswordInput";
 
 // ==============================
 // =====  Styled Component  =====
@@ -133,9 +134,21 @@ class Signup extends Component {
         <Label>(required)</Label>
         {Input("email", "Email", "email")}
         <Label>(required)</Label>
-        {Input("password", "Password", "password")}
+        <PasswordInput
+          password={this.state.password}
+          change={this.handleChange}
+          inputValue={this.state.password}
+          placeholder="Password..."
+          name="password"
+        />
         <Label>(required...must match)</Label>
-        {Input("passwordCheck", "PasswordCheck", "password")}
+        <PasswordInput
+          password={this.state.passwordCheck}
+          change={this.handleChange}
+          inputValue={this.state.passwordCheck}
+          placeholder="Re-Enter Password..."
+          name="passwordCheck"
+        />
         <Label>Enter Avatar URL here...(optional)</Label>
         {Input("avatar", "Avatar URL...", "url")}
         <button type="submit" style={{ marginRight: 15 }}>

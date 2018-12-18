@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { logIn } from "../store/actions";
 import { connect } from "react-redux";
+import PasswordInput from "./PasswordInput";
 
 class UserLogin extends Component {
   state = {
@@ -37,7 +38,13 @@ class UserLogin extends Component {
     return (
       <form style={{ padding: 40 }} onSubmit={this.handleSubmit}>
         {Input("email", "email", "email...")}
-        {Input("password", "password", "password")}
+        <PasswordInput
+          password={this.state.password}
+          change={this.handleChange}
+          inputValue={this.state.password}
+          placeholder="Password..."
+          name="password"
+        />
         <button>LOGIN</button>
       </form>
     );

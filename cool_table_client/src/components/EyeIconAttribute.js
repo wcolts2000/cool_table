@@ -11,17 +11,17 @@ const P = styled.p``;
 // =====      Component     =====
 // ==============================
 
-export default function BackBtnAttribute() {
+export default function EyeIconAttribute() {
   return (
     <div>
       <P>
         back icon by{" "}
         <a
-          href="https://www.flaticon.com/authors/roundicons"
+          href="https://www.flaticon.com/authors/gregor-cresnar"
           target="_blank"
           rel="noopener noreferrer"
         >
-          RoundIcons
+          Gregor Cresnar
         </a>{" "}
         from{" "}
         <a
