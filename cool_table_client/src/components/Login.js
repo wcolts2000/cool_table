@@ -1,70 +1,105 @@
 import React, { Component } from "react";
+import { logIn } from "../store/actions";
+import { connect } from "react-redux";
+import PasswordInput from "./PasswordInput";
+import EyeIconAttribute from "./EyeIconAttribute";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import table from "../img/background-beverage-breakfast-414645.jpg";
 
-// ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Header = styled.header`
+const Div = styled.div`
+  max-width: 800px;
   width: 100%;
-  height: 40vh;
-  margin-bottom: 65px;
-  background: rgba(0, 0, 0, 0.7);
-  background-image: url(${table});
-  background-position: top right;
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: -1px 3px 7px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 50px;
-  color: aqua;
-  text-shadow: -1px 2px rgba(0, 0, 0, 0.3), -2px 3px rgba(0, 0, 0, 0.3),
-    -3px 4px rgba(0, 0, 0, 0.3);
-  & > p {
-    margin-bottom: -40px;
-    font-size: 30px;
-    padding: 0;
-  }
-
-  & > h1 {
-    font-size: 50px;
-
-    & > span {
-      font-weight: normal;
-      opacity: 0.7;
-    }
-  }
+  justify-content: space-between;
+  height: calc(100vh - 70px);
 `;
 
-// ==============================
-// =====      Component     =====
-// ==============================
+class UserLogin extends Component {
+  state = {
+    email: "",
+    password: ""
+  };
 
-export default class Login extends Component {
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.logIn({
+      email: this.state.email,
+      password: this.state.password
+    });
+    this.props.history.push("/home");
+  };
+
   render() {
+    const Input = (name, type = "text", placeholder) => (
+      <input
+        type={type}
+        name={name}
+        id={name}
+        placeholder={placeholder}
+        required
+        onChange={this.handleChange}
+      />
+    );
     return (
-      <>
-        <Header>
-          <p>THE</p>
-          <h1>
-            COOL<span>TABLE</span>
-          </h1>
-        </Header>
-        <Link to="/login" style={{ marginRight: 15 }}>
+      <Div>
+        <form style={{ padding: 40 }} onSubmit={this.handleSubmit}>
+          {Input("email", "email", "email...")}
+          <PasswordInput
+            password={this.state.password}
+            change={this.handleChange}
+            inputValue={this.state.password}
+            placeholder="Password..."
+            name="password"
+          />
           <button>LOGIN</button>
-        </Link>
-        <Link to="/home" style={{ marginRight: 15 }}>
-          <button>GUEST</button>
-        </Link>
-        <Link to="/register">
-          <button>REGISTER</button>
-        </Link>
-      </>
+        </form>
+        <EyeIconAttribute />
+      </Div>
     );
   }
 }
+
+const mapStateToProps = ({ isLoggedIn, user, token }) => ({
+  isLoggedIn,
+  user,
+  token
+});
+
+export default connect(
+  mapStateToProps,
+  { logIn }
+)(UserLogin);
+
+// const Input = (name, type = 'text') => (
+//   <input
+// 	type={type}
+// 	name={name}
+// 	id={name}
+// 	autoComplete="off"
+// 	required
+//   />
+// );
+
+// // or a local method for controlled inputs:
+// makeInput = (name, type = 'text') => (
+//     <>
+//       <label htmlFor={name}>{name}</label>
+//       <input
+// 		value={this.state[name]}
+// 		type={type}
+// 		name={name}
+// 		id={name}
+// 		autoComplete="off"
+// 		required
+// 	  />
+//     </>
+// );
+
+//token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTU0NDcyNjY0OSwiZXhwIjoxNTc2Mjg0MjQ5fQ.GOA5uOFUaJ9Z1AXnGHZQZJfLsR_vS7DwySGj8nGGuZc","user":{"id":12,"username":"sean","img_url":"https://img.devrant.com/devrant/rant/r_1621414_CgMfU.jpg"}}

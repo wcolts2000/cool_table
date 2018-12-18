@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, withRouter } from "react-router-dom";
-import Login from "./components/Login";
+import Intro from "./components/Intro";
 import Home from "./components/Home";
 import QuizHome from "./components/QuizHome";
 import QuizForm from "./components/QuizForm";
@@ -11,7 +11,7 @@ import Nav from "./components/Nav";
 import Quiz from "./components/Quiz";
 import ForumPost from "./ForumPost";
 import Signup from "./components/Signup";
-import UserLogin from "./components/UserLogin";
+import Login from "./components/Login";
 import { connect } from "react-redux";
 import { navOpen } from "./store/actions";
 import LogOut from "./components/LogOut";
@@ -121,8 +121,8 @@ class App extends Component {
             navOpen={this.props.navOpen}
           />
           <Spacer />
-          <Route exact path="/" component={Login} />
-          <Route path="/login" component={UserLogin} />
+          <Route exact path="/" component={Intro} />
+          <Route path="/login" component={Login} />
           <Route path="/logout" component={LogOut} />
           <Route path="/register" component={Signup} />
           <Route path="/home" component={Home} />
