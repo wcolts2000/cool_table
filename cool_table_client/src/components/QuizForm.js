@@ -13,36 +13,6 @@ const Form = styled.form`
   padding: 30px;
 `;
 
-const Textarea = styled.textarea`
-  height: 30vh;
-  resize: none;
-  background: #deb887;
-  border: none;
-  outline: none;
-  border-bottom: 2px solid aqua;
-  font-size: 16px;
-  padding: 15px 20px;
-  text-align: left;
-  display: block;
-  border-radius: 10px;
-  margin: 0 auto;
-  color: #0f0f0f;
-  margin-bottom: 20px;
-  width: 80%;
-  max-width: 400px;
-
-  &::placeholder {
-    color: white;
-    text-shadow: -1px 2px rgba(0, 0, 0, 0.3);
-  }
-
-  &:focus {
-    border: none;
-    outline: none;
-    border-bottom: 2px solid green;
-  }
-`;
-
 const PickTopic = styled.div`
   max-width: 400px;
   margin: 0 auto;
@@ -84,7 +54,7 @@ const Label = styled.label`
   padding-right: 330px;
 
   &:last-of-type {
-    padding-right: 10px;
+    padding-right: 70px;
   }
 `;
 
@@ -146,38 +116,42 @@ export default class QuizForm extends Component {
     });
   };
 
-  handleInputChange = ({ target: { name, value } }) => {
+  handleChange = ({ target: { name, value } }) => {
+    name === "topic" ?
     this.setState({
-      [name]: value
-    });
+      [name]: value,
+      topic_id: null
+    }) : this.setState({
+      [name]: value,
+    })
   };
 
   addPost = e => {
     e.preventDefault();
-    const userId = 1;
-    axios
-      .post(
-        `${URL}posts`,
-        `{this.state, id: ${userId}, created_at: ${Date.now()}}`
-      )
-      .then(({ data }) => console.log(data))
-      .catch(err => console.log(err));
   };
 
-  selectTopic = ({ id }) => {
+  selectTopic = ({ id, name }) => {
     this.setState({
-      topic_id: id
+      topic_id: id,
+      topic: name
     });
   };
 
   render() {
-    const Input = (name, placeholder, type = "text", min, max) => (
+    const Input = (
+      name,
+      placeholder,
+      type = "text",
+      required = null,
+      min,
+      max
+    ) => (
       <input
         type={type}
         name={name}
         id={name}
         placeholder={placeholder}
-        required
+        required={required}
         onChange={this.handleChange}
         min={min}
         max={max}
@@ -188,26 +162,26 @@ export default class QuizForm extends Component {
         <BackButton props={this.props} />
         <h1>Add Your Quiz Below...</h1>
         <Label>(required)</Label>
-        {Input("title", "Quiz title...")}
+        {Input("title", "Quiz title...", true)}
         <Label>(required)</Label>
-        {Input("question", "Question...")}
+        {Input("question", "Question...", true)}
         <Label>(required)</Label>
-        {Input("options1", "Answer option 1...")}
+        {Input("options1", "Answer option 1...", true)}
         <Label>(required)</Label>
-        {Input("options2", "Answer option 2...")}
+        {Input("options2", "Answer option 2...", true)}
         <Label>(optional)</Label>
         {Input("options3", "Answer option 3...")}
         <Label>(optional)</Label>
         {Input("options4", "Answer option 4...")}
         <Label>(required)</Label>
-        {Input("answer", "Correct Answer #", "number", 1, 4)}
-        <Label>(only if you dont select one from existing topics below)</Label>
-        {Input("topic", "topic if not in topics below")}
+        {Input("answer", "Correct Answer #", "number", true, 1, 4)}
+        <Label>(must pick from topics below or add new topic)</Label>
+        <input type="text" value={this.state.topic} placeholder="topic if not in topics below" name="topic" onChange={this.handleChange} required/>
         <PickTopic>
           <h3>
             pick your quiz topic{" "}
             {this.state.topic_id && (
-              <Span onClick={() => this.setState({ topic_id: null })}>
+              <Span onClick={() => this.setState({ topic_id: null, topic: '' })}>
                 UNSELECT
               </Span>
             )}
@@ -218,7 +192,7 @@ export default class QuizForm extends Component {
                   <Topic
                     id={id}
                     key={id}
-                    onClick={() => this.selectTopic({ id })}
+                    onClick={() => this.selectTopic({ id, name })}
                     style={
                       this.state.topic_id === id
                         ? { background: "yellow" }
