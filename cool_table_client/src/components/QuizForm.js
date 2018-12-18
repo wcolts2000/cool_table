@@ -111,19 +111,19 @@ export default class QuizForm extends Component {
       options3: "",
       options4: "",
       answer: null,
-      topics: [],
       topic_id: null
     });
   };
 
   handleChange = ({ target: { name, value } }) => {
-    name === "topic" ?
-    this.setState({
-      [name]: value,
-      topic_id: null
-    }) : this.setState({
-      [name]: value,
-    })
+    name === "topic"
+      ? this.setState({
+          [name]: value,
+          topic_id: null
+        })
+      : this.setState({
+          [name]: value
+        });
   };
 
   addPost = e => {
@@ -176,12 +176,21 @@ export default class QuizForm extends Component {
         <Label>(required)</Label>
         {Input("answer", "Correct Answer #", "number", true, 1, 4)}
         <Label>(must pick from topics below or add new topic)</Label>
-        <input type="text" value={this.state.topic} placeholder="topic if not in topics below" name="topic" onChange={this.handleChange} required/>
+        <input
+          type="text"
+          value={this.state.topic}
+          placeholder="topic if not in topics below"
+          name="topic"
+          onChange={this.handleChange}
+          required
+        />
         <PickTopic>
           <h3>
             pick your quiz topic{" "}
             {this.state.topic_id && (
-              <Span onClick={() => this.setState({ topic_id: null, topic: '' })}>
+              <Span
+                onClick={() => this.setState({ topic_id: null, topic: "" })}
+              >
                 UNSELECT
               </Span>
             )}
