@@ -30,11 +30,40 @@ const Card = styled.div`
   line-height: 1.6;
 `;
 
-const Li = styled.li`
+const Div = styled.div`
+  width: 100%;
+  display: inline-block;
   cursor: pointer;
+  color: ${props => (props.selected ? "darkgreen" : "inheret")};
+  position: relative;
+  margin: 0 0 15px 35px;
   &:hover {
     color: darkgreen;
   }
+`;
+
+const Radio = styled.input`
+  position: absolute;
+  width: initial;
+  left: -31px;
+  top: 6px;
+`;
+
+const Span = styled.span`
+  height: 16px;
+  width: 16px;
+  border: 5px solid #0f0f0f;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  left: -38px;
+  top: -4px;
+`;
+
+const Label = styled.label`
+  cursor: pointer;
+  font-size: inherit;
+  position: relative;
 `;
 
 // ==============================
@@ -90,13 +119,23 @@ class Quiz extends Component {
           {questions.map((question, i) => (
             <Card key={i}>
               <h3>{question.question}</h3>
-              <ol style={{ textAlign: "left" }}>
+              <div style={{ textAlign: "left" }}>
                 {question.options.map((option, i) => (
-                  <Li key={i} onClick={() => this.pickAnswer()}>
-                    {option}
-                  </Li>
+                  <Div key={i}>
+                    <Radio
+                      type="radio"
+                      id={option + i}
+                      name={question.question}
+                      onClick={() => this.pickAnswer(i + 1)}
+                      value={option}
+                    />
+                    <Label htmlFor={option + i}>
+                      <Span />
+                      {option}
+                    </Label>
+                  </Div>
                 ))}
-              </ol>
+              </div>
             </Card>
           ))}
           <BackBtnAttribute />
