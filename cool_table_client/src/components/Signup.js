@@ -118,6 +118,7 @@ class Signup extends Component {
         name={name}
         id={name}
         placeholder={placeholder}
+        autoComplete="off"
         required
         onChange={this.handleChange}
       />

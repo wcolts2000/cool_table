@@ -6,6 +6,7 @@ export const REGISTER_USER = "REGISTER_USER",
   REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS",
   LOGGING_IN = "LOGGING_IN",
   LOGGING_IN_SUCCESS = "LOGGING_IN_SUCCESS",
+  LOCAL_LOGIN = "LOCAL_LOGIN",
   MOBILE_NAV_TOGGLE = "MOBILE_NAV_TOGGLE",
   FETCHING_QUIZZES = "FETCHING_QUIZZES",
   FETCHING_QUIZZES_SUCCESS = "FETCHING_QUIZZES_SUCCESS",
@@ -67,13 +68,15 @@ export const registerUser = user => dispatch => {
 };
 
 export const logIn = user => dispatch => {
-  console.log("actions user: ", user);
-
   dispatch({ type: LOGGING_IN });
   axios
     .post(`${URL}auth/login`, user)
     .then(({ data }) => dispatch({ type: LOGGING_IN_SUCCESS, payload: data }))
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
+
+export const localLogIn = (user, token) => dispatch => {
+  dispatch({ type: LOCAL_LOGIN, payload: { user, token } });
 };
 
 export const fetchQuizzes = () => dispatch => {

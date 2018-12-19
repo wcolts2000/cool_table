@@ -13,7 +13,7 @@ import ForumPost from "./ForumPost";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import { connect } from "react-redux";
-import { navOpen } from "./store/actions";
+import { navOpen, localLogIn } from "./store/actions";
 import LogOut from "./components/LogOut";
 
 // ==============================
@@ -110,6 +110,23 @@ const Spacer = styled.div`
 // ==============================
 
 class App extends Component {
+  componentDidMount = () => {
+    let user = JSON.parse(localStorage.getItem("user"));
+    let token = localStorage.getItem("token");
+    if (user && token) return this.props.localLogIn(user, token);
+  };
+
+  componentDidUpdate = prevProps => {
+    if (
+      prevProps.user !== this.props.user &&
+      prevProps.token !== this.props.token
+    )
+      return (
+        localStorage.setItem("user", JSON.stringify(this.props.user)),
+        localStorage.setItem("token", this.props.token)
+      );
+  };
+
   render() {
     return (
       <>
@@ -148,6 +165,6 @@ const mapStateToProps = ({ user, token, isLoggedIn, mobilenavopen }) => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { navOpen }
+    { navOpen, localLogIn }
   )(App)
 );

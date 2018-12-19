@@ -34,6 +34,7 @@ class PasswordInput extends Component {
         <input
           type={this.state.type}
           placeholder={this.props.placeholder}
+          autoComplete="off"
           name={this.props.name}
           value={this.props.inputValue}
           onChange={this.props.change}

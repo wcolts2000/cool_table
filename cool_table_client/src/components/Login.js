@@ -33,7 +33,6 @@ class UserLogin extends Component {
       email: this.state.email,
       password: this.state.password
     });
-    this.props.history.push("/home");
   };
 
   render() {
@@ -43,6 +42,7 @@ class UserLogin extends Component {
         name={name}
         id={name}
         placeholder={placeholder}
+        autoComplete="off"
         required
         onChange={this.handleChange}
       />

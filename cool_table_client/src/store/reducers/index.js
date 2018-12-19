@@ -27,8 +27,15 @@ const navReducer = (state = initialState, action) => {
         requesting: true
       };
     case actions.LOGGING_IN_SUCCESS:
-      console.log("reducers payload: ", action.payload);
-
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+        isLoggedIn: true,
+        requesting: false,
+        error: null
+      };
+    case actions.LOCAL_LOGIN:
       return {
         ...state,
         user: action.payload.user,
