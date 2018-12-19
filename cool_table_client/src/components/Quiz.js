@@ -53,10 +53,9 @@ class Quiz extends Component {
   };
 
   render() {
-    let { title, votes, author, topic } = this.props.singleQuiz;
-
     if (!this.props.singleQuiz) return <h4>Loading...</h4>;
-    if (this.props.questions.length) {
+    if (this.props.questions.length && this.props.singleQuiz.length) {
+      let { title, votes, author, topic } = this.props.singleQuiz[0];
       let questions = this.props.questions;
       return (
         <div
@@ -72,7 +71,20 @@ class Quiz extends Component {
           <Card>
             <h1>Quiz on {topic}</h1>
             <h2>{title}</h2>
-            <p>Submitted by: {author ? author["username"] : null}</p>
+            <p>
+              Submitted by:{" "}
+              <span>
+                {author.img_url ? (
+                  <img
+                    src={author.img_url}
+                    style={{ width: 20 }}
+                    alt="user avatar"
+                  />
+                ) : null}
+              </span>
+              &nbsp;
+              {author ? author["username"] : null}
+            </p>
             <p>votes: {votes}</p>
           </Card>
           {questions.map((question, i) => (
