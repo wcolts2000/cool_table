@@ -26,6 +26,7 @@ export const REGISTER_USER = "REGISTER_USER",
   FETCHING_SINGLE_QUESTION = "FETCHING_SINGLE_QUESTION",
   FETCHING_QUESTIONS_RESPONSE = "FETCHING_QUESTIONS_RESPONSE",
   FETCHING_QUESTIONS_RESPONSE_SUCCESS = "FETCHING_QUESTIONS_RESPONSE_SUCCESS",
+  RESET_QUIZ = "RESET_QUIZ",
   POSTING_QUESTION = "POSTING_QUESTION",
   POSTING_QUESTION_SUCCESS = "POSTING_QUESTION_SUCCESS",
   PATCH_QUESTION = "PATCH_QUESTION",
@@ -138,4 +139,20 @@ export const getSingleQuiz = id => dispatch => {
         .catch(err => dispatch({ type: RES_FAILURE, payload: err }))
     )
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
+
+export const getQuestionResponse = (quizId, id, selectedOption) => dispatch => {
+  dispatch({ type: FETCHING_QUESTIONS_RESPONSE });
+  axios
+    .get(
+      `${URL}quizzes/${quizId}/questions/${selectedOption}/response?option=${id}`
+    )
+    .then(({ data }) =>
+      dispatch({ type: FETCHING_QUESTIONS_RESPONSE_SUCCESS, payload: data })
+    )
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
+
+export const resetQuiz = () => dispatch => {
+  dispatch({ type: RESET_QUIZ });
 };

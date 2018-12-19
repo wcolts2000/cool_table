@@ -9,6 +9,8 @@ const initialState = {
   quizzes: [],
   singleQuiz: [],
   questions: [],
+  correct: 0,
+  quizFinished: false,
   posts: [],
   singlePost: [],
   error: null
@@ -75,7 +77,8 @@ const navReducer = (state = initialState, action) => {
         ...state,
         requesting: false,
         error: null,
-        quizzes: [...action.payload]
+        quizzes: [...action.payload],
+        correct: 0
       };
     case actions.FETCHING_POSTS:
       return {
@@ -119,6 +122,37 @@ const navReducer = (state = initialState, action) => {
         requesting: false,
         error: null,
         questions: [...action.payload]
+      };
+    case actions.FETCHING_QUESTIONS_RESPONSE:
+      return {
+        ...state,
+        requesting: true,
+        error: null
+      };
+    case actions.FETCHING_QUESTIONS_RESPONSE_SUCCESS:
+      console.log("PAYLOAD", action.payload);
+      if (state.questions.length > 1) {
+        return {
+          ...state,
+          correct:
+            action.payload.correct === true ? state.correct + 1 : state.correct,
+          questions: state.questions.filter(
+            question => question.id !== action.payload.question
+          ),
+          quizFinished: false
+        };
+      }
+      return {
+        ...state,
+        correct:
+          action.payload.correct === true ? state.correct + 1 : state.correct,
+        quizFinished: true
+      };
+    case actions.RESET_QUIZ:
+      return {
+        ...state,
+        quizFinished: false,
+        correct: 0
       };
     case actions.RES_FAILURE:
       return {
