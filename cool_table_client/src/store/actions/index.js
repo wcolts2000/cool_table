@@ -7,6 +7,7 @@ export const REGISTER_USER = "REGISTER_USER",
   LOGGING_IN = "LOGGING_IN",
   LOGGING_IN_SUCCESS = "LOGGING_IN_SUCCESS",
   LOCAL_LOGIN = "LOCAL_LOGIN",
+  LOG_USER_OUT = "LOG_USER_OUT",
   MOBILE_NAV_TOGGLE = "MOBILE_NAV_TOGGLE",
   FETCHING_QUIZZES = "FETCHING_QUIZZES",
   FETCHING_QUIZZES_SUCCESS = "FETCHING_QUIZZES_SUCCESS",
@@ -77,6 +78,10 @@ export const logIn = user => dispatch => {
 
 export const localLogIn = (user, token) => dispatch => {
   dispatch({ type: LOCAL_LOGIN, payload: { user, token } });
+};
+
+export const logUserOut = () => dispatch => {
+  dispatch({ type: LOG_USER_OUT });
 };
 
 export const fetchQuizzes = () => dispatch => {

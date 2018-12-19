@@ -44,6 +44,13 @@ const navReducer = (state = initialState, action) => {
         requesting: false,
         error: null
       };
+    case actions.LOG_USER_OUT:
+      return {
+        ...state,
+        user: {},
+        token: "",
+        isLoggedIn: false
+      };
     case actions.REGISTER_USER:
       return {
         ...state,

@@ -1,11 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { logUserOut } from "../store/actions";
 
-function LogOut() {
-  return (
-    <div>
-      <button>logout</button>
-    </div>
-  );
+class LogOut extends Component {
+  render() {
+    return (
+      <div style={{ padding: 60 }}>
+        <button
+          onClick={() => {
+            return (
+              localStorage.removeItem("user"),
+              localStorage.removeItem("token"),
+              this.props.logUserOut(),
+              this.props.history.push("/")
+            );
+          }}
+        >
+          logout
+        </button>
+      </div>
+    );
+  }
 }
 
-export default LogOut;
+const mapStateToProps = ({ user, token, isLoggedIn }) => ({
+  user,
+  token,
+  isLoggedIn
+});
+
+export default connect(
+  mapStateToProps,
+  { logUserOut }
+)(LogOut);
