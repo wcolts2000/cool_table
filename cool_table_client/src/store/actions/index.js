@@ -105,11 +105,15 @@ export const fetchPosts = () => dispatch => {
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 
-export const addSinglePost = post => dispatch => {
+export const addSinglePost = (post, token) => dispatch => {
   dispatch({ type: POSTING_POST });
   axios
-    .post(`${URL}posts`, post)
-    .then(({ data }) => dispatch({ type: POSTING_POST_SUCCESS, payload: data }))
+    .post(`${URL}posts`, post, { authorization: token })
+    .then(
+      ({ data }) =>
+        dispatch({ type: POSTING_POST_SUCCESS, payload: { ...post, id: data } })
+      // dispatch({ type: POSTING_POST_SUCCESS })
+    )
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 

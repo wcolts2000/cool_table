@@ -10,7 +10,7 @@ import BackButton from "./components/BackButton";
 // ==============================
 
 const Form = styled.form`
-  height: calc(100vh - 70px);
+  height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -50,7 +50,7 @@ const Textarea = styled.textarea`
 `;
 
 const FormBox = styled.div`
-  width: 440px;
+  width: 400px;
   padding: 20px;
   margin: 0 auto;
 `;
@@ -74,11 +74,20 @@ class ForumPost extends Component {
     });
   };
 
-  render() {
+  addPost = e => {
+    e.preventDefault();
+    // let { token } = this.props;
     let post = this.state;
-    let { user, token } = this.props;
+    if (this.state.title.length && this.state.body.length) {
+      return this.props.addSinglePost(post, this.props.token);
+      // this.props.history.push("/forum")
+    }
+    return null;
+  };
+
+  render() {
     return (
-      <Form onSubmit={() => this.props.addSinglePost({ user, token, post })}>
+      <Form onSubmit={this.addPost}>
         <BackButton props={this.props} />
         <FormBox>
           <input
@@ -102,8 +111,7 @@ class ForumPost extends Component {
   }
 }
 
-const mapStateToProps = ({ user, token }) => ({
-  user,
+const mapStateToProps = ({ token }) => ({
   token
 });
 

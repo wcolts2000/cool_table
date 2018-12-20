@@ -7,6 +7,7 @@ const initialState = {
   mobilenavopen: "closed",
   requesting: false,
   quizzes: [],
+  auth: {},
   singleQuiz: [],
   questions: [],
   correct: 0,
@@ -33,6 +34,7 @@ const navReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
+        auth: action.payload,
         isLoggedIn: true,
         requesting: false,
         error: null
@@ -103,6 +105,18 @@ const navReducer = (state = initialState, action) => {
         requesting: false,
         error: null,
         singlePost: [action.payload]
+      };
+    case actions.POSTING_POST:
+      return {
+        ...state,
+        requesting: true
+      };
+    case actions.POSTING_POST_SUCCESS:
+      return {
+        ...state,
+        // posts: [...state.posts, action.payload],
+        requesting: false,
+        error: null
       };
     case actions.FETCHING_SINGLE_QUIZ:
       return {
