@@ -194,8 +194,8 @@ class Quiz extends Component {
           >
             <BackButton props={this.props} />
             <CardHeader>
-              <h1>Topic: {topic}</h1>
-              <p> Title: {title}</p>
+              <h1> Title: {title}</h1>
+              <p>Topic: {topic}</p>
               <p>
                 Submitted by:{" "}
                 <span>
@@ -245,24 +245,46 @@ class Quiz extends Component {
         </>
       );
     }
-    return (
-      <div
-        style={{
-          padding: 20,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          minHeight: "calc(100vh - 110px)"
-        }}
-      >
-        <BackButton props={this.props} />
-        <h1 style={{ paddingTop: 50 }}>
-          "Sorry...This quiz has not had any questions associated with it yet :
-          ( "
-        </h1>
-        <BackBtnAttribute />
-      </div>
-    );
+    if (this.props.singleQuiz.length && !this.props.questions.length) {
+      let { title, votes, author, topic } = this.props.singleQuiz[0];
+      return (
+        <div
+          style={{
+            padding: "0 20px 20px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            minHeight: "calc(100vh - 110px)"
+          }}
+        >
+          <BackButton props={this.props} />
+          <CardHeader>
+            <h1> Title: {title}</h1>
+            <p>Topic: {topic}</p>
+            <p>
+              Submitted by:{" "}
+              <span>
+                {author.img_url ? (
+                  <img
+                    src={author.img_url}
+                    style={{ width: 20 }}
+                    alt="user avatar"
+                  />
+                ) : null}
+              </span>
+              &nbsp; {author["username"]}
+              &nbsp;votes: {votes}
+            </p>
+          </CardHeader>
+          <h2 style={{ paddingTop: 50 }}>
+            "Sorry...This quiz has not had any questions associated with it yet
+            : ( "
+          </h2>
+          <BackBtnAttribute />
+        </div>
+      );
+    }
+    return null;
   }
 }
 

@@ -114,7 +114,7 @@ const navReducer = (state = initialState, action) => {
     case actions.POSTING_POST_SUCCESS:
       return {
         ...state,
-        // posts: [...state.posts, action.payload],
+        posts: [...state.posts, action.payload],
         requesting: false,
         error: null
       };

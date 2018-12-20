@@ -108,7 +108,7 @@ export const fetchPosts = () => dispatch => {
 export const addSinglePost = (post, token) => dispatch => {
   dispatch({ type: POSTING_POST });
   axios
-    .post(`${URL}posts`, post, { authorization: token })
+    .post(`${URL}posts`, post, { Authorization: token })
     .then(
       ({ data }) =>
         dispatch({ type: POSTING_POST_SUCCESS, payload: { ...post, id: data } })

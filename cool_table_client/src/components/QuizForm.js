@@ -80,6 +80,8 @@ export default class QuizForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      quiz: true,
+      questions: false,
       title: "",
       topic: "",
       question: "",
@@ -159,23 +161,73 @@ export default class QuizForm extends Component {
         max={max}
       />
     );
+    if (this.state.quiz)
+      return (
+        <Form onSubmit={this.addPost}>
+          <BackButton props={this.props} />
+          <h2>Add Your Quiz Below...</h2>
+          <Label>(required)</Label>
+          {Input(this.state.title, "title", "Quiz title...", true)}
+          <Label>(must pick from topics below or add new topic)</Label>
+          <input
+            type="text"
+            value={this.state.topic}
+            placeholder="topic if not in topics below"
+            name="topic"
+            onChange={this.handleChange}
+            required
+          />
+          <PickTopic>
+            <h3>
+              pick your quiz topic{" "}
+              {this.state.topic_id && (
+                <Span
+                  onClick={() => this.setState({ topic_id: null, topic: "" })}
+                >
+                  UNSELECT
+                </Span>
+              )}
+            </h3>
+            <TopicsBox>
+              {this.state.topics
+                ? this.state.topics.map(({ id, name }) => (
+                    <Topic
+                      id={id}
+                      key={id}
+                      onClick={() => this.selectTopic({ id, name })}
+                      style={
+                        this.state.topic_id === id
+                          ? { background: "yellow" }
+                          : null
+                      }
+                    >
+                      {name}
+                    </Topic>
+                  ))
+                : null}
+            </TopicsBox>
+          </PickTopic>
+          <button>Add&nbsp;Quiz</button>
+          {"  "}
+          <button onClick={this.resetForm}>Reset</button>
+          <BackBtnAttribute />
+        </Form>
+      );
     return (
-      <Form onSubmit={this.addPost}>
+      <Form>
         <BackButton props={this.props} />
-        <h1>Add Your Quiz Below...</h1>
-        <Label>(required)</Label>
-        {Input(this.state.title, "title", "Quiz title...", true)}
+        <h2>Add Your Question &amp; Options Below...</h2>
         <Label>(required)</Label>
         {Input(this.state.question, "question", "Question...", true)}
-        <Label>(required)</Label>
-        {Input(this.state.options1, "options1", "Answer option 1...", true)}
-        <Label>(required)</Label>
-        {Input(this.state.options2, "options2", "Answer option 2...", true)}
-        <Label>(optional)</Label>
-        {Input(this.state.options3, "options3", "Answer option 3...")}
-        <Label>(optional)</Label>
-        {Input(this.state.options4, "options4", "Answer option 4...")}
-        <Label>(required)</Label>
+        <Label>(1: required)</Label>
+        {Input(this.state.options1, "options1", "Answer Option 1...", true)}
+        <Label>(2: required)</Label>
+        {Input(this.state.options2, "options2", "Answer Option 2...", true)}
+        <Label>(3: optional)</Label>
+        {Input(this.state.options3, "options3", "Answer Option 3...")}
+        <Label>(4: optional)</Label>
+        {Input(this.state.options4, "options4", "Answer Option 4...")}
+        <Label style={{ paddingRight: 325 }}>(required)</Label>
         {Input(
           this.state.answer,
           "answer",
@@ -185,49 +237,10 @@ export default class QuizForm extends Component {
           1,
           4
         )}
-        <Label>(must pick from topics below or add new topic)</Label>
-        <input
-          type="text"
-          value={this.state.topic}
-          placeholder="topic if not in topics below"
-          name="topic"
-          onChange={this.handleChange}
-          required
-        />
-        <PickTopic>
-          <h3>
-            pick your quiz topic{" "}
-            {this.state.topic_id && (
-              <Span
-                onClick={() => this.setState({ topic_id: null, topic: "" })}
-              >
-                UNSELECT
-              </Span>
-            )}
-          </h3>
-          <TopicsBox>
-            {this.state.topics
-              ? this.state.topics.map(({ id, name }) => (
-                  <Topic
-                    id={id}
-                    key={id}
-                    onClick={() => this.selectTopic({ id, name })}
-                    style={
-                      this.state.topic_id === id
-                        ? { background: "yellow" }
-                        : null
-                    }
-                  >
-                    {name}
-                  </Topic>
-                ))
-              : null}
-          </TopicsBox>
-        </PickTopic>
-        <button>Test&nbsp;Peeps&nbsp;knowledge</button>
+        <button>Add&nbsp;Question</button>
         {"  "}
         <button onClick={this.resetForm}>Reset</button>
-        <BackBtnAttribute />
+        <button>Head&nbsp;Back&nbsp;To&nbsp;Quizzes</button>
       </Form>
     );
   }

@@ -85,8 +85,8 @@ const GlobalStyles = createGlobalStyle`
     max-width: 400px;
 
     &::placeholder {
-      color: white;
-      text-shadow: -1px 2px rgba(0,0,0,.3);
+      color: #0f0f0f;
+      opacity: .7;
     }
 
     &:focus {
