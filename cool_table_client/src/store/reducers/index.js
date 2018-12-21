@@ -118,6 +118,16 @@ const navReducer = (state = initialState, action) => {
         requesting: false,
         error: null
       };
+    case actions.DELETE_POST:
+      return {
+        ...state,
+        requesting: true
+      };
+    case actions.DELETE_POST_SUCCESS:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post.id !== action.payload)
+      };
     case actions.FETCHING_SINGLE_QUIZ:
       return {
         ...state,

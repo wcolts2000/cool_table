@@ -134,6 +134,22 @@ export const getSinglePost = id => dispatch => {
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 
+export const deletePost = (quizId, token) => dispatch => {
+  dispatch({ type: DELETE_POST });
+  axios({
+    method: "delete",
+    url: `${URL}posts/${quizId}`,
+    data: {
+      postId: quizId
+    },
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(({ data }) => dispatch({ type: DELETE_POST_SUCCESS, payload: data }))
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
+
 export const getSingleQuiz = id => dispatch => {
   dispatch({ type: FETCHING_SINGLE_QUIZ });
   axios
