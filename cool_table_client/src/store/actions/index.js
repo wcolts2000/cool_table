@@ -119,7 +119,10 @@ export const addSinglePost = (post, token) => dispatch => {
     }
   })
     .then(({ data }) =>
-      dispatch({ type: POSTING_POST_SUCCESS, payload: { ...post, id: data } })
+      dispatch({
+        type: POSTING_POST_SUCCESS,
+        payload: { ...post, id: data[0] }
+      })
     )
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
@@ -140,13 +143,13 @@ export const deletePost = (quizId, token) => dispatch => {
     method: "delete",
     url: `${URL}posts/${quizId}`,
     data: {
-      postId: quizId
+      postId: Number(quizId)
     },
     headers: {
       Authorization: token
     }
   })
-    .then(({ data }) => dispatch({ type: DELETE_POST_SUCCESS, payload: data }))
+    .then(() => dispatch({ type: DELETE_POST_SUCCESS, payload: quizId }))
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 

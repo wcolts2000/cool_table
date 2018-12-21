@@ -126,7 +126,9 @@ const navReducer = (state = initialState, action) => {
     case actions.DELETE_POST_SUCCESS:
       return {
         ...state,
-        posts: state.posts.filter(post => post.id !== action.payload)
+        posts: [
+          ...state.posts.filter(post => post.id !== Number(action.payload))
+        ]
       };
     case actions.FETCHING_SINGLE_QUIZ:
       return {
