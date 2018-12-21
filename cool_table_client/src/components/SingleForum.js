@@ -122,7 +122,14 @@ class SingleForum extends Component {
             </Card>
             {post.author.id === this.props.user.id && (
               <div>
-                <button style={{ marginRight: 15 }}>EDIT</button>{" "}
+                <button
+                  style={{ marginRight: 15 }}
+                  onClick={() => {
+                    return this.props.history.push("/forum/post");
+                  }}
+                >
+                  EDIT
+                </button>{" "}
                 <button onClick={() => this.setState({ deleting: true })}>
                   DELETE
                 </button>

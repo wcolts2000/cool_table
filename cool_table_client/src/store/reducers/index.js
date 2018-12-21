@@ -14,6 +14,7 @@ const initialState = {
   quizFinished: false,
   posts: [],
   singlePost: [],
+  editPost: null,
   error: null
 };
 
@@ -116,6 +117,24 @@ const navReducer = (state = initialState, action) => {
         ...state,
         posts: [...state.posts, action.payload],
         requesting: false,
+        error: null
+      };
+    case actions.FETCH_PATCH_POST:
+      return {
+        ...state,
+        editPost: action.payload
+      };
+    case actions.PATCH_POST:
+      return {
+        ...state,
+        requesting: true
+      };
+    case actions.PATCH_POST_SUCCESS:
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+        requesting: false,
+        editPost: null,
         error: null
       };
     case actions.DELETE_POST:

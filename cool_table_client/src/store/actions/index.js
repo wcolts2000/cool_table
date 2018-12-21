@@ -39,6 +39,7 @@ export const REGISTER_USER = "REGISTER_USER",
   FETCHING_SINGLE_POST_SUCCESS = "FETCHING_SINGLE_POST_SUCCESS",
   POSTING_POST = "POSTING_POST",
   POSTING_POST_SUCCESS = "POSTING_POST_SUCCESS",
+  FETCH_PATCH_POST = "FETCH_PATCH_POST",
   PATCH_POST = "PATCH_POST",
   PATCH_POST_SUCCESS = "PATCH_POST_SUCCESS",
   DELETE_POST = "DELETE_POST",
@@ -137,19 +138,41 @@ export const getSinglePost = id => dispatch => {
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 
-export const deletePost = (quizId, token) => dispatch => {
-  dispatch({ type: DELETE_POST });
+export const editPost = (postId, post, token) => dispatch => {
+  dispatch({ type: PATCH_POST });
   axios({
-    method: "delete",
-    url: `${URL}posts/${quizId}`,
+    method: "patch",
+    url: `${URL}posts/${postId}`,
     data: {
-      postId: Number(quizId)
+      title: post.title,
+      body: post.body
     },
     headers: {
       Authorization: token
     }
   })
-    .then(() => dispatch({ type: DELETE_POST_SUCCESS, payload: quizId }))
+    .then(({ data }) =>
+      dispatch({
+        type: PATCH_POST_SUCCESS,
+        payload: { ...post, id: data[0] }
+      })
+    )
+    .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
+};
+
+export const deletePost = (postId, token) => dispatch => {
+  dispatch({ type: DELETE_POST });
+  axios({
+    method: "delete",
+    url: `${URL}posts/${postId}`,
+    data: {
+      postId: Number(postId)
+    },
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(() => dispatch({ type: DELETE_POST_SUCCESS, payload: postId }))
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 

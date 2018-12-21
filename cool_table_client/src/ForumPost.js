@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { addSinglePost } from "./store/actions";
+import { addSinglePost, editPost } from "./store/actions";
 import { connect } from "react-redux";
 import BackBtnAttribute from "./components/BackBtnAttribute";
 import BackButton from "./components/BackButton";
@@ -68,6 +68,18 @@ class ForumPost extends Component {
     };
   }
 
+  componentDidMount = () => {
+    if (this.props.singlePost.length) {
+      let { title, body } = this.props.singlePost[0];
+
+      return this.setState({
+        title: title,
+        body: body
+      });
+    }
+    return null;
+  };
+
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
@@ -112,11 +124,12 @@ class ForumPost extends Component {
   }
 }
 
-const mapStateToProps = ({ token }) => ({
-  token
+const mapStateToProps = ({ token, singlePost }) => ({
+  token,
+  singlePost
 });
 
 export default connect(
   mapStateToProps,
-  { addSinglePost }
+  { addSinglePost, editPost }
 )(ForumPost);
