@@ -38,8 +38,8 @@ const Textarea = styled.textarea`
   max-width: 400px;
 
   &::placeholder {
-    color: white;
-    text-shadow: -1px 2px rgba(0, 0, 0, 0.3);
+    color: #0f0f0f;
+    opacity: 0.7;
   }
 
   &:focus {
@@ -76,11 +76,12 @@ class ForumPost extends Component {
 
   addPost = e => {
     e.preventDefault();
-    // let { token } = this.props;
+    let { token } = this.props;
     let post = this.state;
     if (this.state.title.length && this.state.body.length) {
-      return this.props.addSinglePost(post, this.props.token);
-      // this.props.history.push("/forum")
+      return (
+        this.props.addSinglePost(post, token), this.props.history.push("/forum")
+      );
     }
     return null;
   };

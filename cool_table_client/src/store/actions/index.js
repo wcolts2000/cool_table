@@ -107,12 +107,19 @@ export const fetchPosts = () => dispatch => {
 
 export const addSinglePost = (post, token) => dispatch => {
   dispatch({ type: POSTING_POST });
-  axios
-    .post(`${URL}posts`, post, { Authorization: token })
-    .then(
-      ({ data }) =>
-        dispatch({ type: POSTING_POST_SUCCESS, payload: { ...post, id: data } })
-      // dispatch({ type: POSTING_POST_SUCCESS })
+  axios({
+    method: "post",
+    url: `${URL}posts`,
+    data: {
+      title: post.title,
+      body: post.body
+    },
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(({ data }) =>
+      dispatch({ type: POSTING_POST_SUCCESS, payload: { ...post, id: data } })
     )
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
