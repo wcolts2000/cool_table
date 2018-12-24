@@ -30,7 +30,7 @@ const Modal = styled.div`
 `;
 
 const CardHeader = styled.div`
-  margin: 0 auto 50px;
+  margin: 0 auto 10px;
   background: burlywood;
   color: #0f0f0f;
   display: flex;
@@ -100,6 +100,7 @@ const Radio = styled.input`
   width: initial;
   left: -31px;
   top: 6px;
+  opacity: ${props => (props.selected === "selected" ? 1 : 0)};
 `;
 
 const Span = styled.span`
@@ -144,10 +145,10 @@ class Quiz extends Component {
     let quizId = this.props.match.params.id;
     if (this.state.selected) {
       this.props.getQuestionResponse(quizId, this.state.selected, id);
-      this.setState({
+      this.setState(prevState => ({
         selected: null,
-        attempts: this.state.attempts + 1
-      });
+        attempts: prevState.attempts + 1
+      }));
     }
     return null;
   };
@@ -215,6 +216,9 @@ class Quiz extends Component {
                 {this.state.attempts} Correct: {this.props.correct}
               </p>
             </CardHeader>
+            <h5 style={{ opacity: 0.7 }}>
+              Answer the question below to proceed.
+            </h5>
             {questions.map((question, i) => (
               <Card key={i} id={question.id}>
                 <h3>{question.question}</h3>
@@ -227,6 +231,9 @@ class Quiz extends Component {
                         name={question.question}
                         onClick={() => this.pickAnswer(i + 1)}
                         value={option}
+                        selected={
+                          this.state.selected === i + 1 ? "selected" : null
+                        }
                       />
                       <Label htmlFor={option + i}>
                         <Span />
