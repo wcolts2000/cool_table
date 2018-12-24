@@ -87,7 +87,7 @@ const Div = styled.div`
   width: 100%;
   display: inline-block;
   cursor: pointer;
-  color: ${props => (props.selected ? "darkgreen" : "inheret")};
+  color: ${props => (props.selected === "selected" ? "darkgreen" : "inheret")};
   position: relative;
   margin: 0 0 15px 35px;
   &:hover {
@@ -224,7 +224,12 @@ class Quiz extends Component {
                 <h3>{question.question}</h3>
                 <div style={{ textAlign: "left" }}>
                   {question.options.map((option, i) => (
-                    <Div key={i}>
+                    <Div
+                      key={i}
+                      selected={
+                        this.state.selected === i + 1 ? "selected" : null
+                      }
+                    >
                       <Radio
                         type="radio"
                         id={option + i}
