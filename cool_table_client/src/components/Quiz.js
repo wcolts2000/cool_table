@@ -300,11 +300,13 @@ class Quiz extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  singleQuiz: state.quizzesReducer.singleQuiz,
-  quizFinished: state.quizzesReducer.quizFinished,
-  correct: state.quizzesReducer.correct,
-  questions: state.quizzesReducer.questions
+const mapStateToProps = ({
+  quizzesReducer: { singleQuiz, quizFinished, correct, questions }
+}) => ({
+  singleQuiz,
+  quizFinished,
+  correct,
+  questions
 });
 
 export default connect(

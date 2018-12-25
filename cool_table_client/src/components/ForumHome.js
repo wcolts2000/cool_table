@@ -49,12 +49,16 @@ class ForumHome extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLoggedIn: state.userReducer.isLoggedIn,
-  requesting: state.postsReducer.requesting,
-  filteredPosts: state.postsReducer.filteredPosts,
-  searchField: state.searchPosts.searchField,
-  posts: state.postsReducer.posts
+const mapStateToProps = ({
+  userReducer: { isLoggedIn },
+  postsReducer: { requesting, filteredPosts, posts },
+  searchPosts: { searchField }
+}) => ({
+  isLoggedIn,
+  requesting,
+  filteredPosts,
+  searchField,
+  posts
 });
 
 const mapDispatchToProps = dispatch => {

@@ -155,11 +155,14 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.userReducer.user,
-  token: state.userReducer.token,
-  isLoggedIn: state.userReducer.isLoggedIn,
-  mobilenavopen: state.navReducer.mobilenavopen
+const mapStateToProps = ({
+  userReducer: { user, token, isLoggedIn },
+  navReducer: { mobilenavopen }
+}) => ({
+  user,
+  token,
+  isLoggedIn,
+  mobilenavopen
 });
 
 export default withRouter(

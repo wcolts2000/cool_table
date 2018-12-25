@@ -94,9 +94,12 @@ class QuizHome extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  quizzes: state.quizzesReducer.quizzes,
-  isLoggedIn: state.userReducer.isLoggedIn
+const mapStateToProps = ({
+  quizzesReducer: { quizzes },
+  userReducer: { isLoggedIn }
+}) => ({
+  quizzes,
+  isLoggedIn
 });
 
 export default connect(
