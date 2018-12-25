@@ -1,52 +1,13 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { fetchPosts } from "../store/actions";
 import { connect } from "react-redux";
-
-// ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const PostCardContainer = styled.div`
-  padding: 30px;
-  max-width: 800px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
-  grid-gap: 20px;
-  align-items: stretch;
-`;
-
-const PostCard = styled.div`
-  background-image: repeating-linear-gradient(
-    to bottom,
-    #eadbb4 0,
-    #eadbb4 20px,
-    lightblue 20px,
-    lightblue 22px,
-    #eadbb4 22px
-  );
-  padding: 10px 10px;
-  border-radius: 7px;
-  height: 240px;
-  box-shadow: -1px 3px 7px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  & > p > span {
-    opacity: 0.8;
-    font-size: 10px;
-  }
-`;
+import ForumList from "./ForumList";
 
 // ==============================
 // =====      Component     =====
 // ==============================
 
-let moment = require("moment");
+// let moment = require("moment");
 class ForumHome extends Component {
   state = {
     search: ""
@@ -56,27 +17,31 @@ class ForumHome extends Component {
     this.props.fetchPosts();
   };
 
-  handleSearchChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
+  filterPosts = () => {
+    return this.props.posts.filter(post => {
+      return post.title
+        .toLowerCase()
+        .includes(this.props.filteredPosts.toLowerCase());
+    });
   };
 
   render() {
-    let { isLoggedIn, posts } = this.props;
+    let { isLoggedIn } = this.props;
     return (
       <div style={{ paddingTop: 50 }}>
         <input
-          type="text"
-          name="search"
-          value={this.state.search}
-          placeholder="Filter Posts Here..."
-          onChange={this.handleSearchChange}
+          type="search"
+          aria-label="Search"
+          value={this.props.filteredPosts}
+          placeholder="Filter Posts By Title  ..."
+          onChange={this.filterPosts}
         />
         {isLoggedIn ? (
           <button onClick={() => this.props.history.push("/forum/post")}>
             Add A Post
           </button>
         ) : null}
-        <PostCardContainer>
+        {/* <PostCardContainer>
           {posts.map(({ id, title, created_at, body, author }) => {
             return (
               <PostCard
@@ -102,15 +67,17 @@ class ForumHome extends Component {
               </PostCard>
             );
           })}
-        </PostCardContainer>
+        </PostCardContainer> */}
+        <ForumList posts={this.filterPosts()} />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ isLoggedIn, posts }) => ({
-  isLoggedIn,
-  posts
+const mapStateToProps = state => ({
+  isLoggedIn: state.userReducer.isLoggedIn,
+  filteredPosts: state.postsReducer.filteredPosts,
+  posts: state.postsReducer.posts
 });
 
 export default connect(

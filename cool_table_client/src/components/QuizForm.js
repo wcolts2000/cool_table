@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { URL } from "../store/actions";
+import { URL } from "../store/constants";
 import BackBtnAttribute from "./BackBtnAttribute";
 import BackButton from "./BackButton";
 

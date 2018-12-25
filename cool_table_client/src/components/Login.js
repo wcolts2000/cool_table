@@ -67,10 +67,10 @@ class UserLogin extends Component {
   }
 }
 
-const mapStateToProps = ({ isLoggedIn, user, token }) => ({
-  isLoggedIn,
-  user,
-  token
+const mapStateToProps = state => ({
+  isLoggedIn: state.userReducer.isLoggedIn,
+  user: state.userReducer.user,
+  token: state.userReducer.token
 });
 
 export default connect(

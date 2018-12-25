@@ -23,10 +23,10 @@ class LogOut extends Component {
   }
 }
 
-const mapStateToProps = ({ user, token, isLoggedIn }) => ({
-  user,
-  token,
-  isLoggedIn
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+  token: state.userReducer.token,
+  isLoggedIn: state.userReducer.isLoggedIn
 });
 
 export default connect(

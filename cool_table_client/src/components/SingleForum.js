@@ -144,10 +144,10 @@ class SingleForum extends Component {
   }
 }
 
-const mapStateToProps = ({ user, singlePost, token }) => ({
-  singlePost,
-  token,
-  user
+const mapStateToProps = state => ({
+  singlePost: state.postsReducer.singlePost,
+  token: state.userReducer.token,
+  user: state.userReducer.user
 });
 
 export default connect(

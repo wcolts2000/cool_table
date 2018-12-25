@@ -61,7 +61,7 @@ const Card = styled.div`
   box-shadow: -1px 3px 10px rgba(0, 0, 0, 0.3);
   max-width: 800px;
   width: 80%;
-  margin: 0 auto 20px;
+  margin: 0 auto 175px;
   background-image: repeating-linear-gradient(
     to bottom,
     #eadbb4 0,
@@ -72,7 +72,7 @@ const Card = styled.div`
   );
   line-height: 1.6;
   &:not(:nth-of-type(1)) {
-    opacity: 0.7;
+    opacity: 0.1;
   }
   &:not(:nth-of-type(2)) {
     pointer-events: none;
@@ -164,7 +164,7 @@ class Quiz extends Component {
       let { title, votes, author, topic } = this.props.singleQuiz[0];
       let questions = this.props.questions;
       return (
-        <>
+        <div style={{ overflow: "hidden", maxHeight: "90vh", height: "100%" }}>
           {this.props.quizFinished && (
             <Modal>
               <div>
@@ -254,7 +254,7 @@ class Quiz extends Component {
             ))}
             <BackBtnAttribute />
           </div>
-        </>
+        </div>
       );
     }
     if (this.props.singleQuiz.length && !this.props.questions.length) {
@@ -300,11 +300,11 @@ class Quiz extends Component {
   }
 }
 
-const mapStateToProps = ({ singleQuiz, questions, correct, quizFinished }) => ({
-  singleQuiz,
-  quizFinished,
-  correct,
-  questions
+const mapStateToProps = state => ({
+  singleQuiz: state.quizzesReducer.singleQuiz,
+  quizFinished: state.quizzesReducer.quizFinished,
+  correct: state.quizzesReducer.correct,
+  questions: state.quizzesReducer.questions
 });
 
 export default connect(
