@@ -31,16 +31,6 @@ const H1 = styled.h1`
   }
 `;
 
-// const Input = styled.input`
-//   background: aqua;
-//   border-bottom: 2px solid #0f0f0f;
-//   opacity: 0.6;
-//   color: #0f0f0f;
-//   &::placeholder {
-//     color: #0f0f0f;
-//   }
-// `;
-
 const Label = styled.label`
   opacity: 0.4;
   padding-right: 330px;
@@ -169,9 +159,3 @@ export default connect(
   null,
   { registerUser }
 )(Signup);
-
-// {username: "sampleuser", email: "email@email.com", password: "password",…}
-// email: "email@email.com"
-// img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdu_tIfOlHoq3_A60curgxLzwIkcOWyK8uLa4R0rBwbDNfvkyFzQ"
-// password: "password"
-// username: "sampleuser"
