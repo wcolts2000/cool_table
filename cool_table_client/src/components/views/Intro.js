@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import table from "../img/background-beverage-breakfast-414645.jpg";
+import table from "../../img/background-beverage-breakfast-414645.jpg";
 
 // ==============================
 // =====  Styled Component  =====

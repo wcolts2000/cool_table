@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { fetchQuizzes } from "../store/actions";
+import { fetchQuizzes } from "../../store/actions";
 import { connect } from "react-redux";
 
 // ==============================

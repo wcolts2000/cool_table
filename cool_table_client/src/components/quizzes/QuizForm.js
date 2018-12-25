@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { URL } from "../store/constants";
-import BackBtnAttribute from "./BackBtnAttribute";
-import BackButton from "./BackButton";
+import { URL } from "../../store/constants";
+import BackBtnAttribute from "../specializedComponents/BackBtnAttribute";
+import BackButton from "../specializedComponents/BackButton";
 
 // ==============================
 // =====  Styled Component  =====

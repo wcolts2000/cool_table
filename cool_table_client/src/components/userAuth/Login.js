@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { logIn } from "../store/actions";
+import { logIn } from "../../store/actions";
 import { connect } from "react-redux";
-import PasswordInput from "./PasswordInput";
-import EyeIconAttribute from "./EyeIconAttribute";
+import PasswordInput from "../specializedComponents/PasswordInput";
+import EyeIconAttribute from "../specializedComponents/EyeIconAttribute";
 import styled from "styled-components";
 
 const Div = styled.div`

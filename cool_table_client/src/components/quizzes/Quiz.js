@@ -4,10 +4,10 @@ import {
   getSingleQuiz,
   getQuestionResponse,
   resetQuiz
-} from "../store/actions";
+} from "../../store/actions";
 import { connect } from "react-redux";
-import BackBtnAttribute from "./BackBtnAttribute";
-import BackButton from "./BackButton";
+import BackBtnAttribute from "../specializedComponents/BackBtnAttribute";
+import BackButton from "../specializedComponents/BackButton";
 
 // ==============================
 // =====  Styled Component  =====

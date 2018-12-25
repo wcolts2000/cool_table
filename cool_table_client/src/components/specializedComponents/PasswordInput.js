@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import eye from "../img/eye.png";
+import eye from "../../img/eye.png";
 import styled from "styled-components";
 
 const Div = styled.div`

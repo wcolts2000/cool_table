@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import rubix from "../img/rubix.jpg";
-import posts from "../img/posts.jpg";
+import rubix from "../../img/rubix.jpg";
+import posts from "../../img/posts.jpg";
 import { Link } from "react-router-dom";
 
 // ==============================

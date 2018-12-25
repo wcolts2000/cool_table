@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { fetchPosts, setSearchField } from "../store/actions";
+import { fetchPosts, setSearchField } from "../../store/actions";
 import { connect } from "react-redux";
 import ForumList from "./ForumList";
-import ErrorBoundary from "./ErrorBoundary";
+import ErrorBoundary from "../specializedComponents/ErrorBoundary";
 import PostSearch from "./PostSearch";
 
 // ==============================

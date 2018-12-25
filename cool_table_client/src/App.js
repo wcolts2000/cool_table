@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { Route, withRouter } from "react-router-dom";
-import Intro from "./components/Intro";
-import Home from "./components/Home";
-import QuizHome from "./components/QuizHome";
-import QuizForm from "./components/QuizForm";
-import ForumHome from "./components/ForumHome";
-import SingleForum from "./components/SingleForum";
+import Intro from "./components/views/Intro";
+import Home from "./components/views/Home";
+import QuizHome from "./components/quizzes/QuizHome";
+import QuizForm from "./components/quizzes/QuizForm";
+import ForumHome from "./components/forum/ForumHome";
+import SingleForum from "./components/forum/SingleForum";
 import styled, { createGlobalStyle } from "styled-components";
-import Nav from "./components/Nav";
-import Quiz from "./components/Quiz";
-import ForumPost from "./ForumPost";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
+import Nav from "./components/nav/Nav";
+import Quiz from "./components/quizzes/Quiz";
+import ForumPost from "./components/forum/ForumPost";
+import Signup from "./components/userAuth/Signup";
+import Login from "./components/userAuth/Login";
 import { connect } from "react-redux";
 import { navOpen, localLogIn } from "./store/actions";
-import LogOut from "./components/LogOut";
+import LogOut from "./components/userAuth/LogOut";
 
 // ==============================
 // =====  Styled Component  =====

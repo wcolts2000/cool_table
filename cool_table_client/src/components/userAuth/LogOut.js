@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { logUserOut } from "../store/actions";
+import { logUserOut } from "../../store/actions";
 
 class LogOut extends Component {
   render() {
