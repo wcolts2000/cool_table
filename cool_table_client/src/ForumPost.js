@@ -124,9 +124,9 @@ class ForumPost extends Component {
   }
 }
 
-const mapStateToProps = ({ token, singlePost }) => ({
-  token,
-  singlePost
+const mapStateToProps = state => ({
+  token: state.userReducer.token,
+  singlePost: state.postsReducer.singlePost
 });
 
 export default connect(

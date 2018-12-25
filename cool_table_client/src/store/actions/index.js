@@ -111,8 +111,8 @@ export const fetchPosts = () => dispatch => {
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 
-export const filterPosts = filterStr => dispatch => {
-  dispatch({ type: FILTER_POSTS, payload: filterStr });
+export const setSearchField = text => dispatch => {
+  dispatch({ type: FILTER_POSTS, payload: text });
 };
 
 export const getSinglePost = id => dispatch => {

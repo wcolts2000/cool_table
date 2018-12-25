@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { fetchPosts } from "../store/actions";
+import { fetchPosts, setSearchField } from "../store/actions";
 import { connect } from "react-redux";
 import ForumList from "./ForumList";
+import ErrorBoundary from "./ErrorBoundary";
+import PostSearch from "./PostSearch";
 
 // ==============================
 // =====      Component     =====
@@ -21,54 +23,27 @@ class ForumHome extends Component {
     return this.props.posts.filter(post => {
       return post.title
         .toLowerCase()
-        .includes(this.props.filteredPosts.toLowerCase());
+        .includes(this.props.searchField.toLowerCase());
     });
   };
 
   render() {
-    let { isLoggedIn } = this.props;
+    let { isLoggedIn, requesting, onSearchChange } = this.props;
     return (
       <div style={{ paddingTop: 50 }}>
-        <input
-          type="search"
-          aria-label="Search"
-          value={this.props.filteredPosts}
-          placeholder="Filter Posts By Title  ..."
-          onChange={this.filterPosts}
-        />
+        <PostSearch searchChange={onSearchChange} />
         {isLoggedIn ? (
           <button onClick={() => this.props.history.push("/forum/post")}>
             Add A Post
           </button>
         ) : null}
-        {/* <PostCardContainer>
-          {posts.map(({ id, title, created_at, body, author }) => {
-            return (
-              <PostCard
-                key={id}
-                onClick={() =>
-                  this.props.history.push(`/forum/single-post/${id}`)
-                }
-              >
-                <h3>
-                  {title.slice(0, 30)}
-                  {title.length > 30 ? "..." : null}
-                </h3>
-                <p>
-                  {body.slice(0, 150)}
-                  {body.length > 150 ? "..." : null}
-                </p>
-                <p>
-                  {author}{" "}
-                  <span>
-                    {moment.utc(created_at).format("MMMM Do YYYY, hh:mm a")}
-                  </span>
-                </p>
-              </PostCard>
-            );
-          })}
-        </PostCardContainer> */}
-        <ForumList posts={this.filterPosts()} />
+        {requesting ? (
+          <h1>Loading...</h1>
+        ) : (
+          <ErrorBoundary>
+            <ForumList posts={this.filterPosts()} {...this.props} />
+          </ErrorBoundary>
+        )}
       </div>
     );
   }
@@ -76,11 +51,20 @@ class ForumHome extends Component {
 
 const mapStateToProps = state => ({
   isLoggedIn: state.userReducer.isLoggedIn,
+  requesting: state.postsReducer.requesting,
   filteredPosts: state.postsReducer.filteredPosts,
+  searchField: state.searchPosts.searchField,
   posts: state.postsReducer.posts
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onSearchChange: event => dispatch(setSearchField(event.target.value)),
+    fetchPosts: () => dispatch(fetchPosts())
+  };
+};
+
 export default connect(
   mapStateToProps,
-  { fetchPosts }
+  mapDispatchToProps
 )(ForumHome);
