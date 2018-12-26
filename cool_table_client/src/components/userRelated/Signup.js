@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { registerUser } from "../../store/actions";
 import { connect } from "react-redux";
-import PasswordInput from "../specializedComponents/PasswordInput";
-import EyeIconAttribute from "../specializedComponents/EyeIconAttribute";
+import PasswordInput from "../specializedComponents/passwordInput/PasswordInput";
+import EyeIconAttribute from "../specializedComponents/passwordInput/EyeIconAttribute";
 
 // ==============================
 // =====  Styled Component  =====

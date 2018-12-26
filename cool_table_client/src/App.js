@@ -10,11 +10,11 @@ import styled, { createGlobalStyle } from "styled-components";
 import Nav from "./components/nav/Nav";
 import Quiz from "./components/quizzes/Quiz";
 import ForumPost from "./components/forum/ForumPost";
-import Signup from "./components/userAuth/Signup";
-import Login from "./components/userAuth/Login";
+import Signup from "./components/userRelated/Signup";
+import Login from "./components/userRelated/Login";
 import { connect } from "react-redux";
 import { navOpen, localLogIn } from "./store/actions";
-import LogOut from "./components/userAuth/LogOut";
+import LogOut from "./components/userRelated/LogOut";
 
 // ==============================
 // =====  Styled Component  =====

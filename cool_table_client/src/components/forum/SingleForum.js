@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { getSinglePost, deletePost } from "../../store/actions";
 import { connect } from "react-redux";
-import BackBtnAttribute from "../specializedComponents/BackBtnAttribute";
-import BackButton from "../specializedComponents/BackButton";
+import BackBtnAttribute from "../specializedComponents/backButton/BackBtnAttribute";
+import BackButton from "../specializedComponents/backButton/BackButton";
 
 // ==============================
 // =====  Styled Component  =====

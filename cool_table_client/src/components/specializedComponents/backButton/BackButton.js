@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import back from "../../img/back.png";
+import back from "../../../img/back.png";
 
 // ==============================
 // =====  Styled Component  =====
