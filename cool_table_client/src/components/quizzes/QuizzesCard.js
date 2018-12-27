@@ -21,7 +21,7 @@ const Li = styled.li`
   }
 `;
 
-class QuizCard extends Component {
+class QuizzesCard extends Component {
   render() {
     let {
       quiz: { id, title, topic, votes, author },
@@ -41,4 +41,4 @@ class QuizCard extends Component {
   }
 }
 
-export default QuizCard;
+export default QuizzesCard;

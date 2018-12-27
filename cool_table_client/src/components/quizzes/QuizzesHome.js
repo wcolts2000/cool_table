@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { fetchQuizzes } from "../../store/actions";
 import { connect } from "react-redux";
-import QuizCard from "./QuizCard";
+import QuizCard from "./QuizzesCard";
 
 // ==============================
 // =====  Styled Component  =====
@@ -49,24 +49,7 @@ class QuizHome extends Component {
           <QuizCardWrapper>
             <ul>
               {quizzes.map((quiz, i) => {
-                return (
-                  <QuizCard key={i} quiz={quiz} history={history} />
-                  // <li
-                  //   key={i}
-                  //   id={quiz.id}
-                  //   onClick={() =>
-                  //     this.props.history.push(`/quiz/single-quiz/${quiz.id}`)
-                  //   }
-                  // >
-                  //   <p>
-                  //     {quiz.title}: {quiz.topic}&nbsp;&nbsp;&nbsp;
-                  //   </p>
-                  //   <span>
-                  //     votes:&nbsp;{quiz.votes} {"    "}Author:&nbsp;
-                  //     {quiz.author}
-                  //   </span>
-                  // </li>
-                );
+                return <QuizCard key={i} quiz={quiz} history={history} />;
               })}
             </ul>
           </QuizCardWrapper>

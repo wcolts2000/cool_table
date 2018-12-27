@@ -8,49 +8,12 @@ import {
 import { connect } from "react-redux";
 import BackBtnAttribute from "../specializedComponents/backButton/BackBtnAttribute";
 import BackButton from "../specializedComponents/backButton/BackButton";
+import QuizCompleteModal from "./QuizCompleteModal";
+import QuizHeader from "./QuizHeader";
 
 // ==============================
 // =====  Styled Component  =====
 // ==============================
-
-const Modal = styled.div`
-  height: 100vh;
-  width: 100%;
-  position: fixed;
-  background: rgba(0, 0, 0, 0.9);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const CardHeader = styled.div`
-  margin: 0 auto 10px;
-  background: burlywood;
-  color: #0f0f0f;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding: 20px;
-
-  & > h1 {
-    font-size: 20px;
-    display: block;
-    width: 100%;
-  }
-
-  & > p {
-    font-size: 16px;
-    margin: 0;
-    padding: 0 0 10px;
-    margin-right: 15px;
-  }
-`;
 
 const Card = styled.div`
   padding: 20px;
@@ -87,7 +50,7 @@ const Div = styled.div`
   width: 100%;
   display: inline-block;
   cursor: pointer;
-  color: ${props => (props.selected === "selected" ? "darkgreen" : "inheret")};
+  color: ${props => (props.selected === "selected" ? "darkgreen" : "inherit")};
   position: relative;
   margin: 0 0 15px 35px;
   &:hover {
@@ -166,24 +129,13 @@ class Quiz extends Component {
       return (
         <div style={{ overflow: "hidden", maxHeight: "90vh", height: "100%" }}>
           {this.props.quizFinished && (
-            <Modal>
-              <div>
-                <h3 style={{ color: "white" }}>
-                  You had {this.state.attempts} attempts and got &nbsp;
-                  {this.props.correct} correct answers
-                </h3>
-              </div>
-              <button
-                style={{ marginRight: 10 }}
-                onClick={() => {
-                  this.props.resetQuiz();
-                  this.props.history.push("/quiz");
-                }}
-              >
-                Return to Quizzes
-              </button>
-              <button onClick={this.resetQuestions}>Retry Quiz</button>
-            </Modal>
+            <QuizCompleteModal
+              attempts={this.state.attempts}
+              correct={this.props.correct}
+              resetQuiz={this.props.resetQuiz}
+              history={this.props.history}
+              resetQuestions={this.resetQuestions}
+            />
           )}
           <div
             style={{
@@ -194,28 +146,15 @@ class Quiz extends Component {
             }}
           >
             <BackButton props={this.props} />
-            <CardHeader>
-              <h1> Title: {title}</h1>
-              <p>Topic: {topic}</p>
-              <p>
-                Submitted by:{" "}
-                <span>
-                  {author.img_url ? (
-                    <img
-                      src={author.img_url}
-                      style={{ width: 20 }}
-                      alt="user avatar"
-                    />
-                  ) : null}
-                </span>
-                &nbsp; {author["username"]}
-                &nbsp;votes: {votes}
-              </p>
-              <p>
-                Questions left: {questions.length} Attempts:{" "}
-                {this.state.attempts} Correct: {this.props.correct}
-              </p>
-            </CardHeader>
+            <QuizHeader 
+              title={title}
+              topic={topic}
+              author={author}
+              votes={votes}
+              questions={questions}
+              attempts={this.state.attempts}
+              correct={this.props.correct}
+            />
             <h5 style={{ opacity: 0.7 }}>
               Answer the question below to proceed.
             </h5>
@@ -270,24 +209,7 @@ class Quiz extends Component {
           }}
         >
           <BackButton props={this.props} />
-          <CardHeader>
-            <h1> Title: {title}</h1>
-            <p>Topic: {topic}</p>
-            <p>
-              Submitted by:{" "}
-              <span>
-                {author.img_url ? (
-                  <img
-                    src={author.img_url}
-                    style={{ width: 20 }}
-                    alt="user avatar"
-                  />
-                ) : null}
-              </span>
-              &nbsp; {author["username"]}
-              &nbsp;votes: {votes}
-            </p>
-          </CardHeader>
+          <QuizHeader title={title} topic={topic} author={author} votes={votes} />
           <h2 style={{ paddingTop: 50 }}>
             "Sorry...This quiz has not had any questions associated with it yet
             : ( "
