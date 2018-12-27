@@ -15,7 +15,7 @@ const Card = styled.div`
   box-shadow: -1px 3px 10px rgba(0, 0, 0, 0.3);
   max-width: 800px;
   width: 80%;
-  margin: 0 auto 175px;
+  margin: 0 auto 15px;
   background-image: repeating-linear-gradient(
     to bottom,
     #eadbb4 0,
@@ -27,13 +27,7 @@ const Card = styled.div`
   line-height: 1.6;
   &:not(:nth-of-type(1)) {
     opacity: 0.1;
-  }
-  &:not(:nth-of-type(2)) {
     pointer-events: none;
-  }
-
-  &:nth-of-type(2) {
-    opacity: 1;
   }
 `;
 

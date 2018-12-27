@@ -55,7 +55,7 @@ class Quiz extends Component {
       let { title, votes, author, topic } = this.props.singleQuiz[0];
       let questions = this.props.questions;
       return (
-        <div style={{ overflow: "hidden", maxHeight: "90vh", height: "100%" }}>
+        <div style={{ maxHeight: "90vh", height: "100%" }}>
           {this.props.quizFinished && (
             <QuizCompleteModal
               attempts={this.state.attempts}
@@ -65,6 +65,15 @@ class Quiz extends Component {
               resetQuestions={this.resetQuestions}
             />
           )}
+          <QuizHeader
+            title={title}
+            topic={topic}
+            author={author}
+            votes={votes}
+            questions={questions}
+            attempts={this.state.attempts}
+            correct={this.props.correct}
+          />
           <div
             style={{
               display: "flex",
@@ -74,15 +83,6 @@ class Quiz extends Component {
             }}
           >
             <BackButton props={this.props} />
-            <QuizHeader
-              title={title}
-              topic={topic}
-              author={author}
-              votes={votes}
-              questions={questions}
-              attempts={this.state.attempts}
-              correct={this.props.correct}
-            />
             <h5 style={{ opacity: 0.7 }}>
               Answer the question below to proceed.
             </h5>
@@ -104,28 +104,30 @@ class Quiz extends Component {
     if (this.props.singleQuiz.length && !this.props.questions.length) {
       let { title, votes, author, topic } = this.props.singleQuiz[0];
       return (
-        <div
-          style={{
-            padding: "0 20px 20px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            minHeight: "calc(100vh - 110px)"
-          }}
-        >
-          <BackButton props={this.props} />
+        <>
           <QuizHeader
             title={title}
             topic={topic}
             author={author}
             votes={votes}
           />
-          <h2 style={{ paddingTop: 50 }}>
-            "Sorry...This quiz has not had any questions associated with it yet
-            : ( "
-          </h2>
-          <BackBtnAttribute />
-        </div>
+          <div
+            style={{
+              padding: "0 20px 20px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              minHeight: "calc(100vh - 300px)"
+            }}
+          >
+            <BackButton props={this.props} />
+            <h2 style={{ paddingTop: 50 }}>
+              "Sorry...This quiz has not had any questions associated with it
+              yet : ( "
+            </h2>
+            <BackBtnAttribute />
+          </div>
+        </>
       );
     }
     return null;

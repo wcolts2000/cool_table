@@ -6,7 +6,7 @@ import styled from "styled-components";
 // ==============================
 
 const CardHeader = styled.div`
-  margin: 0 auto 10px;
+  margin: 0 auto;
   background: burlywood;
   color: #0f0f0f;
   display: flex;
@@ -14,7 +14,7 @@ const CardHeader = styled.div`
   justify-content: flex-start;
   padding: 20px;
 
-  & > h1 {
+  & > div > h1 {
     font-size: 20px;
     display: block;
     width: 100%;
@@ -26,6 +26,12 @@ const CardHeader = styled.div`
     padding: 0 0 10px;
     margin-right: 15px;
   }
+`;
+
+const Div = styled.div`
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 `;
 
 // ==============================
@@ -43,23 +49,30 @@ function QuizHeader({
 }) {
   return (
     <CardHeader>
-      <h1> Title: {title}</h1>
-      <p>Topic: {topic}</p>
-      <p>
-        Submitted by:{" "}
-        <span>
-          {author.img_url ? (
-            <img src={author.img_url} style={{ width: 20 }} alt="user avatar" />
-          ) : null}
-        </span>
-        &nbsp; {author["username"]}
-        &nbsp;votes: {votes}
-      </p>
-      { questions && <p>
-        Questions left: {questions.length} Attempts: {attempts} Correct:{" "}
-        {correct}
-      </p> 
-      }
+      <Div>
+        <h1> Title: {title}</h1>
+        <p>Topic: {topic}</p>
+        <p>
+          Submitted by:{" "}
+          <span>
+            {author.img_url ? (
+              <img
+                src={author.img_url}
+                style={{ width: 20 }}
+                alt="user avatar"
+              />
+            ) : null}
+          </span>
+          &nbsp; {author["username"]}
+          &nbsp;votes: {votes}
+        </p>
+        {questions && (
+          <p>
+            Questions left: {questions.length} Attempts: {attempts} Correct:{" "}
+            {correct}
+          </p>
+        )}
+      </Div>
     </CardHeader>
   );
 }
