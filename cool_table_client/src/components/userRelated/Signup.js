@@ -4,6 +4,7 @@ import { registerUser } from "../../store/actions";
 import { connect } from "react-redux";
 import PasswordInput from "../specializedComponents/passwordInput/PasswordInput";
 import EyeIconAttribute from "../specializedComponents/passwordInput/EyeIconAttribute";
+import AvatarList from "./AvatarList";
 
 // ==============================
 // =====  Styled Component  =====
@@ -101,6 +102,12 @@ class Signup extends Component {
     }
   };
 
+  avatarSelect = e => {
+    this.setState({
+      avatar: e.target.src
+    });
+  };
+
   render() {
     const Input = (name, placeholder, type = "text") => (
       <input
@@ -142,8 +149,18 @@ class Signup extends Component {
             placeholder="Re-Enter Password..."
             name="passwordCheck"
           />
-          <Label>Enter Avatar URL here...(optional)</Label>
-          {Input("avatar", "Avatar URL...", "url")}
+          <Label>Avatar URL or Select Default Below</Label>
+          <input
+            type="url"
+            name="avatar"
+            id="avatar"
+            placeholder="Avatar Url"
+            autoComplete="off"
+            required
+            onChange={this.handleChange}
+            value={this.state.avatar}
+          />
+          <AvatarList avatarSelect={this.avatarSelect} />
           <button type="submit" style={{ marginRight: 15 }}>
             Submit
           </button>{" "}
