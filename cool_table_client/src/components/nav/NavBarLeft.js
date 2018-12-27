@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 // =====  Styled Component  =====
 // ==============================
 
-const NavLeft = styled.div``;
-
 const Logo = styled.p`
   font-weight: bolder;
   color: aqua;
@@ -39,7 +37,7 @@ const User = styled(Link)`
 
 function NavBarLeft({ isLoggedIn }) {
   return (
-    <NavLeft>
+    <div>
       <Link to="/">
         <Logo>
           COOL<span>TABLE</span>
@@ -59,7 +57,7 @@ function NavBarLeft({ isLoggedIn }) {
           Register
         </User>
       )}
-    </NavLeft>
+    </div>
   );
 }
 

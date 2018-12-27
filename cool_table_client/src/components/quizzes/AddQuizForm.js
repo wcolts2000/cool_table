@@ -21,7 +21,6 @@ const PickTopic = styled.div`
   color: white;
   border-radius: 7px;
   margin-bottom: 20px;
-
   text-transform: uppercase;
 `;
 

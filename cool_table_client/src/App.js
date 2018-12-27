@@ -5,7 +5,7 @@ import Home from "./components/views/Home";
 import QuizzesHome from "./components/quizzes/QuizzesHome";
 import AddQuizForm from "./components/quizzes/AddQuizForm";
 import ForumHome from "./components/forum/ForumHome";
-import SingleForum from "./components/forum/SingleForum";
+import SingleForumPost from "./components/forum/SingleForumPost";
 import styled, { createGlobalStyle } from "styled-components";
 import Nav from "./components/nav/Nav";
 import Quiz from "./components/quizzes/Quiz";
@@ -148,7 +148,7 @@ class App extends Component {
           <Route path="/quiz/form" component={AddQuizForm} />
           <Route exact path="/forum/" component={ForumHome} />
           <Route path="/forum/post" component={ForumPost} />
-          <Route path="/forum/single-post/:id" component={SingleForum} />
+          <Route path="/forum/single-post/:id" component={SingleForumPost} />
         </AppDiv>
       </>
     );
