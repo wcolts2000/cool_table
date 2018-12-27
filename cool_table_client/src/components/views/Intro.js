@@ -72,7 +72,7 @@ class Login extends Component {
             <Link to="/logout" style={{ marginRight: 15 }}>
               <button>LOGOUT</button>
             </Link>
-            <Link to="/register">
+            <Link to="/edit-profile">
               <button>EDIT PROFILE</button>
             </Link>
           </>

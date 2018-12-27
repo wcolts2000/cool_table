@@ -15,6 +15,7 @@ import Login from "./components/userRelated/Login";
 import { connect } from "react-redux";
 import { navOpen, localLogIn } from "./store/actions";
 import LogOut from "./components/userRelated/LogOut";
+import EditUser from "./components/userRelated/EditUser";
 
 // ==============================
 // =====  Styled Component  =====
@@ -142,6 +143,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/logout" component={LogOut} />
           <Route path="/register" component={Signup} />
+          <Route path="/edit-profile" component={EditUser} />
           <Route path="/home" component={Home} />
           <Route exact path="/quiz" component={QuizzesHome} />
           <Route path="/quiz/single-quiz/:id" component={Quiz} />
