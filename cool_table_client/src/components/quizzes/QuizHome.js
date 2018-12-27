@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { fetchQuizzes } from "../../store/actions";
 import { connect } from "react-redux";
+import QuizCard from "./QuizCard";
 
 // ==============================
 // =====  Styled Component  =====
 // ==============================
 
-const QuizCard = styled.div`
+const QuizCardWrapper = styled.div`
   padding: 10px;
   width: 80%;
   max-width: 800px;
@@ -20,26 +21,6 @@ const QuizCard = styled.div`
   background: #0f0f0f;
   border: 2px solid aqua;
   text-align: left;
-
-  & > ul > li {
-    border-bottom: 2px dotted papayawhip;
-    margin-bottom: 5px;
-    margin-right: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    & > p {
-      display: inline-block;
-    }
-    & > span {
-      font-size: 10px;
-      margin-right: 20px;
-      color: papayawhip;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-  }
 `;
 
 // ==============================
@@ -52,7 +33,7 @@ class QuizHome extends Component {
   };
 
   render() {
-    let { quizzes, isLoggedIn } = this.props;
+    let { quizzes, isLoggedIn, history } = this.props;
     return (
       quizzes && (
         <>
@@ -65,29 +46,30 @@ class QuizHome extends Component {
               Add A Quiz
             </button>
           ) : null}
-          <QuizCard>
+          <QuizCardWrapper>
             <ul>
               {quizzes.map((quiz, i) => {
                 return (
-                  <li
-                    key={i}
-                    id={quiz.id}
-                    onClick={() =>
-                      this.props.history.push(`/quiz/single-quiz/${quiz.id}`)
-                    }
-                  >
-                    <p>
-                      {quiz.title}: {quiz.topic}&nbsp;&nbsp;&nbsp;
-                    </p>
-                    <span>
-                      votes:&nbsp;{quiz.votes} {"    "}Author:&nbsp;
-                      {quiz.author}
-                    </span>
-                  </li>
+                  <QuizCard key={i} quiz={quiz} history={history} />
+                  // <li
+                  //   key={i}
+                  //   id={quiz.id}
+                  //   onClick={() =>
+                  //     this.props.history.push(`/quiz/single-quiz/${quiz.id}`)
+                  //   }
+                  // >
+                  //   <p>
+                  //     {quiz.title}: {quiz.topic}&nbsp;&nbsp;&nbsp;
+                  //   </p>
+                  //   <span>
+                  //     votes:&nbsp;{quiz.votes} {"    "}Author:&nbsp;
+                  //     {quiz.author}
+                  //   </span>
+                  // </li>
                 );
               })}
             </ul>
-          </QuizCard>
+          </QuizCardWrapper>
         </>
       )
     );
