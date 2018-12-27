@@ -98,7 +98,7 @@ class Signup extends Component {
       this.state.username.length
     ) {
       this.props.registerUser(user);
-      this.props.history.push("/home");
+      this.props.history.push("/login");
     }
   };
 

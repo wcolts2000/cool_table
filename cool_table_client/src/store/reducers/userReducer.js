@@ -23,7 +23,7 @@ export const userReducer = (state = initialStateUser, action = {}) => {
         error: null,
         user: action.payload.user,
         token: action.payload.token,
-        isLoggedIn: true
+        isLoggedIn: false
       };
     case actions.LOGGING_IN:
       return {
