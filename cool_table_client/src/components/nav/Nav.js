@@ -30,11 +30,11 @@ const NavBar = styled.nav`
 // =====      Component     =====
 // ==============================
 
-export default function Nav({ isLoggedIn, navOpen, mobilenavopen }) {
+export default function Nav({ isLoggedIn, navOpen, mobilenavopen, user }) {
   return (
     <>
       <NavBar>
-        <NavBarLeft isLoggedIn={isLoggedIn} />
+        <NavBarLeft isLoggedIn={isLoggedIn} user={user} />
         <NavBarRight />
         <HamburgerIcon mobilenavopen={mobilenavopen} navOpen={navOpen} />
       </NavBar>

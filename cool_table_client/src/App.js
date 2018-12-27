@@ -137,6 +137,7 @@ class App extends Component {
             isLoggedIn={this.props.isLoggedIn}
             mobilenavopen={this.props.mobilenavopen}
             navOpen={this.props.navOpen}
+            user={this.props.user}
           />
           <Spacer />
           <Route exact path="/" component={Intro} />

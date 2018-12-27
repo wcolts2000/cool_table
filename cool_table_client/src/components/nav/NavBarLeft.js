@@ -18,6 +18,15 @@ const Logo = styled.p`
   }
 `;
 
+const Img = styled.img`
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  top: 19px;
+  object-fit: cover;
+  border-radius: 50%;
+`;
+
 const User = styled(Link)`
   display: inline-block;
   font-size: 12px;
@@ -35,7 +44,7 @@ const User = styled(Link)`
 // =====      Component     =====
 // ==============================
 
-function NavBarLeft({ isLoggedIn }) {
+function NavBarLeft({ isLoggedIn, user: { img_url } }) {
   return (
     <div>
       <Link to="/">
@@ -43,13 +52,11 @@ function NavBarLeft({ isLoggedIn }) {
           COOL<span>TABLE</span>
         </Logo>
       </Link>
-      <User
-        to={isLoggedIn ? "/logout" : "/login"}
-        style={isLoggedIn ? { color: "tomato" } : { color: "limeGreen" }}
-      >
-        {isLoggedIn ? "LOGOUT" : "LOGIN"}
-      </User>
-      {isLoggedIn ? null : (
+      {isLoggedIn ? (
+        <Link to="/">
+          <Img src={img_url} alt="user avatar" />
+        </Link>
+      ) : (
         <User
           to="/register"
           style={{ textTransform: "uppercase", color: "tomato" }}
@@ -57,6 +64,16 @@ function NavBarLeft({ isLoggedIn }) {
           Register
         </User>
       )}
+      <User
+        to={isLoggedIn ? "/logout" : "/login"}
+        style={
+          isLoggedIn
+            ? { color: "tomato", paddingLeft: 50 }
+            : { color: "limeGreen" }
+        }
+      >
+        {isLoggedIn ? "LOGOUT" : "LOGIN"}
+      </User>
     </div>
   );
 }
