@@ -21,8 +21,13 @@ const Modal = styled.div`
 // ==============================
 
 class SingleForumPostModal extends Component {
+  handleDeletePost = (id, token) => {
+    this.props.deletePost(id, token);
+    this.props.history.push("/forum");
+  };
+
   render() {
-    let { deletePost, history, match, token, cancelDelete } = this.props;
+    let { match, token, cancelDelete } = this.props;
     return (
       <Modal>
         <button
@@ -31,9 +36,7 @@ class SingleForumPostModal extends Component {
             color: "#fff",
             marginRight: 15
           }}
-          onClick={() => {
-            return deletePost(match.params.id, token), history.push("/forum");
-          }}
+          onClick={() => this.handleDeletePost(match.params.id, token)}
         >
           YES...DELETE
         </button>{" "}

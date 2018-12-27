@@ -29,6 +29,7 @@ class SingleForumPost extends Component {
   state = {
     deleting: false
   };
+
   componentDidMount = () => {
     let id = this.props.match.params.id;
     this.props.getSinglePost(id);
