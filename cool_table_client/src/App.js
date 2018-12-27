@@ -3,7 +3,7 @@ import { Route, withRouter } from "react-router-dom";
 import Intro from "./components/views/Intro";
 import Home from "./components/views/Home";
 import QuizzesHome from "./components/quizzes/QuizzesHome";
-import QuizAddForm from "./components/quizzes/QuizAddForm";
+import AddQuizForm from "./components/quizzes/AddQuizForm";
 import ForumHome from "./components/forum/ForumHome";
 import SingleForum from "./components/forum/SingleForum";
 import styled, { createGlobalStyle } from "styled-components";
@@ -145,7 +145,7 @@ class App extends Component {
           <Route path="/home" component={Home} />
           <Route exact path="/quiz" component={QuizzesHome} />
           <Route path="/quiz/single-quiz/:id" component={Quiz} />
-          <Route path="/quiz/form" component={QuizAddForm} />
+          <Route path="/quiz/form" component={AddQuizForm} />
           <Route exact path="/forum/" component={ForumHome} />
           <Route path="/forum/post" component={ForumPost} />
           <Route path="/forum/single-post/:id" component={SingleForum} />
