@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import table from "../../img/background-beverage-breakfast-414645.jpg";
+import { connect } from "react-redux";
 
 // ==============================
 // =====  Styled Component  =====
@@ -45,8 +46,9 @@ const Header = styled.header`
 // =====      Component     =====
 // ==============================
 
-export default class Login extends Component {
+class Login extends Component {
   render() {
+    let { isLoggedIn } = this.props;
     return (
       <>
         <Header>
@@ -55,16 +57,33 @@ export default class Login extends Component {
             COOL<span>TABLE</span>
           </h1>
         </Header>
-        <Link to="/login" style={{ marginRight: 15 }}>
-          <button>LOGIN</button>
-        </Link>
-        <Link to="/home" style={{ marginRight: 15 }}>
-          <button>GUEST</button>
-        </Link>
-        <Link to="/register">
-          <button>REGISTER</button>
-        </Link>
+        {!isLoggedIn && (
+          <>
+            <Link to="/login" style={{ marginRight: 15 }}>
+              <button>LOGIN</button>
+            </Link>
+            <Link to="/register">
+              <button>REGISTER</button>
+            </Link>
+          </>
+        )}
+        {isLoggedIn && (
+          <>
+            <Link to="/logout" style={{ marginRight: 15 }}>
+              <button>LOGOUT</button>
+            </Link>
+            <Link to="/register">
+              <button>EDIT PROFILE</button>
+            </Link>
+          </>
+        )}
       </>
     );
   }
 }
+
+const mapStateToProps = ({ userReducer: { isLoggedIn } }) => ({
+  isLoggedIn
+});
+
+export default connect(mapStateToProps)(Login);
