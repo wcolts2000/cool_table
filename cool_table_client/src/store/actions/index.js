@@ -35,7 +35,7 @@ import {
   // DELETE_QUESTION,
   // DELETE_QUESTION_SUCCESS,
   FETCHING_POSTS,
-  FILTER_POSTS,
+  CHANGE_SEARCH_FIELD,
   FETCHING_POSTS_SUCCESS,
   FETCHING_SINGLE_POST,
   FETCHING_SINGLE_POST_SUCCESS,
@@ -112,7 +112,7 @@ export const fetchPosts = () => dispatch => {
 };
 
 export const setSearchField = text => dispatch => {
-  dispatch({ type: FILTER_POSTS, payload: text });
+  dispatch({ type: CHANGE_SEARCH_FIELD, payload: text });
 };
 
 export const getSinglePost = id => dispatch => {

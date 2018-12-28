@@ -21,23 +21,26 @@ const PostCardContainer = styled.div`
 // ==============================
 
 function ForumList({ posts, history }) {
-  return (
-    <PostCardContainer>
-      {posts.map(({ id, title, created_at, body, author }) => {
-        return (
-          <ForumListCard
-            id={id}
-            key={id}
-            created_at={created_at}
-            body={body}
-            author={author}
-            title={title}
-            history={history}
-          />
-        );
-      })}
-    </PostCardContainer>
-  );
+  if (posts) {
+    return (
+      <PostCardContainer>
+        {posts.map(({ id, title, created_at, body, author }) => {
+          return (
+            <ForumListCard
+              id={id}
+              key={id}
+              created_at={created_at}
+              body={body}
+              author={author}
+              title={title}
+              history={history}
+            />
+          );
+        })}
+      </PostCardContainer>
+    );
+  }
+  return null;
 }
 
 export default ForumList;

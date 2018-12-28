@@ -18,7 +18,6 @@ export const searchPosts = (state = initialStateSearch, action = {}) => {
 
 const initialStatePosts = {
   posts: [],
-  filteredPosts: [],
   requesting: false,
   singlePost: [],
   editPost: null,
@@ -31,11 +30,6 @@ export const postsReducer = (state = initialStatePosts, action = {}) => {
       return {
         ...state,
         requesting: true
-      };
-    case actions.FILTER_POSTS:
-      return {
-        ...state,
-        filteredPosts: action.payload
       };
     case actions.FETCHING_POSTS_SUCCESS:
       return {

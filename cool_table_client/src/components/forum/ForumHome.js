@@ -11,10 +11,6 @@ import PostSearch from "./PostSearch";
 
 // let moment = require("moment");
 class ForumHome extends Component {
-  state = {
-    search: ""
-  };
-
   componentDidMount = () => {
     this.props.fetchPosts();
   };
@@ -28,10 +24,10 @@ class ForumHome extends Component {
   };
 
   render() {
-    let { isLoggedIn, requesting, onSearchChange } = this.props;
+    let { isLoggedIn, requesting, onSearchChange, searchField } = this.props;
     return (
       <div style={{ paddingTop: 50 }}>
-        <PostSearch searchChange={onSearchChange} />
+        <PostSearch searchChange={onSearchChange} searchField={searchField} />
         {isLoggedIn ? (
           <button onClick={() => this.props.history.push("/forum/post")}>
             Add A Post
@@ -41,7 +37,10 @@ class ForumHome extends Component {
           <h1>Loading...</h1>
         ) : (
           <ErrorBoundary>
-            <ForumList posts={this.filterPosts()} {...this.props} />
+            <ForumList
+              posts={this.filterPosts()}
+              history={this.props.history}
+            />
           </ErrorBoundary>
         )}
       </div>
@@ -51,12 +50,11 @@ class ForumHome extends Component {
 
 const mapStateToProps = ({
   userReducer: { isLoggedIn },
-  postsReducer: { requesting, filteredPosts, posts },
+  postsReducer: { requesting, posts },
   searchPosts: { searchField }
 }) => ({
   isLoggedIn,
   requesting,
-  filteredPosts,
   searchField,
   posts
 });

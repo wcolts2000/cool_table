@@ -25,6 +25,17 @@ const PostCard = styled.div`
   justify-content: space-between;
   cursor: pointer;
 
+  & > p {
+    line-height: 150%;
+  }
+
+  & > p:last-of-type {
+    font-size: 12px;
+    background: #deb887;
+    border-radius: 3px;
+    padding: 5px;
+  }
+
   & > p > span {
     opacity: 0.8;
     font-size: 10px;
@@ -41,12 +52,12 @@ function ForumListCard({ id, title, body, author, created_at, history }) {
   return (
     <PostCard onClick={() => history.push(`/forum/single-post/${id}`)}>
       <h3>
-        {title.slice(0, 30)}
-        {title.length > 30 ? "..." : null}
+        {title.slice(0, 20)}
+        {title.length > 20 ? "..." : null}
       </h3>
       <p>
-        {body.slice(0, 150)}
-        {body.length > 150 ? "..." : null}
+        {body.slice(0, 100)}
+        {body.length > 100 ? "..." : null}
       </p>
       <p>
         {author}{" "}
