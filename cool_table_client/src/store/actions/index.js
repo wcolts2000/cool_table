@@ -41,7 +41,6 @@ import {
   FETCHING_SINGLE_POST_SUCCESS,
   POSTING_POST,
   POSTING_POST_SUCCESS,
-  // FETCH_PATCH_POST,
   PATCH_POST,
   PATCH_POST_SUCCESS,
   DELETE_POST,
@@ -125,7 +124,7 @@ export const getSinglePost = id => dispatch => {
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 
-export const addSinglePost = (post, token) => dispatch => {
+export const addSinglePost = (post, token, user) => dispatch => {
   dispatch({ type: POSTING_POST });
   axios({
     method: "post",
@@ -141,13 +140,13 @@ export const addSinglePost = (post, token) => dispatch => {
     .then(({ data }) =>
       dispatch({
         type: POSTING_POST_SUCCESS,
-        payload: { ...post, id: data[0] }
+        payload: { ...post, id: data[0], author: user.username }
       })
     )
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));
 };
 
-export const editPost = (postId, post, token) => dispatch => {
+export const editPost = (postId, post, token, user) => dispatch => {
   dispatch({ type: PATCH_POST });
   axios({
     method: "patch",
@@ -163,7 +162,7 @@ export const editPost = (postId, post, token) => dispatch => {
     .then(({ data }) =>
       dispatch({
         type: PATCH_POST_SUCCESS,
-        payload: { ...post, id: data[0] }
+        payload: { ...post, id: data[0], author: user.username }
       })
     )
     .catch(err => dispatch({ type: RES_FAILURE, payload: err }));

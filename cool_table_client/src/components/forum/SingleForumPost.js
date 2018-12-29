@@ -45,7 +45,6 @@ class SingleForumPost extends Component {
 
   render() {
     let post = this.props.singlePost[0];
-    console.log("POST", post);
 
     if (!post) return <h4>Loading Post....</h4>;
     if (post.author.username.length) {

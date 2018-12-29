@@ -64,7 +64,8 @@ class ForumPost extends Component {
     super(props);
     this.state = {
       title: "",
-      body: ""
+      body: "",
+      editing: false
     };
   }
 
@@ -74,7 +75,8 @@ class ForumPost extends Component {
 
       return this.setState({
         title: title,
-        body: body
+        body: body,
+        editing: true
       });
     }
     return null;
@@ -88,11 +90,33 @@ class ForumPost extends Component {
 
   addPost = e => {
     e.preventDefault();
-    let { token } = this.props;
+    let { token, user } = this.props;
     let post = this.state;
+    if (this.state.editing) {
+      return (
+        this.props.editPost(
+          this.props.singlePost[0].id,
+          { title: this.state.title, body: this.state.body },
+          this.props.token,
+          user
+        ),
+        this.setState({
+          title: "",
+          body: "",
+          editing: false
+        }),
+        this.props.history.push("/forum")
+      );
+    }
     if (this.state.title.length && this.state.body.length) {
       return (
-        this.props.addSinglePost(post, token), this.props.history.push("/forum")
+        this.props.addSinglePost(post, token, user),
+        this.setState({
+          title: "",
+          body: "",
+          editing: false
+        }),
+        this.props.history.push("/forum")
       );
     }
     return null;
@@ -124,9 +148,13 @@ class ForumPost extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  token: state.userReducer.token,
-  singlePost: state.postsReducer.singlePost
+const mapStateToProps = ({
+  userReducer: { token, user },
+  postsReducer: { singlePost }
+}) => ({
+  token,
+  user,
+  singlePost
 });
 
 export default connect(

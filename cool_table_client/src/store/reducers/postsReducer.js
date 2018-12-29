@@ -62,21 +62,21 @@ export const postsReducer = (state = initialStatePosts, action = {}) => {
         requesting: false,
         error: null
       };
-    case actions.FETCH_PATCH_POST:
-      return {
-        ...state,
-        editPost: action.payload
-      };
     case actions.PATCH_POST:
       return {
         ...state,
         requesting: true
       };
     case actions.PATCH_POST_SUCCESS:
+      console.log("PAYLOAD", action.payload);
+      let filteredPosts = state.posts.filter(
+        post => post.id !== action.payload.id
+      );
       return {
         ...state,
-        posts: [...state.posts, action.payload],
+        posts: [...filteredPosts, action.payload],
         requesting: false,
+        singlePost: [],
         editPost: null,
         error: null
       };
@@ -90,7 +90,8 @@ export const postsReducer = (state = initialStatePosts, action = {}) => {
         ...state,
         posts: [
           ...state.posts.filter(post => post.id !== Number(action.payload))
-        ]
+        ],
+        singlePost: []
       };
     case actions.RES_FAILURE:
       return {
