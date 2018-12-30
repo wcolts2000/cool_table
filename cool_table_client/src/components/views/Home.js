@@ -3,6 +3,7 @@ import styled from "styled-components";
 import rubix from "../../img/rubix.jpg";
 import posts from "../../img/posts.jpg";
 import { Link } from "react-router-dom";
+import ZenQuote from "../specializedComponents/ZenQuote";
 
 // ==============================
 // =====  Styled Component  =====
@@ -101,6 +102,7 @@ export default class Home extends Component {
         </H1>
         <Container>
           <LinkBox>
+            <ZenQuote />
             <Link to="/quiz" style={{ marginRight: 15 }}>
               <button>QUIZ</button>
             </Link>

@@ -23,6 +23,12 @@ const Label = styled.label`
   }
 `;
 
+const H1 = styled.h1`
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.7;
+`;
+
 // ==============================
 // =====      Component     =====
 // ==============================
@@ -36,6 +42,14 @@ class EditUser extends Component {
       newPassword: ""
     };
   }
+
+  componentDidMount = () => {
+    if (this.props.user.length)
+      return this.setState({
+        newUsername: this.props.user.username
+      });
+    return null;
+  };
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({
@@ -77,25 +91,26 @@ class EditUser extends Component {
   };
 
   render() {
-    const Input = (name, placeholder, type = "text") => (
-      <input
-        type={type}
-        name={name}
-        id={name}
-        placeholder={placeholder}
-        autoComplete="off"
-        required
-        onChange={this.handleChange}
-      />
-    );
     return (
       <>
         <form onSubmit={this.handleSubmit}>
-          <EditUserCard user={this.props.user} />
+          <EditUserCard
+            user={this.props.user}
+            stateUser={this.state.newUsername}
+          />
+          <H1>Update your username or password</H1>
           <Label>(optional)</Label>
-          {Input("newUsername", "New Username")}
+          <input
+            placeholder="New Username..."
+            value={this.state.newUsername}
+            autoComplete="off"
+            onChange={this.handleChange}
+            name="newUsername"
+            type="text  "
+          />
           <Label>(required)</Label>
           <PasswordInput
+            autoComplete="off"
             password={this.state.currentPassword}
             change={this.handleChange}
             inputValue={this.state.currentPassword}

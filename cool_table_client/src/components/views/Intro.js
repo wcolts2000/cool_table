@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import table from "../../img/background-beverage-breakfast-414645.jpg";
 import { connect } from "react-redux";
+import ZenQuote from "../specializedComponents/ZenQuote";
 
 // ==============================
 // =====  Styled Component  =====
@@ -65,6 +66,7 @@ class Login extends Component {
             <Link to="/register">
               <button>REGISTER</button>
             </Link>
+            <ZenQuote />
           </>
         )}
         {isLoggedIn && (
@@ -75,6 +77,7 @@ class Login extends Component {
             <Link to="/edit-profile">
               <button>EDIT PROFILE</button>
             </Link>
+            <ZenQuote />
           </>
         )}
       </>

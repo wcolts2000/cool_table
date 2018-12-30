@@ -20,7 +20,7 @@ const Div = styled.div`
 // =====      Component     =====
 // ==============================
 
-function EditUserCard({ user: { img_url, username } }) {
+function EditUserCard({ user: { img_url, username }, stateUser }) {
   // console.log(user);
 
   return (
@@ -38,7 +38,7 @@ function EditUserCard({ user: { img_url, username } }) {
       />
       <div style={{ padding: "10px" }}>
         <p>What other users see as your username:</p>
-        <h3>{username}</h3>
+        {stateUser ? <h3>{stateUser}</h3> : <h3>{username}</h3>}
       </div>
     </Div>
   );

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import PasswordInput from "../specializedComponents/passwordInput/PasswordInput";
 import EyeIconAttribute from "../specializedComponents/passwordInput/EyeIconAttribute";
 import AvatarList from "./AvatarList";
+import UserAvatarAttribute from "./UserAvatarAttribute";
 
 // ==============================
 // =====  Styled Component  =====
@@ -49,7 +50,7 @@ const Label = styled.label`
 // =====      Component     =====
 // ==============================
 
-class Signup extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -166,6 +167,7 @@ class Signup extends Component {
           </button>{" "}
           <button onClick={this.resetForm}>Reset</button>
         </form>
+        <UserAvatarAttribute />
         <EyeIconAttribute />
       </>
     );
@@ -175,4 +177,4 @@ class Signup extends Component {
 export default connect(
   null,
   { registerUser }
-)(Signup);
+)(Register);
