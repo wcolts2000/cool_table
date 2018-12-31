@@ -1,11 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logUserOut } from "../../store/actions";
+import styled from "styled-components";
+import gates from "../../img/garden-gates.jpg";
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Div = styled.div`
+  background-image: url(${gates});
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 70px);
+`;
+
+// ==============================
+// =====      Component     =====
+// ==============================
 
 class LogOut extends Component {
   render() {
     return (
-      <div style={{ padding: 60 }}>
+      <Div>
         <button
           onClick={() => {
             return (
@@ -18,7 +39,7 @@ class LogOut extends Component {
         >
           logout
         </button>
-      </div>
+      </Div>
     );
   }
 }

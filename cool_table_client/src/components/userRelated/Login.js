@@ -4,15 +4,24 @@ import { connect } from "react-redux";
 import PasswordInput from "../specializedComponents/passwordInput/PasswordInput";
 import EyeIconAttribute from "../specializedComponents/passwordInput/EyeIconAttribute";
 import styled from "styled-components";
+import door from "../../img/garden-door.jpg";
 
 const Div = styled.div`
-  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   display: flex;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url(${door});
+  background-position: center;
+  background-size: cover;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 100px);
+  padding-bottom: 30px;
 `;
 
 class UserLogin extends Component {
