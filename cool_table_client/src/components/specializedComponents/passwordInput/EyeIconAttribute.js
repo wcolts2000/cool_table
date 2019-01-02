@@ -7,7 +7,6 @@ import styled from "styled-components";
 
 const P = styled.p`
   background: #deb887;
-  width: 100%;
   display: inline;
   font-size: 12px;
   padding: 10px;

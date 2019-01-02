@@ -20,8 +20,8 @@ const Card = styled.div`
     to bottom,
     #eadbb4 0,
     #eadbb4 20px,
-    lightblue 20px,
-    lightblue 22px,
+    lightBlue 20px,
+    lightBlue 22px,
     #eadbb4 22px
   );
   line-height: 1.6;

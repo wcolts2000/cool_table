@@ -32,7 +32,7 @@ class SingleForumPostModal extends Component {
       <Modal>
         <button
           style={{
-            background: "darkred",
+            background: "darkRed",
             color: "#fff",
             marginRight: 15
           }}
