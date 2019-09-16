@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // ==============================
 // =====  Styled Component  =====
@@ -14,11 +14,11 @@ const Mobile = styled.div`
   font-size: 20px;
   flex-direction: column;
   transition: all 0.8s ease-in-out;
-  top: ${props => (props.mobilenavopen === "open" ? 0 : "-230px")};
+  top: ${props => (props.mobilenavopen === 'open' ? 0 : '-230px')};
   padding-top: 70px;
   display: flex;
   box-shadow: ${props =>
-    props.mobilenavopen === "open" ? "1px 3px 60px rgba(0,200,220,.6)" : null};
+    props.mobilenavopen === 'open' ? '1px 3px 60px rgba(0,200,220,.6)' : null};
   position: fixed;
   z-index: 100;
 `;
@@ -33,7 +33,7 @@ const MobileStyledNavLink = styled(Link)`
   border-bottom: 2px solid aqua;
   transition: all 0.3s ease-in-out;
   pointer-events: ${props =>
-    props.mobilenavopen === "open" ? "initial" : "none"};
+    props.mobilenavopen === 'open' ? 'initial' : 'none'};
 
   &:first-child {
     border-top: 2px solid aqua;
@@ -51,23 +51,23 @@ const MobileStyledNavLink = styled(Link)`
 
 function MobileNav({ mobilenavopen, navOpen }) {
   return (
-    <Mobile mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}>
+    <Mobile mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}>
       <MobileStyledNavLink
-        mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}
+        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
         to="/home"
         onClick={() => navOpen(mobilenavopen)}
       >
         Home
       </MobileStyledNavLink>
       <MobileStyledNavLink
-        mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}
+        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
         to="/quiz"
         onClick={() => navOpen(mobilenavopen)}
       >
         Quizzes
       </MobileStyledNavLink>
       <MobileStyledNavLink
-        mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}
+        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
         to="/forum"
         onClick={() => navOpen(mobilenavopen)}
       >
