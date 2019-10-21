@@ -15,7 +15,6 @@ class QuizHome extends Component {
     formControls: {
       filterOptions: {
         value: '',
-        label: 'Filter Quizzes: ',
         options: [
           { value: 'A', displayValue: 'Show All Quizzes'},
           { value: 'B', displayValue: 'Show Only Quizzes With Questions'},
@@ -96,7 +95,7 @@ class QuizHome extends Component {
       quizzes && (
         <>
           <h1> __QUIZZES__</h1>
-          <form className="selectWrapper">
+          <Form className="selectWrapper">
             <Select 
               onChange={this.changeHandler}
               label={this.state.formControls.filterOptions.label}
@@ -110,7 +109,7 @@ class QuizHome extends Component {
               > 
               Filter
               </button>
-          </form>
+          </Form>
           {isLoggedIn ? (
             <button
               onClick={() => this.props.history.push("/quiz/form")}
@@ -152,6 +151,44 @@ export default connect(
 // ==============================
 // =====  Styled Component  =====
 // ==============================
+
+const Form = styled.form`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  button {
+    background: white;
+    border: none;
+    border-radius: 0;
+    color: black;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    margin: .5rem 0;
+    box-shadow: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(169, 169, 169);
+    border-image: initial;
+    font-family: 'Arial';
+    font-weight: normal;
+    letter-spacing: initial;
+    text-transform: capitalize;
+
+    :hover {
+      box-shadow: none;
+      top: 0;
+      opacity: 1;
+    }
+    :active {
+      box-shadow: none;
+      top: 0;
+      opacity: 1;
+      color: lightgreen
+    }
+  }
+`
 
 const QuizCardWrapper = styled.div`
   padding: 10px;
