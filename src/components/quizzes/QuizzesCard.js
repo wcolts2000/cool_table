@@ -7,7 +7,7 @@ import styled from "styled-components";
 class QuizzesCard extends Component {
   render() {
     let {
-      quiz: { id, title, topic, votes, author },
+      quiz: { id, title, topic, votes, author, question_count },
       history
     } = this.props;
     return (
@@ -18,6 +18,9 @@ class QuizzesCard extends Component {
         <span>
           votes:&nbsp;{votes} {"    "}Author:&nbsp;
           {author}
+          <span className="qs">
+            &nbsp;Questions:&nbsp;{question_count}
+          </span>
         </span>
       </Li>
     );
@@ -47,5 +50,9 @@ const Li = styled.li`
     color: papayawhip;
     text-transform: uppercase;
     font-weight: bold;
+
+    .qs {
+      color: tomato;
+    }
   }
 `;
