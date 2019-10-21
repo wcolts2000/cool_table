@@ -19,6 +19,7 @@ class Login extends Component {
           <h1>
             COOL<span>TABLE</span>
           </h1>
+          <h3>A study aid and message forum</h3>
         </Header>
         {!isLoggedIn && (
           <>
@@ -83,6 +84,7 @@ const Header = styled.header`
 
   & > h1 {
     font-size: 50px;
+    margin-bottom: 0;
 
     & > span {
       font-weight: normal;
