@@ -6,44 +6,6 @@ import { connect } from "react-redux";
 import ZenQuote from "../specializedComponents/ZenQuote";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Header = styled.header`
-  width: 100%;
-  height: 40vh;
-  margin-bottom: 65px;
-  background: rgba(0, 0, 0, 0.7);
-  background-image: url(${table});
-  background-position: top right;
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: -1px 3px 7px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 50px;
-  color: aqua;
-  text-shadow: -1px 2px rgba(0, 0, 0, 0.3), -2px 3px rgba(0, 0, 0, 0.3),
-    -3px 4px rgba(0, 0, 0, 0.3);
-  & > p {
-    margin-bottom: -40px;
-    font-size: 30px;
-    padding: 0;
-  }
-
-  & > h1 {
-    font-size: 50px;
-
-    & > span {
-      font-weight: normal;
-      opacity: 0.7;
-    }
-  }
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -90,3 +52,41 @@ const mapStateToProps = ({ userReducer: { isLoggedIn } }) => ({
 });
 
 export default connect(mapStateToProps)(Login);
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Header = styled.header`
+  width: 100%;
+  height: 40vh;
+  margin-bottom: 65px;
+  background: rgba(0, 0, 0, 0.7);
+  background-image: url(${table});
+  background-position: top right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: -1px 3px 7px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 50px;
+  color: aqua;
+  text-shadow: -1px 2px rgba(0, 0, 0, 0.3), -2px 3px rgba(0, 0, 0, 0.3),
+    -3px 4px rgba(0, 0, 0, 0.3);
+  & > p {
+    margin-bottom: -40px;
+    font-size: 30px;
+    padding: 0;
+  }
+
+  & > h1 {
+    font-size: 50px;
+
+    & > span {
+      font-weight: normal;
+      opacity: 0.7;
+    }
+  }
+`;

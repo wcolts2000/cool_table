@@ -2,26 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Modal = styled.div`
-  height: 100vh;
-  width: 100%;
-  position: fixed;
-  background: rgba(0, 0, 0, 0.9);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -49,3 +29,23 @@ export default class QuizCompleteModal extends Component {
     );
   }
 }
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Modal = styled.div`
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

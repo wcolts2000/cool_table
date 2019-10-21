@@ -2,31 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Card = styled.div`
-  padding: 20px;
-  color: #0f0f0f;
-  background: #eadbb4;
-  overflow: hidden;
-  max-width: 800px;
-  width: 90%;
-  margin: 0 auto 25px;
-  transform: rotate(-0.5deg);
-  box-shadow: -1px 3px 10px rgba(0, 0, 0, 0.3);
-  background-image: repeating-linear-gradient(
-    to bottom,
-    #eadbb4 0,
-    #eadbb4 20px,
-    lightblue 20px,
-    lightblue 22px,
-    #eadbb4 22px
-  );
-  line-height: 1.6;
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -64,3 +39,28 @@ function SingleForumPostCard({
 }
 
 export default SingleForumPostCard;
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Card = styled.div`
+  padding: 20px;
+  color: #0f0f0f;
+  background: #eadbb4;
+  overflow: hidden;
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto 25px;
+  transform: rotate(-0.5deg);
+  box-shadow: -1px 3px 10px rgba(0, 0, 0, 0.3);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #eadbb4 0,
+    #eadbb4 20px,
+    lightblue 20px,
+    lightblue 22px,
+    #eadbb4 22px
+  );
+  line-height: 1.6;
+`;

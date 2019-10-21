@@ -6,72 +6,6 @@ import BackBtnAttribute from "../specializedComponents/backButton/BackBtnAttribu
 import BackButton from "../specializedComponents/backButton/BackButton";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Form = styled.form`
-  padding: 30px;
-`;
-
-const PickTopic = styled.div`
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background: #0f0f0f;
-  color: white;
-  border-radius: 7px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-`;
-
-const TopicsBox = styled.div`
-  padding: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
-
-const Topic = styled.div`
-  font-size: 10px;
-  color: #0f0f0f;
-  text-transform: uppercase;
-  border-radius: 7px;
-  background: aqua;
-  display: inline-block;
-  padding: 5px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  margin-right: 5px;
-
-  &:hover {
-    opacity: 0.7;
-  }
-`;
-
-const Label = styled.label`
-  opacity: 0.4;
-  padding-right: 330px;
-
-  &:last-of-type {
-    padding-right: 70px;
-  }
-`;
-
-const Span = styled.span`
-  font-size: 10px;
-  color: white;
-  border-radius: 7px;
-  background: tomato;
-  padding: 5px;
-  cursor: pointer;
-  margin-left: 35px;
-
-  &:hover {
-    opacity: 0.7;
-  }
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -244,3 +178,69 @@ export default class QuizForm extends Component {
     );
   }
 }
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Form = styled.form`
+  padding: 30px;
+`;
+
+const PickTopic = styled.div`
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #0f0f0f;
+  color: white;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+`;
+
+const TopicsBox = styled.div`
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
+
+const Topic = styled.div`
+  font-size: 10px;
+  color: #0f0f0f;
+  text-transform: uppercase;
+  border-radius: 7px;
+  background: aqua;
+  display: inline-block;
+  padding: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+const Label = styled.label`
+  opacity: 0.4;
+  padding-right: 330px;
+
+  &:last-of-type {
+    padding-right: 70px;
+  }
+`;
+
+const Span = styled.span`
+  font-size: 10px;
+  color: white;
+  border-radius: 7px;
+  background: tomato;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 35px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;

@@ -3,6 +3,41 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+function MobileNav({ mobilenavopen, navOpen }) {
+  return (
+    <Mobile mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}>
+      <MobileStyledNavLink
+        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
+        to="/home"
+        onClick={() => navOpen(mobilenavopen)}
+      >
+        Home
+      </MobileStyledNavLink>
+      <MobileStyledNavLink
+        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
+        to="/quiz"
+        onClick={() => navOpen(mobilenavopen)}
+      >
+        Quizzes
+      </MobileStyledNavLink>
+      <MobileStyledNavLink
+        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
+        to="/forum"
+        onClick={() => navOpen(mobilenavopen)}
+      >
+        Forum
+      </MobileStyledNavLink>
+    </Mobile>
+  );
+}
+
+export default MobileNav;
+
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -44,37 +79,3 @@ const MobileStyledNavLink = styled(Link)`
     color: #0f0f0f;
   }
 `;
-
-// ==============================
-// =====      Component     =====
-// ==============================
-
-function MobileNav({ mobilenavopen, navOpen }) {
-  return (
-    <Mobile mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}>
-      <MobileStyledNavLink
-        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
-        to="/home"
-        onClick={() => navOpen(mobilenavopen)}
-      >
-        Home
-      </MobileStyledNavLink>
-      <MobileStyledNavLink
-        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
-        to="/quiz"
-        onClick={() => navOpen(mobilenavopen)}
-      >
-        Quizzes
-      </MobileStyledNavLink>
-      <MobileStyledNavLink
-        mobilenavopen={mobilenavopen === 'open' ? 'open' : 'closed'}
-        to="/forum"
-        onClick={() => navOpen(mobilenavopen)}
-      >
-        Forum
-      </MobileStyledNavLink>
-    </Mobile>
-  );
-}
-
-export default MobileNav;

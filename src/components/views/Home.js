@@ -6,6 +6,43 @@ import { Link } from "react-router-dom";
 import ZenQuote from "../specializedComponents/ZenQuote";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+export default class Home extends Component {
+  render() {
+    return (
+      <>
+        <H2>Welcome to</H2>
+        <H1>
+          Cool<Span>Table</Span>
+        </H1>
+        <Container>
+          <LinkBox>
+            <ZenQuote />
+            <Link to="/quiz" style={{ marginRight: 15 }}>
+              <button>QUIZ</button>
+            </Link>
+            <Link to="/forum">
+              <button>FORUM</button>
+            </Link>
+          </LinkBox>
+          <figure onClick={() => this.props.history.push("/quiz")}>
+            <img src={rubix} alt="rubix cubes stacked on each other" />
+            <figcaption>Quiz Me</figcaption>
+          </figure>
+          <figure onClick={() => this.props.history.push("/forum")}>
+            <img src={posts} alt="sticky notes, pens, a phone and books" />
+            <figcaption>Go to Forum</figcaption>
+          </figure>
+        </Container>
+      </>
+    );
+  }
+}
+
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -88,48 +125,3 @@ const LinkBox = styled.div`
   }
 `;
 
-// ==============================
-// =====      Component     =====
-// ==============================
-
-export default class Home extends Component {
-  render() {
-    return (
-      <>
-        <H2>Welcome to</H2>
-        <H1>
-          Cool<Span>Table</Span>
-        </H1>
-        <Container>
-          <LinkBox>
-            <ZenQuote />
-            <Link to="/quiz" style={{ marginRight: 15 }}>
-              <button>QUIZ</button>
-            </Link>
-            <Link to="/forum">
-              <button>FORUM</button>
-            </Link>
-          </LinkBox>
-          <figure onClick={() => this.props.history.push("/quiz")}>
-            <img src={rubix} alt="rubix cubes stacked on each other" />
-            <figcaption>Quiz Me</figcaption>
-          </figure>
-          <figure onClick={() => this.props.history.push("/forum")}>
-            <img src={posts} alt="sticky notes, pens, a phone and books" />
-            <figcaption>Go to Forum</figcaption>
-          </figure>
-        </Container>
-      </>
-    );
-  }
-}
-
-// import { Route, Redirect } from 'react-router'
-
-// <Route exact path="/" render={() => (
-//   loggedIn ? (
-//     <Redirect to="/dashboard"/>
-//   ) : (
-//     <PublicHomePage/>
-//   )
-// )}/>

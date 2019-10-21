@@ -3,6 +3,22 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+function NavBarRight() {
+  return (
+    <NavRight>
+      <StyledNavLink to="/home">Home</StyledNavLink>
+      <StyledNavLink to="/quiz">Quizzes</StyledNavLink>
+      <StyledNavLink to="/forum">Forum</StyledNavLink>
+    </NavRight>
+  );
+}
+
+export default NavBarRight;
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -27,19 +43,3 @@ const StyledNavLink = styled(NavLink)`
     opacity: 0.8;
   }
 `;
-
-// ==============================
-// =====      Component     =====
-// ==============================
-
-function NavBarRight() {
-  return (
-    <NavRight>
-      <StyledNavLink to="/home">Home</StyledNavLink>
-      <StyledNavLink to="/quiz">Quizzes</StyledNavLink>
-      <StyledNavLink to="/forum">Forum</StyledNavLink>
-    </NavRight>
-  );
-}
-
-export default NavBarRight;

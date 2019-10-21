@@ -5,21 +5,6 @@ import styled from "styled-components";
 import gates from "../../img/garden-gates.jpg";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Div = styled.div`
-  background-image: url(${gates});
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: calc(100vh - 70px);
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -54,3 +39,18 @@ export default connect(
   mapStateToProps,
   { logUserOut }
 )(LogOut);
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Div = styled.div`
+  background-image: url(${gates});
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 70px);
+`;

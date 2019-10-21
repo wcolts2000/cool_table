@@ -1,26 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const Li = styled.li`
-  border-bottom: 2px dotted papayawhip;
-  margin-bottom: 5px;
-  margin-right: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  & > p {
-    display: inline-block;
-  }
-  & > span {
-    font-size: 10px;
-    margin-right: 20px;
-    color: papayawhip;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-`;
-
+// ==============================
+// =====      Component     =====
+// ==============================
 class QuizzesCard extends Component {
   render() {
     let {
@@ -42,3 +25,27 @@ class QuizzesCard extends Component {
 }
 
 export default QuizzesCard;
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Li = styled.li`
+  border-bottom: 2px dotted papayawhip;
+  margin-bottom: 5px;
+  margin-right: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & > p {
+    display: inline-block;
+  }
+  & > span {
+    font-size: 10px;
+    margin-right: 20px;
+    color: papayawhip;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+`;

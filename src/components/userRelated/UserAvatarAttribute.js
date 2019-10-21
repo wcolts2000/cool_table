@@ -2,12 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const P = styled.p``;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -23,3 +17,9 @@ export default function EyeIconAttribute() {
     </div>
   );
 }
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const P = styled.p``;

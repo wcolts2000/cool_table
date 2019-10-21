@@ -2,6 +2,31 @@ import React from "react";
 import styled from "styled-components";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+function QuizQuestionOptions({ selected, i, option, question, pickAnswer }) {
+  return (
+    <Div selected={selected === i + 1 ? "selected" : null}>
+      <Radio
+        type="radio"
+        id={option + i}
+        name={question.question}
+        onClick={() => pickAnswer(i + 1)}
+        value={option}
+        selected={selected === i + 1 ? "selected" : null}
+      />
+      <Label htmlFor={option + i}>
+        <Span />
+        {option}
+      </Label>
+    </Div>
+  );
+}
+
+export default QuizQuestionOptions;
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -41,28 +66,3 @@ const Label = styled.label`
   font-size: inherit;
   position: relative;
 `;
-
-// ==============================
-// =====      Component     =====
-// ==============================
-
-function QuizQuestionOptions({ selected, i, option, question, pickAnswer }) {
-  return (
-    <Div selected={selected === i + 1 ? "selected" : null}>
-      <Radio
-        type="radio"
-        id={option + i}
-        name={question.question}
-        onClick={() => pickAnswer(i + 1)}
-        value={option}
-        selected={selected === i + 1 ? "selected" : null}
-      />
-      <Label htmlFor={option + i}>
-        <Span />
-        {option}
-      </Label>
-    </Div>
-  );
-}
-
-export default QuizQuestionOptions;

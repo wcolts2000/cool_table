@@ -8,45 +8,6 @@ import AvatarList from "./AvatarList";
 import UserAvatarAttribute from "./UserAvatarAttribute";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const H1 = styled.h1`
-  font-size: 20px;
-  line-height: 30px;
-  margin-bottom: 40px;
-
-  & > span {
-    font-size: 36px;
-    line-height: 60px;
-    font-weight: bolder;
-    text-transform: uppercase;
-    color: aqua;
-    background: #0f0f0f;
-    padding: 10px 25px;
-    border-radius: 7px;
-
-    & > span {
-      font-weight: normal;
-      opacity: 0.7;
-    }
-  }
-`;
-
-const Label = styled.label`
-  opacity: 0.4;
-  padding-right: 330px;
-
-  &:nth-of-type(4) {
-    padding-right: 240px;
-  }
-
-  &:nth-of-type(5) {
-    padding-right: 155px;
-  }
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -178,3 +139,42 @@ export default connect(
   null,
   { registerUser }
 )(Register);
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const H1 = styled.h1`
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 40px;
+
+  & > span {
+    font-size: 36px;
+    line-height: 60px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: aqua;
+    background: #0f0f0f;
+    padding: 10px 25px;
+    border-radius: 7px;
+
+    & > span {
+      font-weight: normal;
+      opacity: 0.7;
+    }
+  }
+`;
+
+const Label = styled.label`
+  opacity: 0.4;
+  padding-right: 330px;
+
+  &:nth-of-type(4) {
+    padding-right: 240px;
+  }
+
+  &:nth-of-type(5) {
+    padding-right: 155px;
+  }
+`;

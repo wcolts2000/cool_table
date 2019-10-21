@@ -7,29 +7,6 @@ import EyeIconAttribute from "../specializedComponents/passwordInput/EyeIconAttr
 import EditUserCard from "./EditUserCard";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Label = styled.label`
-  opacity: 0.4;
-  padding-right: 330px;
-
-  &:nth-of-type(4) {
-    padding-right: 240px;
-  }
-
-  &:nth-of-type(5) {
-    padding-right: 155px;
-  }
-`;
-
-const H1 = styled.h1`
-  font-size: 14px;
-  text-transform: uppercase;
-  opacity: 0.7;
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -144,3 +121,26 @@ export default connect(
   mapStateToProps,
   { registerUser }
 )(EditUser);
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Label = styled.label`
+  opacity: 0.4;
+  padding-right: 330px;
+
+  &:nth-of-type(4) {
+    padding-right: 240px;
+  }
+
+  &:nth-of-type(5) {
+    padding-right: 155px;
+  }
+`;
+
+const H1 = styled.h1`
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.7;
+`;

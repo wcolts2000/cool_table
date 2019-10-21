@@ -6,56 +6,6 @@ import BackBtnAttribute from "../specializedComponents/backButton/BackBtnAttribu
 import BackButton from "../specializedComponents/backButton/BackButton";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Form = styled.form`
-  height: calc(100vh - 72px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-`;
-
-const Textarea = styled.textarea`
-  height: 30vh;
-  resize: none;
-  background: #deb887;
-  border: none;
-  outline: none;
-  border-bottom: 2px solid aqua;
-  font-size: 16px;
-  padding: 15px 20px;
-  text-align: left;
-  display: block;
-  border-radius: 10px;
-  margin: 0 auto;
-  color: #0f0f0f;
-  margin-bottom: 20px;
-  width: 80%;
-  max-width: 400px;
-
-  &::placeholder {
-    color: #0f0f0f;
-    opacity: 0.7;
-  }
-
-  &:focus {
-    border: none;
-    outline: none;
-    border-bottom: 2px solid green;
-  }
-`;
-
-const FormBox = styled.div`
-  width: 400px;
-  padding: 20px;
-  margin: 0 auto;
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -161,3 +111,54 @@ export default connect(
   mapStateToProps,
   { addSinglePost, editPost }
 )(ForumPost);
+
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Form = styled.form`
+  height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
+const Textarea = styled.textarea`
+  height: 30vh;
+  resize: none;
+  background: #deb887;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid aqua;
+  font-size: 16px;
+  padding: 15px 20px;
+  text-align: left;
+  display: block;
+  border-radius: 10px;
+  margin: 0 auto;
+  color: #0f0f0f;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 400px;
+
+  &::placeholder {
+    color: #0f0f0f;
+    opacity: 0.7;
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid green;
+  }
+`;
+
+const FormBox = styled.div`
+  width: 400px;
+  padding: 20px;
+  margin: 0 auto;
+`;

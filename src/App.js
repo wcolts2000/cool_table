@@ -18,6 +18,75 @@ import LogOut from "./components/userRelated/LogOut";
 import EditUser from "./components/userRelated/EditUser";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+class App extends Component {
+  componentDidMount = () => {
+    let user = JSON.parse(localStorage.getItem("user"));
+    let token = localStorage.getItem("token");
+    if (user && token) return this.props.localLogIn(user, token);
+  };
+
+  componentDidUpdate = prevProps => {
+    if (
+      prevProps.user !== this.props.user &&
+      prevProps.token !== this.props.token
+    )
+      return (
+        localStorage.setItem("user", JSON.stringify(this.props.user)),
+        localStorage.setItem("token", this.props.token)
+      );
+  };
+
+  render() {
+    return (
+      <>
+        <GlobalStyles />
+        <AppDiv>
+          <Nav
+            isLoggedIn={this.props.isLoggedIn}
+            mobilenavopen={this.props.mobilenavopen}
+            navOpen={this.props.navOpen}
+            user={this.props.user}
+          />
+          <Spacer />
+          <Route exact path="/" component={Intro} />
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={LogOut} />
+          <Route path="/register" component={Register} />
+          <Route path="/edit-profile" component={EditUser} />
+          <Route path="/home" component={Home} />
+          <Route exact path="/quiz" component={QuizzesHome} />
+          <Route path="/quiz/single-quiz/:id" component={Quiz} />
+          <Route path="/quiz/form" component={AddQuizForm} />
+          <Route exact path="/forum/" component={ForumHome} />
+          <Route path="/forum/post" component={ForumPost} />
+          <Route path="/forum/single-post/:id" component={SingleForumPost} />
+        </AppDiv>
+      </>
+    );
+  }
+}
+
+const mapStateToProps = ({
+  userReducer: { user, token, isLoggedIn },
+  navReducer: { mobilenavopen }
+}) => ({
+  user,
+  token,
+  isLoggedIn,
+  mobilenavopen
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { navOpen, localLogIn }
+  )(App)
+);
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -105,72 +174,3 @@ const AppDiv = styled.div`
 const Spacer = styled.div`
   height: 70px;
 `;
-
-// ==============================
-// =====      Component     =====
-// ==============================
-
-class App extends Component {
-  componentDidMount = () => {
-    let user = JSON.parse(localStorage.getItem("user"));
-    let token = localStorage.getItem("token");
-    if (user && token) return this.props.localLogIn(user, token);
-  };
-
-  componentDidUpdate = prevProps => {
-    if (
-      prevProps.user !== this.props.user &&
-      prevProps.token !== this.props.token
-    )
-      return (
-        localStorage.setItem("user", JSON.stringify(this.props.user)),
-        localStorage.setItem("token", this.props.token)
-      );
-  };
-
-  render() {
-    return (
-      <>
-        <GlobalStyles />
-        <AppDiv>
-          <Nav
-            isLoggedIn={this.props.isLoggedIn}
-            mobilenavopen={this.props.mobilenavopen}
-            navOpen={this.props.navOpen}
-            user={this.props.user}
-          />
-          <Spacer />
-          <Route exact path="/" component={Intro} />
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={LogOut} />
-          <Route path="/register" component={Register} />
-          <Route path="/edit-profile" component={EditUser} />
-          <Route path="/home" component={Home} />
-          <Route exact path="/quiz" component={QuizzesHome} />
-          <Route path="/quiz/single-quiz/:id" component={Quiz} />
-          <Route path="/quiz/form" component={AddQuizForm} />
-          <Route exact path="/forum/" component={ForumHome} />
-          <Route path="/forum/post" component={ForumPost} />
-          <Route path="/forum/single-post/:id" component={SingleForumPost} />
-        </AppDiv>
-      </>
-    );
-  }
-}
-
-const mapStateToProps = ({
-  userReducer: { user, token, isLoggedIn },
-  navReducer: { mobilenavopen }
-}) => ({
-  user,
-  token,
-  isLoggedIn,
-  mobilenavopen
-});
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { navOpen, localLogIn }
-  )(App)
-);

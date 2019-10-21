@@ -3,6 +3,14 @@ import styled from "styled-components";
 import back from "../../../img/back.png";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+export default function BackButton(props) {
+  return <Img src={back} onClick={() => props.props.history.goBack()} />;
+}
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -19,10 +27,3 @@ const Img = styled.img`
   }
 `;
 
-// ==============================
-// =====      Component     =====
-// ==============================
-
-export default function BackButton(props) {
-  return <Img src={back} onClick={() => props.props.history.goBack()} />;
-}

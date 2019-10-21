@@ -2,21 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Div = styled.div`
-  width: 90%;
-  max-width: 400px;
-  margin: 20px auto;
-  border-radius: 20px;
-  padding: 10px;
-  background: #0f0f0f;
-  color: aqua;
-  display: flex;
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -45,3 +30,18 @@ function EditUserCard({ user: { img_url, username }, stateUser }) {
 }
 
 export default EditUserCard;
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Div = styled.div`
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 20px;
+  padding: 10px;
+  background: #0f0f0f;
+  color: aqua;
+  display: flex;
+`;

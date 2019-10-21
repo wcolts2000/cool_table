@@ -6,6 +6,23 @@ import HamburgerIcon from "./HamburgerIcon";
 import NavBarLeft from "./NavBarLeft";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+export default function Nav({ isLoggedIn, navOpen, mobilenavopen, user }) {
+  return (
+    <>
+      <NavBar>
+        <NavBarLeft isLoggedIn={isLoggedIn} user={user} />
+        <NavBarRight />
+        <HamburgerIcon mobilenavopen={mobilenavopen} navOpen={navOpen} />
+      </NavBar>
+      <MobileNav mobilenavopen={mobilenavopen} navOpen={navOpen} />
+    </>
+  );
+}
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -25,20 +42,3 @@ const NavBar = styled.nav`
     padding-left: 20px;
   }
 `;
-
-// ==============================
-// =====      Component     =====
-// ==============================
-
-export default function Nav({ isLoggedIn, navOpen, mobilenavopen, user }) {
-  return (
-    <>
-      <NavBar>
-        <NavBarLeft isLoggedIn={isLoggedIn} user={user} />
-        <NavBarRight />
-        <HamburgerIcon mobilenavopen={mobilenavopen} navOpen={navOpen} />
-      </NavBar>
-      <MobileNav mobilenavopen={mobilenavopen} navOpen={navOpen} />
-    </>
-  );
-}

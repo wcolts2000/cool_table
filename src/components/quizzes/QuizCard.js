@@ -3,6 +3,33 @@ import styled from "styled-components";
 import QuizQuestionOptions from "./QuizQuestionOptions";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+function QuizCard({ question, selected, pickAnswer, submitAnswer }) {
+  return (
+    <Card id={question.id}>
+      <h3>{question.question}</h3>
+      <div style={{ textAlign: "left" }}>
+        {question.options.map((option, i) => (
+          <QuizQuestionOptions
+            key={i}
+            selected={selected}
+            option={option}
+            question={question}
+            pickAnswer={pickAnswer}
+            i={i}
+          />
+        ))}
+        <button onClick={() => submitAnswer(question.id)}>Submit</button>
+      </div>
+    </Card>
+  );
+}
+
+export default QuizCard;
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -30,30 +57,3 @@ const Card = styled.div`
     pointer-events: none;
   }
 `;
-
-// ==============================
-// =====      Component     =====
-// ==============================
-
-function QuizCard({ question, selected, pickAnswer, submitAnswer }) {
-  return (
-    <Card id={question.id}>
-      <h3>{question.question}</h3>
-      <div style={{ textAlign: "left" }}>
-        {question.options.map((option, i) => (
-          <QuizQuestionOptions
-            key={i}
-            selected={selected}
-            option={option}
-            question={question}
-            pickAnswer={pickAnswer}
-            i={i}
-          />
-        ))}
-        <button onClick={() => submitAnswer(question.id)}>Submit</button>
-      </div>
-    </Card>
-  );
-}
-
-export default QuizCard;

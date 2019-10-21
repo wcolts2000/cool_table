@@ -9,19 +9,6 @@ import styled from "styled-components";
 import SingleForumPostButtons from "./SingleForumPostButtons";
 
 // ==============================
-// =====  Styled Component  =====
-// ==============================
-
-const Div = styled.div`
-  padding: 20px;
-  padding-top: 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: calc(100vh - 180px);
-`;
-
-// ==============================
 // =====      Component     =====
 // ==============================
 
@@ -90,3 +77,16 @@ export default connect(
   mapStateToProps,
   { getSinglePost, deletePost }
 )(SingleForumPost);
+
+// ==============================
+// =====  Styled Component  =====
+// ==============================
+
+const Div = styled.div`
+  padding: 20px;
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 180px);
+`;

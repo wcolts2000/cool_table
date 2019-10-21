@@ -2,6 +2,33 @@ import React from "react";
 import styled from "styled-components";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+let moment = require("moment");
+
+function ForumListCard({ id, title, body, author, created_at, history }) {
+  return (
+    <PostCard onClick={() => history.push(`/forum/single-post/${id}`)}>
+      <h3>
+        {title.slice(0, 20)}
+        {title.length > 20 ? "..." : null}
+      </h3>
+      <p>
+        {body.slice(0, 100)}
+        {body.length > 100 ? "..." : null}
+      </p>
+      <p>
+        {author}{" "}
+        <span>{moment.utc(created_at).format("MMMM Do YYYY, hh:mm a")}</span>
+      </p>
+    </PostCard>
+  );
+}
+
+export default ForumListCard;
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -41,30 +68,3 @@ const PostCard = styled.div`
     font-size: 10px;
   }
 `;
-
-// ==============================
-// =====      Component     =====
-// ==============================
-
-let moment = require("moment");
-
-function ForumListCard({ id, title, body, author, created_at, history }) {
-  return (
-    <PostCard onClick={() => history.push(`/forum/single-post/${id}`)}>
-      <h3>
-        {title.slice(0, 20)}
-        {title.length > 20 ? "..." : null}
-      </h3>
-      <p>
-        {body.slice(0, 100)}
-        {body.length > 100 ? "..." : null}
-      </p>
-      <p>
-        {author}{" "}
-        <span>{moment.utc(created_at).format("MMMM Do YYYY, hh:mm a")}</span>
-      </p>
-    </PostCard>
-  );
-}
-
-export default ForumListCard;

@@ -2,6 +2,23 @@ import React from "react";
 import styled from "styled-components";
 
 // ==============================
+// =====      Component     =====
+// ==============================
+
+function HamburgerIcon({ mobilenavopen, navOpen }) {
+  return (
+    <>
+      <Hamburger mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}>
+        &nbsp;
+      </Hamburger>
+      <Backplate onClick={() => navOpen(mobilenavopen)}>&nbsp;</Backplate>
+    </>
+  );
+}
+
+export default HamburgerIcon;
+
+// ==============================
 // =====  Styled Component  =====
 // ==============================
 
@@ -70,20 +87,3 @@ const Backplate = styled.div`
     display: initial;
   }
 `;
-
-// ==============================
-// =====      Component     =====
-// ==============================
-
-function HamburgerIcon({ mobilenavopen, navOpen }) {
-  return (
-    <>
-      <Hamburger mobilenavopen={mobilenavopen === "open" ? "open" : "closed"}>
-        &nbsp;
-      </Hamburger>
-      <Backplate onClick={() => navOpen(mobilenavopen)}>&nbsp;</Backplate>
-    </>
-  );
-}
-
-export default HamburgerIcon;
